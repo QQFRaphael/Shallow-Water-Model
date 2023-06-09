@@ -1,0 +1,61 @@
+MAC OSX version:
+built esmf_1_0_6_src.tar
+built on G5 malacandra with absoft compiler,
+ESMF_DIR=/Users/dazlich/doe_ca/esmf
+
+Also built with xlf compiler esmf_2_0_0_src_rp1.tar on G5 malacandra
+ESMF_DIR=/Users/dazlich/esmf
+ESMF_COMPILER=xlf
+ESMF_COMM=mpiuni
+The xlf libraries were rebuilt with version 2.1 to fix a bug with the time manager timeget function for dayofyear.
+
+Build version 2_2_2_rp1 with the intel compiler for OSX/Intel
+
+
+SGI IRIX version:
+built esmf_1_0_6_src.tar
+built on caliche, 2 proc octane, f90 compiler version 7.4, IRIX 6.5.20
+ESMF_DIR=/disk6/doe_esmf/doe_ca/esmf
+ESMF_PREC=32
+ESMF_COMM=mpi
+build couldn't handle mpi++.h, since we are not using any of the mpi functions of esmf I took /usr/include/mpi.h, deleted lines 1080-1082 and copied it to the
+following directories:
+	src/Infrastructure/Machine/include
+	src/Infrastructure/DELayout/include
+	src/Infrastructure/Route/include
+	src/Infrastructure/Array/include
+	src/Infrastructure/ArrayComm/include
+	src/Superstructure/Component/include
+	src/Superstructure/State/include
+
+IBM AIX version.
+built esmf_1_0_6.src.tar
+built on eagle.ccs.ornl.gov
+ESMF_PREC=32
+
+Linux PGI compiler version
+built esmf_1_0_7.src.tar
+ESMF_PREC=32
+ESMF_COMPILER=pgi
+ESMF_COMM=mpiuni
+
+Linux Intel compiler version
+built esmf_2_1_0rp1.src.tar
+ESMF_PREC=32
+ESMF_COMPILER=ifort
+ESMF_COMM=mpiuni
+
+Linux pathscale compiler version
+built esmf_2_2_2rp1.src.tar on nersc machine jacquard
+ESMF_COMPILER=pathscale
+ESMF_COMM=mpiuni
+ESMF_BOPT=O
+
+Linux pgi ibm dataplex (NERSC carver)
+built esmf_3_1_0rp1_src
+setenv ESMF_BOPT O
+setenv ESMF_COMM mpiuni
+setenv ESMF_ABI 64
+setenv ESMF_F90 mpif90
+setenv ESMF_F90OPTFLAG -fast
+setenv ESMF_SITE carver

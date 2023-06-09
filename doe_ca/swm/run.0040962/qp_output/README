@@ -1,0 +1,4 @@
+
+netCDF data is written to this directory
+
+*.nc files can be used with IDL/EZPLOT

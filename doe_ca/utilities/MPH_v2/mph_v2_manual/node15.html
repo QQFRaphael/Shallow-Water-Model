@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>MPH_comm_join - join two components</TITLE>
+<META NAME="description" CONTENT="MPH_comm_join - join two components">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html291" HREF="node16.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html289" HREF="node7.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html283" HREF="node14.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html293" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html292" HREF="node16.html">MPH_redirect_output - redirect output </A>
+<B>Up:</B> <A NAME="tex2html290" HREF="node7.html">Module MPH_module - Multi </A>
+<B> Previous:</B> <A NAME="tex2html284" HREF="node14.html">MPH_global_id - find global </A>
+<BR> <P>
+<H3><A NAME="SECTION00061800000000000000">MPH_comm_join - join two components</A></H3>
+<P>
+      This routine creates a joined MPI communicators for any two 
+      components.  The order of these two components appeared in 
+      the subroutine parameter argumment has an effect on the 
+      local process id within the joined communicator.
+<P>
+<P><I>REVISION HISTORY:</I>
+<PRE>       2001-Nov-15 -- add PROTEX convention
+       2001-May-20 -- first prototype</PRE><I>INTERFACE:</I>
+<PRE>       subroutine MPH_comm_join (name1, name2, comm_joined)</PRE><EM>USES:</EM>
+<PRE>       implicit none</PRE><I>SEE ALSO:</I>
+<PRE>       MPH_find_name, PE_in_component</PRE><EM>INPUT PARAMETERS:</EM>
+<PRE>       character(len=*), intent(in) :: name1, name2   ! two component names</PRE><EM>OUTPUT PARAMETERS:</EM>
+<PRE>       integer, intent(out) :: comm_joined   
+                                  ! joined communicator for two components</PRE><I>LOCAL VARIABLES:</I>
+<PRE>       integer :: id1, id2      
+       integer :: color, key
+       logical :: con1, con2
+       integer :: comm1, comm2</PRE>
+<P>
+\
+<P>
+  <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

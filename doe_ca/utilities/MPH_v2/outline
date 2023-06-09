@@ -1,0 +1,80 @@
+
+MPH version 2 combines all features of MPH version 1, 
+unifying the interfaces, and provides more flexible 
+components integration/execution modes.
+
+Consider the entire simulation system (CCSM) consists of 
+many executables, each executable containing one or 
+more components.  This architecture offers complete 
+flexibility, and is consistent with CORBA, DCE, CCA et al.
+
+1.  Every executable starts with
+
+  mpi_exec_world =                       &
+      MPH_components(name1='ocean', name2='atmosphere',...)
+
+You may have only one component in this executable, or
+up to 10 components in this executable. Component names
+are nametags (place holder) and are completely arbitrary.
+They must be self-consistently used, and match the
+"processors_map.in" registration file.  This setup
+subroutine replaces MPH_setup() in MPH version 1.
+All other MPH functionality remains identical.
+
+2. Some usages. 
+
+   a) CCSM example. Ice & Land share one executable.
+ 
+   coupler - one executable 
+   atmosphere - one executable 
+   ocean - one executable 
+   ice & land - one executable with 2 components, 
+	        they may overlap on processors 
+
+   b) CCSM example. Multiple instances of atmosphere.
+
+   coupler - one executable 
+   atmosphere - one executable of 3 components 
+                each is a CCM instance of a different Dycore. 
+   ocean - one executable 
+   land - one executable with 3 components for CCMs.
+                each is a land model to match the CCM 
+   ice - one executable 
+
+   c) PCM example. 
+
+   couple - one executable 
+   atmosphere & land : one executable 
+   ocean and ice : one executable 
+
+
+3. "processors_map.in" registration file
+   The following example contains 3 executables:
+      1st executable has a single component: coupler 
+      2nd executable has 2 components: ocean, ice 
+      3rd executable has 3 components: atmosphere, land, chemistry 
+
+        BEGIN
+        coupler
+        Multi_Comp_Start
+        2
+        ocean      0  3
+        ice        4 10
+        Multi_Comp_End
+        Multi_Comp_Start
+        3
+        atmosphere 0  10
+        land       11 13
+        chemistry  14 25
+        Multi_Comp_End
+        END
+
+   a) Allocation of processors for each executable is controlled 
+      by job launching process (different on IBM, SGI, Compaq).
+   b) Processor ranges for each components are defined local 
+      to the exeutable.
+	
+
+4. Two test examples.
+
+Written by C. Ding and Y. He of NERSC/LBL.

@@ -1,0 +1,296 @@
+#-----------------------------------------------------------------------------
+# Makefile for library-dependent information:  utilities library for doe_ca
+# This file is intended to be read by GNUmakefile (along with Makefile.host)
+# See the comments in GNUmakefile for more information.
+#
+# This makefile must define all library-dependent information, principally:
+#
+#	A. library-dependent CPP flags
+#	B. name of library and default target
+#	C. list of all source files
+#	D. list of all nontrivial dependencies (e.g., on modules)
+#	E. miscellaneous (other targets, target-dependent flags, etc.)
+#	
+# Explanation of each is in the comments below.
+#
+# Author:  Scott R. Fulton (originally Makefile.model for swm)
+#          Adapted for doe_ca/utilities by Don Dazlich
+#          Updated and renamed Makefile.library by Scott Fulton
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# PART A:  library-dependent CPP flags
+#-----------------------------------------------------------------------------
+DMPI		= -Dmpi=val
+DSPMD		= -Dspmd_mode=val
+DPARALLEL_IO    = -Dparallel_io=0
+DNPE            = -DNPE_COMP=1
+DMPH	        = -DMPH
+CPP_OPTS	= $(DMPI) $(DPARALLEL_IO) $(DMPH) $(DSPMD) $(DNPE)
+
+#-----------------------------------------------------------------------------
+# PART B:  name of library and default target
+#-----------------------------------------------------------------------------
+# NAME = name of the library, LIBDIR = directory in which to put it
+#
+# Leave the other lines alone!  They define the default target "all"
+# (the name is traditional) which gets processed when you run "make".
+# This must go here (before any dependency lines, which are also targets).
+# Using a phony target here allows us to put the actual rule for building
+# the executable code $(MAIN) in the main makefile (GNUmakefile).
+#-----------------------------------------------------------------------------
+NAME = libutil.a
+LIBDIR	= ../../lib
+
+MAIN = $(LIBDIR)/$(NAME)
+.PHONY: all
+all : $(MAIN)
+
+#-----------------------------------------------------------------------------
+# PART C:  list of all source files
+#-----------------------------------------------------------------------------
+# The bottom line in this section is to have two variables which list all
+# source files:
+#	SRC_FREE	all .F files using free  source form
+#	SRC_FIXED	all .F files using fixed source form
+# These can be explicit lists (i.e., hard-coded path to each file), but a 
+# far better approach is to define the two lists of files (without paths)
+# and then specify the directories in which to search for them in VPATH. 
+# Either list may be empty.
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Set the paths to the various source directories
+#-----------------------------------------------------------------------------
+DOE_CA		= ../..
+L1		= $(DOE_CA)/utilities/layer_1
+L2		= $(DOE_CA)/utilities/layer_2
+L3		= $(DOE_CA)/utilities/layer_3
+MPH		= $(DOE_CA)/utilities/MPH_v2
+ESMFMOD = $(DOE_CA)/esmf/mod/$(ESMF_ARCH)
+
+#-----------------------------------------------------------------------------
+# Set the path to search for source files.  This eliminates the need to 
+# hard-code the path to each source file, and allows us to keep multiple 
+# copies in different directories for testing and running variants.  
+# To use the copy you want, just put the directories in the proper order.
+#-----------------------------------------------------------------------------
+VPATH = $(L1):$(L2):$(L3):$(MPH):$(ESMFMOD)
+
+#-----------------------------------------------------------------------------
+# List the source files (must define SRC_FREE and SRC_FIXED)
+# The splitting here of source files into layers is NOT needed, 
+# but it may help keep track of which files are where.
+#-----------------------------------------------------------------------------
+
+SRC_FREE_L3 = \
+	grid_metrics.F 
+
+SRC_FREE_L2 = \
+	io_utilities.F \
+	comm_setup.F \
+	sendrecv.F \
+	geodesic_grid_utilities.F \
+	global_reductions.F \
+	assign_owner.F \
+	wrap_data.F \
+	gather_scatter.F \
+	operators.F \
+	grid_metrics_generator.F \
+        mass_fct.F    \
+        tracer_fct.F  \
+	output_utilities.F \
+	cslp_module.F \
+        dx_grid_utility.F \
+	grid_mask.F 
+
+SRC_FREE_L1 = \
+	kinds.F \
+	abort.F \
+	types.F \
+	params_physical.F \
+	params_MPI.F \
+	params_global_MPH.F \
+	params_time_manager.F \
+	params_scm.F \
+	time_manager_utilities.F \
+	cpl_types.F \
+	cpl_vmfcal_module.F \
+	component_intra.F \
+	netcdf_general_tools.F \
+	netcdf_geodesic.F \
+	netcdf_pbp.F \
+	netcdf_util.F \
+	qp_utilities.F \
+	pbp_utilities.F \
+	linear_algebra.F \
+	SCRIP_Grids.F \
+	SCRIP_Regrid_Conserv.F \
+	SCRIP_Regrid_Mod.F \
+	SCRIP_Regrid_Nnbr.F \
+	SCRIP_Regrid_Types.F \
+	generic_linear_interpolation.F \
+	netcdf_reader.F \
+        coszen_module.F \
+        dx_write_utility.F \
+	timer.F \
+	eau_params.F \
+	eau_util.F
+
+SRC_FREE = $(SRC_FREE_L3) $(SRC_FREE_L2) $(SRC_FREE_L1) 
+
+SRC_FIXED_MPH = \
+	mph.F
+
+SRC_FIXED = $(SRC_FIXED_MPH)
+
+#-----------------------------------------------------------------------------
+# PART D:  list of all nontrivial dependencies
+#-----------------------------------------------------------------------------
+# This list is critical--it tells make what depends on what.  The things to 
+# the left of the colon (targets) depend on the things to the right of the 
+# colon (prerequisites).  You can put multiple targets on the left if they 
+# all depend on the same list of prerequisites.
+#
+# Make already knows that an object (.o) file depends on the corresponding 
+# source (.F) file.  What is needed here is any other dependency, such as 
+# dependencies on modules (or include files).  For this, note that it is not
+# the source file (.F) which depends on the module (the source doesn't change
+# if you change the module), but the object code.  Also, what it depends on 
+# is the compiled module (which in turn depends on its own source code).
+# Thus we have .o files on the left (targets) and right (prerequisites).
+#
+# The utility getdep may be used to generate these dependency lists.
+#
+# Note:  Technically, the object code for a program unit which uses a module 
+# depends on the .mod file for that module, not the .o file.  Here we've 
+# taken the quick and dirty approach of listing all dependencies in terms of 
+# .o files.  This should work, since both .o and .mod files are generated from 
+# the same source file by the same compilation.  It also has the advantage of 
+# working when a module is so trivial that there is no .mod file generated 
+# (the .o file will still be there).  However, it has the disadvantage that 
+# even when the library is generated, you have to keep both the .o and .mod 
+# files around to be used in compiling other codes which use the library:  
+# the .o files for checking dependencies and .mod files for the information.
+# If you find a way around this, please tell me (fulton@clarkson.edu).
+#-----------------------------------------------------------------------------
+
+# Note:  dependencies below were generated automatically by getdep
+# Note:  dependencies on .h files commented out (I don't know where they are)
+# Note:  dependency of timer.o on xlfutility.o (ibm only) commented out
+
+#-------LAYER 3:
+
+grid_metrics.o: kinds.o params_physical.o geodesic_grid_utilities.o gather_scatter.o wrap_data.o grid_metrics_generator.o
+
+#-------LAYER 2:
+
+assign_owner.o: kinds.o abort.o types.o  output_utilities.o component_intra.o
+
+gather_scatter.o: kinds.o params_MPI.o wrap_data.o params_physical.o component_intra.o abort.o # mpif.h
+
+operators.o: kinds.o geodesic_grid_utilities.o
+
+wrap_data.o: kinds.o types.o component_intra.o # mpif.h
+
+geodesic_grid_utilities.o: kinds.o params_physical.o
+
+global_reductions.o: kinds.o params_MPI.o component_intra.o abort.o # mpif.h
+
+grid_mask.o: kinds.o grid_metrics_generator.o params_physical.o output_utilities.o gather_scatter.o wrap_data.o
+
+mass_fct.o: kinds.o operators.o wrap_data.o
+
+tracer_fct.o: kinds.o wrap_data.o
+
+grid_metrics_generator.o: kinds.o gather_scatter.o geodesic_grid_utilities.o output_utilities.o global_reductions.o params_physical.o component_intra.o params_scm.o wrap_data.o
+
+io_utilities.o: kinds.o abort.o component_intra.o # mpif.h
+
+comm_setup.o: kinds.o mph.o params_global_MPH.o component_intra.o abort.o
+
+cslp_module.o: kinds.o params_physical.o
+
+sendrecv.o: kinds.o mph.o types.o params_MPI.o component_intra.o params_global_MPH.o cpl_types.o # mpif.h
+
+output_utilities.o: kinds.o component_intra.o gather_scatter.o wrap_data.o # mpif.h
+
+#-------LAYER 1:
+
+abort.o: kinds.o # mpif.h
+
+types.o: kinds.o
+
+params_MPI.o: kinds.o abort.o # mpif.h
+
+coszen_module.o: kinds.o
+
+cpl_types.o: kinds.o abort.o
+
+cpl_vmfcal_module.o: kinds.o
+
+component_intra.o: kinds.o types.o abort.o
+
+params_global_mph.o: kinds.o mph.o params_MPI.o
+
+params_time_manager.o: kinds.o
+
+params_scm.o: kinds.o
+
+time_manager_utilities.o: kinds.o
+
+params_physical.o: kinds.o
+
+netcdf_general_tools.o: kinds.o netcdf_util.o
+
+netcdf_geodesic.o: kinds.o types.o netcdf_util.o netcdf_general_tools.o
+
+netcdf_pbp.o: kinds.o types.o netcdf_util.o netcdf_general_tools.o
+
+netcdf_util.o: kinds.o # netcdf.inc
+
+qp_utilities.o: kinds.o types.o
+
+pbp_utilities.o: kinds.o types.o
+
+timer.o: kinds.o component_intra.o # xlfutility.o mpif.h
+
+SCRIP_Grids.o: kinds.o params_physical.o
+
+SCRIP_Regrid_Mod.o: kinds.o params_physical.o SCRIP_Grids.o SCRIP_Regrid_Types.o SCRIP_Regrid_Conserv.o SCRIP_Regrid_Nnbr.o
+
+SCRIP_Regrid_Types.o: kinds.o params_physical.o SCRIP_Grids.o
+
+SCRIP_Regrid_Conserv.o: kinds.o SCRIP_Grids.o SCRIP_Regrid_Types.o
+
+SCRIP_Regrid_Nnbr.o: kinds.o params_physical.o SCRIP_Grids.o SCRIP_Regrid_Types.o
+
+linear_algebra.o: kinds.o
+
+dx_write_utility.o: kinds.o
+
+dx_grid_utility.o: kinds.o component_intra.o geodesic_grid_utilities.o
+
+eau_params.o: kinds.o params_physical.o
+
+eau_util.o: kinds.o eau_params.o
+
+kinds.o:
+
+#-----------------------------------------------------------------------------
+# PART E:  miscellaneous (other targets, target-dependent flags, etc.)
+#-----------------------------------------------------------------------------
+
+# special case:  MPH
+
+# dependencies:
+mph.o: kinds.o # mpif.h
+
+# additional flags needed for compiling mph (target-specific variable value):
+mph.o : FFLAGS += $(MPHFLAGS)
+
+#DD - this doesn't work on the SGI so I'm commenting this and moving kinds.o up
+# with the layer_1 stuff - don dazlich
+# Make applies this definition to all prerequistes, so to avoid this:
+#kinds.o : FFLAGS = $(FFLAGS)
+

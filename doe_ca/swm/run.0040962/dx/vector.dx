@@ -1,0 +1,19 @@
+
+object "positions list" class array type float rank 1 shape 3 items 81920
+ascii data file vector.position.data
+
+object 0  class array type float rank 1 shape 3 items 81920
+ascii data file ./output/velocity.00000001
+attribute "dep" string "positions"
+
+object 1  class array type float rank 1 shape 3 items 81920
+ascii data file ./output/du.00000001
+attribute "dep" string "positions"
+
+object "u" class field
+component "positions"     "positions list"
+component "data"           0
+
+object "du" class field
+component "positions"     "positions list"
+component "data"           1

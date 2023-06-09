@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>MPH_timer - collect timing info in different channels.</TITLE>
+<META NAME="description" CONTENT="MPH_timer - collect timing info in different channels.">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html357" HREF="node22.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html355" HREF="node7.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html349" HREF="node20.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html359" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html358" HREF="node22.html">MPH_total_components - find number </A>
+<B>Up:</B> <A NAME="tex2html356" HREF="node7.html">Module MPH_module - Multi </A>
+<B> Previous:</B> <A NAME="tex2html350" HREF="node20.html">MPH_debug - define debug </A>
+<BR> <P>
+<H3><A NAME="SECTION000611400000000000000">MPH_timer - collect timing info in different channels.</A></H3>
+<P>
+  This function collects timing info in different 
+    channels.
+    <PRE>    Usage:
+    channel 0 is the default channel, using init_time.
+    ---------------------------------------------------------
+    timer calls to walk-clock dclock(), and do the following:
+    ---------------------------------------------------------
+    flag=0  : Sets initial time; init all channels.
+    flag =1 : Calculates the most recent time interval; accrues it 
+              to the specified channel (default 0);  Returns it to 
+              calling process.
+    flag =2 : Calculates the most recent time interval; accrues it 
+              to the specified channel (default 0);  Returns the 
+              curent total time in the specified channel.
+    ---------------------------------------------------------</PRE>
+<P>
+<P><I>REVISION HISTORY:</I>
+<PRE>       2001-Nov-19 -- add PROTEX convention
+       2001-May-20 -- first prototype</PRE><I>INTERFACE:</I>
+<PRE>       real (kind=8) function MPH_timer (flag, channel)</PRE><EM>USES:</EM>
+<PRE>       implicit none</PRE><EM>INPUT PARAMETERS:</EM>
+<PRE>       integer :: flag, channel</PRE><EM>OUTPUT PARAMETERS:</EM>
+<PRE>       ! real (kind=8) MPH_timer (flag, channel)</PRE><I>LOCAL VARIABLES:</I>
+<PRE>       real (kind=8) :: new_time, delta_time, MPI_Wtime</PRE>
+<P>
+\
+<P>
+  <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

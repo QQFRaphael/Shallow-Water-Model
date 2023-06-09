@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>MPH_redirect_output - redirect output from each component</TITLE>
+<META NAME="description" CONTENT="MPH_redirect_output - redirect output from each component">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html302" HREF="node17.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html300" HREF="node7.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html294" HREF="node15.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html304" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html303" HREF="node17.html">MPH_read_list - read and </A>
+<B>Up:</B> <A NAME="tex2html301" HREF="node7.html">Module MPH_module - Multi </A>
+<B> Previous:</B> <A NAME="tex2html295" HREF="node15.html">MPH_comm_join - join two </A>
+<BR> <P>
+<H3><A NAME="SECTION00061900000000000000">MPH_redirect_output - redirect output from each component</A></H3>
+<P>
+      This routine redirects output to a log file defined by an environment
+      variable.  System functions (&quot;getenv&quot; for IBM and &quot;pxfgetenv&quot; for
+      SGI and T3E) are used to retrieve the environmet variable.
+<P>
+<P><I>REMARKS:</I>
+<PRE>      In order to redirect component output to a separate file, 
+      a user will setup something like the following in the run script:
+           setenv ice_out_env ice.log
+           setenv land_out_env land.log
+           setenv cpl_out_env cpl.log</PRE><I>REVISION HISTORY:</I>
+<PRE>       2001-Nov-15 -- add PROTEX convention
+       2001-May-20 -- first prototype</PRE><I>INTERFACE:</I>
+<PRE>       subroutine MPH_redirect_output (name)</PRE><EM>USES:</EM>
+<PRE>       implicit none</PRE><EM>INPUT PARAMETERS:</EM>
+<PRE>       character(len=*), intent(in) :: name   ! part of the log file name</PRE><I>LOCAL VARIABLES:</I>
+<PRE>       integer :: lenname, lenval, rcode
+       character(len=32) :: output_name_env
+       character(len=64) :: output_name, temp_value</PRE>
+<P>
+\
+<P>
+  <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

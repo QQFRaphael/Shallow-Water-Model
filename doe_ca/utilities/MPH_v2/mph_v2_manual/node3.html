@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>How to Use</TITLE>
+<META NAME="description" CONTENT="How to Use">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html104" HREF="node4.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html102" HREF="mph.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html96" HREF="node2.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html106" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html105" HREF="node4.html">How to Compile and </A>
+<B>Up:</B> <A NAME="tex2html103" HREF="mph.html">Multi Program-Components Handshaking (MPH) </A>
+<B> Previous:</B> <A NAME="tex2html97" HREF="node2.html">Introduction</A>
+<BR> <P>
+<H1><A NAME="SECTION00030000000000000000">How to Use</A></H1>
+<P>
+   <PRE>   Users need to &quot;use MPH_module&quot; in the application codes, and 
+   invoke the appropriate MPH_components function for the multiple 
+   components in each executable. For example, ICE_LAND_World = 
+   MPH_components (name1=&quot;ice&quot;, name2=&quot;land&quot;). You could use 
+   MPH_debug call to determine the output message amount, the 
+   default level is 0. &quot;MPH_help&quot; call provides you the available 
+   inquiry functions for that mode. 
+  
+   An input file called &quot;processors_map.in&quot; to give detailed 
+   information of component nametags and processor ranges. See more 
+   detail about how this file looks like in Section 1.
+ 
+   Each component maintains its own output in a separate file (file 
+   name defined by environment variable either in command line or 
+   in batch run script), assuming the local processor 0 of each 
+   component being responsible for most output, other occasional 
+   writes from all the components are stored in one combined standand 
+   output file. 
+  
+   This is accomplished by processor rank 0 of each component call 
+   subroutine &quot;MPH_redirect_output&quot; with the model name as argument. 
+   IBM and SGI could do the output redirect with the help of system 
+   function &quot;getenv&quot; or &quot;pxfgetenv&quot;. Compaq cannot do this.  And 
+   T3E is able to get the correct output files created using 
+   &quot;pxfgetenv&quot;, but only output with those &quot;write(6,*)&quot; could be 
+   redirected, but not those with &quot;write(*,*)&quot;, since * is equal to
+   unit 101, and permanently related to the non-redirectable stdout.</PRE>
+<P>
+   <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

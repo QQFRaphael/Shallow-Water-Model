@@ -1,0 +1,11 @@
+
+for folks w/ read/write access to the repository:
+
+if you edit the swm_documentation.mif file, please export
+the document as a .mif file and commit the changes. the
+.mif files should be portable across all Framemaker versions.
+
+Also, when you commit the changes, export the document to .pdf
+(or save and .ps and distill it) and commit the new .pdf file
+to the repository. This insures that users w/o access to 
+Framemaker can read the documentation.

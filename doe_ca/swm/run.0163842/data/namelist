@@ -1,0 +1,11 @@
+0003.00   ! tau_end_day
+  00.00   ! tau_end_hour
+0050.00   ! dt (seconds)
+F         ! l_restart 
+F         ! l_upwind (upwind advection)
+F         ! l_centered (centered in space)
+F         ! l_fct (flux corrected transport)
+T         ! l_remap (incremental remapping)
+9999      ! n_restart
+0216      ! n_output
+0072      ! n_diagnostics

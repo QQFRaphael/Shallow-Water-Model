@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>MPH_find_name - find name in a namelist</TITLE>
+<META NAME="description" CONTENT="MPH_find_name - find name in a namelist">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html324" HREF="node19.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html322" HREF="node7.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html316" HREF="node17.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html326" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html325" HREF="node19.html">MPH_help - display help </A>
+<B>Up:</B> <A NAME="tex2html323" HREF="node7.html">Module MPH_module - Multi </A>
+<B> Previous:</B> <A NAME="tex2html317" HREF="node17.html">MPH_read_list - read and </A>
+<BR> <P>
+<H3><A NAME="SECTION000611100000000000000">MPH_find_name - find name in a namelist</A></H3>
+<P>
+      This routine finds if a certain name exists in an array of
+      namelist and returns the rank if it does or -1 if it does not.
+<P>
+<P><I>REVISION HISTORY:</I>
+<PRE>       2001-Nov-15 -- add PROTEX convention
+       2001-May-20 -- first prototype</PRE><I>INTERFACE:</I>
+<PRE>       integer function MPH_find_name (name, namelist, num)</PRE><EM>USES:</EM>
+<PRE>       implicit none</PRE><EM>INPUT PARAMETERS:</EM>
+<PRE>       character(len=*), intent(in) :: name   ! name to be found
+       integer :: num                      ! length of namelist array
+       character (len=32) namelist(num)    ! name list array</PRE><EM>OUTPUT PARAMETERS:</EM>
+<PRE>       ! the rank of a name in an array of namelist or -1 if not exist</PRE><I>LOCAL VARIABLES:</I>
+<PRE>       integer :: i</PRE>
+<P>
+\
+<P>
+  <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

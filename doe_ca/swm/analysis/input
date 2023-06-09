@@ -1,0 +1,17 @@
+40962
+1
+../run.0040962/lat-ez
+../run.0040962/lon-ez
+./layer_thickness.out
+../run.0040962/area-ez
+../run.0040962/h-ez
+
+
+line 1 == resolution (e.g. 2562)
+line 2 == number of days in run (assume 1 sample per day)
+line 3 == path to grid cell latitude location
+line 4 == path to grid cell longitude location
+line 5 == spectral model layer thickness sampled on geodesic grid
+	  output from refsoln
+line 6 == path to grid cell area file
+line 7 == path to output from geodesic swm, layer thickness

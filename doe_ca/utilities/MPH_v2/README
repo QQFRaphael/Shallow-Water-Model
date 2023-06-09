@@ -1,0 +1,109 @@
+MPH Version 2: Multiple Components in Each Executable
+
+To compile:
+==========
+
+    Note: Vince Wayland of NCAR contributes for SGI and Compaq
+
+    The shared "Makefile" detects the machine architecture and compiles
+    appropriately for IBM, SGI and Compaq. For test case 1, type "make
+    test1", and for test case 2, type "make test2". (or "gmake ..."
+    depends on your machine).
+
+    One notice before you compile is that for NERSC IBM we need to use
+    $TMPDIR stuff in CFOPTS to work around with F90 modules due to the
+    GPFS file system.  You may probably want to define "CFOPTS=" if
+    your file system is compatible with F90 modules. 
+
+To run:
+======
+
+    After compile, you will have executables generated ("ice-land", 
+    "cpl", "pop-atm" for test1, and "ice-land", "cpl" for test2) in
+    the corresponding subdirectory.  Each sample subdirectoy also
+    includes batch scripts and sample output.
+
+    Go to that directory first, (here we use test2 as an example), 
+    and then: 
+
+    1) to run on NERSC and NCAR IBM SP interactively:
+        a) % unsetenv MP_TASKS_PER_NODE
+        b) % setenv ice_out_env ice.log
+            % setenv land_out_env land.log
+            % setenv cpl_out_env cpl.log
+        c) make sure the following command in ONE LINE:
+            % poe -pgmmodel mpmd -cmdfimle tasklist -nodes 3 -procs 6
+                -stdoutmode ordered -infolevel 2 > & output &
+
+        to run on IBM SP with batch script:
+        % llsubmit script
+
+    2) we could not run it on NERSC CRAY T3E since there is no mpmd
+       mechnism.
+
+    3) to run on NCAR SGI interactively:
+        a) % setenv ice_out_env ice.log
+            % setenv land_out_env land.log
+            % setenv cpl_out_env cpl.log
+            % mpirun -p "[%g]" -np 4 ice-land : -np 2 cpl > output
+
+        It's pretty simple to build an NQE batch script around it;
+        just hard to get it run through any of the queues here.
+        The tasklist file is not needed (can't be used?) on the SGI.
+
+    4) to run on NCAR Compaq with batch script:
+        You need two shell scripts, run.dec and runscript.dec.
+        (Thanks to Dan Anderson & Bill Celmaster in NCAR).
+        As on the SGI O2K script, a concern is to get all of the
+        processes into execution at the same time.
+
+        run.dec:
+        #! /bin/csh
+        prun -n6 -t runscript.dec
+
+        "runscript.dec" looks like this:
+        #! /bin/csh
+        #RMS_NODEID __ the node ID of the node this process is running on
+        #RMS_NPROCS __ total number of prun processes spawned
+        #RMS_RANK __ which prun process of the RMS_NPROCS processes
+
+        echo "node= " $RMS_NODEID " Process number= " $RMS_RANK " of "
+        $RMS_NPROCS
+        if ($RMS_RANK >= 0 && $RMS_RANK <= 3) ice-land & # 4 procs for ice-land
+        if ($RMS_RANK >= 4 && $RMS_RANK <= 5) cpl & # 2 procs for cpl
+        exit
+
+
+To use:
+======
+
+    Users need to "use MPH_module" in the application codes, and invoke the
+    appropriate MPH_components function for the multiple components in each
+    executable. For example, ICE_LAND_World = MPH_components (name1="ice",
+    name2="land"). You could use MPH_debug call to determine the output
+    message amount, the default level is 0. "MPH_help" call provides you the
+
+    available inquiry functions for that mode.
+
+    Each component maintains its own output in a separate file (file name
+    defined by environment variable either in command line or in batch run
+    script), assuming the local processor 0 of each component being
+    responsible for most output, other occasional writes from all the
+    components are stored in one combined standand output file.
+
+    This is accomplished by processor rank 0 of each component call
+    subroutine "MPH_redirect_output" with the model name as argument.
+    IBM and SGI could do the output redirect with the help of system
+    function "getenv" or "pxfgetenv". Compaq cannot do this. And T3E is
+    able to get the correct output files created using "pxfgetenv",
+    but only output with those "write(6,*)" could be redirected, but not
+    those with "write(*,*)", since * is equal to unit 101, and permanently
+    related to the non-redirectable stdout. 
+
+For more information, please go to web page:
+http://www.nersc.gov/research/SCG/acpi/MPH
+
+
+Last modified May 22, 2001.
+
+[Image] Back to NERSC ACPI Homepage

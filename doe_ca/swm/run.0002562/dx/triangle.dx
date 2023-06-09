@@ -1,0 +1,38 @@
+
+object "positions list" class array type float rank 1 shape 3 items 15360
+ascii data file tri.position.data
+
+object "edge list" class array type int rank 0 items 15360
+ascii data file tri.edge.data
+attribute "ref" string "positions"
+
+object "loops list" class array type int rank 0 items 5120
+ascii data file tri.loop.data
+attribute "ref" string "edges"
+
+object "face list" class array type int rank 0 items 5120
+ascii data file tri.face.data
+attribute "ref" string "loops"
+
+object 0  class array type float rank 0 items 5120
+data file tri.area.data
+attribute "dep" string "faces"
+
+object 1  class array type float rank 0 items 5120
+data file ./output/enstrophy.00000010
+attribute "dep" string "faces"
+
+object "corner_area" class field
+component "positions"     "positions list"
+component "edges"         "edge list"
+component "loops"         "loops list"
+component "faces"         "face list"
+component "data"           0
+
+object "enstrophy" class field
+component "positions"     "positions list"
+component "edges"         "edge list"
+component "loops"         "loops list"
+component "faces"         "face list"
+component "data"           1
+

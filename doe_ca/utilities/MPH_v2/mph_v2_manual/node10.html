@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>MPH_local - local handshaking</TITLE>
+<META NAME="description" CONTENT="MPH_local - local handshaking">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html236" HREF="node11.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html234" HREF="node7.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html228" HREF="node9.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html238" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html237" HREF="node11.html">MPH_global - global handshaking</A>
+<B>Up:</B> <A NAME="tex2html235" HREF="node7.html">Module MPH_module - Multi </A>
+<B> Previous:</B> <A NAME="tex2html229" HREF="node9.html">MPH_init - initialize MPI </A>
+<BR> <P>
+<H3><A NAME="SECTION00061300000000000000">MPH_local - local handshaking</A></H3>
+<P>
+      This routine first defines exe_id , and creates local exe_world 
+   for each executable.  It then gathers gobal processor ids onto
+   submaster (whose rank is 0 in exe_world).  And then it creates 
+   local_world for each component within exe_world based on its
+   upper and lower processor limits.  Finally it collects name, number
+   of processors, and processor list of each component onto submaster of 
+   each executable world.
+<P>
+<P><I>REVISION HISTORY:</I>
+<PRE>       2001-Dec-13 -- add warning for overlapping processors
+       2001-Nov-27 -- add local_totProcs for single component executables
+       2001-Nov-19 -- add PROTEX convention, use new MPH_read_list interface 
+       2001-May-20 -- first prototype</PRE><I>INTERFACE:</I>
+<PRE>       subroutine MPH_local ()</PRE><EM>USES:</EM>
+<PRE>       implicit none</PRE><I>SEE ALSO:</I>
+<PRE>       MPH_init, MPH_global, MPH_find_name</PRE><I>LOCAL VARIABLES:</I>
+<PRE>       integer :: color, key
+       integer :: id, comp_id_end, i, k</PRE>
+<P>
+\
+<P>
+  <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

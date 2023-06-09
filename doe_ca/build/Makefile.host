@@ -1,0 +1,334 @@
+#-----------------------------------------------------------------------------
+# Makefile.host:  defines processor-dependent information
+# This file is intended to be read by GNUmakefile.
+# See the comments in GNUmakefile for more information.
+#
+# This Makefile should define the following variables:
+#
+#     CPP	full path name of the C preprocessor
+#     FC	full path name of the Fortran compiler
+#     LD	full path name of the loader (usually the same as FC)
+#     AR	full path name of the archiver 
+#
+# The following variables may also be defined.  However, you may choose
+# to override these on the make command line (e.g., make 'FFLAGS=-i8' ).
+# You may want to set some of these differently based on whether or not
+# the variable DEBUG is defined (see examples below).
+#
+#     CPPFLAGS	flags to be passed to CPP (for .F files)
+#     SUF	suffix to use for files generated from .F via CPP
+#     FFLAGS	flags to be passed to FC
+#     FIXED	extra option(s) passed to FC to specify fixed source
+#     FREE	extra option(s) passed to FC to specify free  source
+#     LDLIBS	libraries to pass to the loader
+#     LDFLAGS	other flags to pass to the loader
+#
+# You must also define one of the processor flags identifying the 
+# system which will be passed to CPP (see further comments below).
+#
+# This version of Makefile.host uses the name (OS) of the operating system
+# (as returned by the system command uname) to identify which system we're 
+# running on.  The whole file could simply be replaced by a hard-coded 
+# version specific to your current system, or you could check ($HOST), etc.
+#
+# Notes:
+#
+#     Values for OS (operating system) other than Linux and SunOS are 
+#     guesses based on values found in the original makefile (not tested).
+#     This will probably need some tweaking to run on those systems.
+#
+# Author:  Scott R. Fulton
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Clear the processor flags to be passed to CPP.  Note that this might be
+# done more gracefully using a single variable (e.g., OS or HOST) rather 
+# than the following separate boolean variables for each possible processor,
+# but these are kept for continuity with the existing code.
+# DO NOT CHANGE THESE HERE!  Set the apprpriate flag to 1 in the section
+# for the corresponding host (detected automatically via OS = uname).
+#-----------------------------------------------------------------------------
+DSGI	= -Dsgi=0
+DLINUX	= -Dlinux=0
+DIBM	= -Dibm=0
+DG4_PPC	= -Dg4_ppc=0
+DSUN	= -Dsun_os=0
+CPP_OS	= $(DSGI) $(DG4_PPC) $(DSUN) $(DIBM) $(DLINUX)
+ 
+#-----------------------------------------------------------------------------
+# Identify the operating system
+#-----------------------------------------------------------------------------
+OS := $(shell uname)
+
+#-----------------------------------------------------------------------------
+# Identify the hostname         
+#-----------------------------------------------------------------------------
+HN := $(shell hostname)
+
+#-----------------------------------------------------------------------------
+# Linux Cluster, optimized for saddleback
+#-----------------------------------------------------------------------------
+ifeq ($(OS),Linux)
+   DLINUX	= -Dlinux=1
+   CPP		= /usr/bin/cpp
+   AR		= ar -rcu
+   RANLIB	= ranlib
+   CPPFLAGS	= -P -traditional
+   SUF		= f
+   ifdef PGI_COMP   # pgi compiler / linux clusters
+     ifdef UNICOS   # NERSC franklin Cray xt4
+       FC		= ftn
+       FIXED	= -Mextend
+       FREE		= -Mfreeform
+       ESMF_ARCH = modO/Unicos.pgi.64.mpiuni.default
+       INC = -I$(ESMFMOD) -I/usr/common/usg/netcdf/3.6.2/include
+       ifdef DEBUG
+          FFLAGS	= -g -Mbyteswapio $(INC)
+       else
+          FFLAGS	= -fastsse -Mbyteswapio $(INC)
+       endif
+       LD		= $(FC)
+       LDLIBS       = -L/usr/common/usg/netcdf/3.6.2/lib -lnetcdf -llapack -lblas -L$(DOE_CA)/esmf/lib/libO/Unicos.pgi.64.mpiuni.default -lesmf -lstd -lrt -lC
+     else
+       ifeq ($(HN),carver.nersc.gov)
+         # carver, nersc ibmdataplex cluster
+         FC         = mpif90
+         FIXED      = -Mextend
+         FREE               = -Mfreeform
+         ESMF_ARCH = modO/Linux.pgi.64.mpiuni.carver
+         INC = -I$(ESMFMOD) -I/usr/common/usg/netcdf/4.0.1/include
+         ifdef DEBUG
+            FFLAGS  = -g -Mbyteswapio $(INC)
+         else
+            FFLAGS  = -fast -O2 -Mbyteswapio $(INC)
+         endif
+         LD		= $(FC)
+         LDLIBS       = -L/usr/common/usg/netcdf/4.0.1/lib -lnetcdf -llapack -lblas -L$(DOE_CA)/esmf/lib/libO/Linux.pgi.64.mpiuni.carver -lesmf -lstd -lrt -lC
+       endif
+       ifeq ($(HN),saddleback.atmos.colostate.edu)
+         # saddleback, rabbit cluster         
+         FC         = mpif90
+         FIXED      = -Mextend
+         FREE               = -Mfreeform
+         ESMF_ARCH = modO/Linux.pgigcc.64.mpiuni.default
+         INC = -I$(ESMFMOD) -I/usr/local/include
+         ifdef DEBUG
+            FFLAGS  = -g -Mbyteswapio $(INC)
+         else
+            FFLAGS  = -O2 -Mbyteswapio $(INC)
+         endif
+         LD		= $(FC)
+         LDLIBS       = -L/usr/local/lib -lnetcdf -llapack -lblas -L$(DOE_CA)/esmf/lib/libO/Linux.pgigcc.64.mpiuni.default -lesmf -lstdc++
+       endif
+     endif
+   else
+     ifdef GFORTRAN_COMP
+       ifeq ($(HN),saddleback.atmos.colostate.edu)
+         # saddleback, rabbit cluster         
+         ESMF_ARCH = modO/Linux.gfortran.64.mpiuni.default
+         INC =  -I/Users/dazlich/gfortran/include -I$(ESMFMOD)
+         FC                = /Users/dazlich/gfortran/bin/mpif90 
+         LDLIBS       = -L/Users/dazlich/gfortran/lib -lnetcdf -L$(DOE_CA)/esmf/lib/libO/Linux.gfortran.64.mpiuni.default -lesmf -lrt -lstdc++ -llapack -lblas
+         ifdef DEBUG
+            FFLAGS    = -g  -fconvert=big-endian $(INC)
+         else
+            FFLAGS    = -O -fconvert=big-endian $(INC)
+         endif
+         FIXED        = -ffixed-form -ffixed-line-length-132
+         FREE         = -ffree-form
+         LD		= $(FC)
+       endif
+     else
+       ifdef PATHSCALE_COMP   # NERSC jacquard 
+         FC           = mpif90
+         FIXED        = -fixedform -extend_source
+         FREE         = -freeform
+         ESMF_ARCH = modO/Linux.pathscale.64.mpiuni.default
+         INC = -I$(ESMFMOD) -I/usr/common/usg/netcdf/3.6.0/include
+         ifdef DEBUG
+           FFLAGS    = -g  -byteswapio $(INC)
+         else
+           FFLAGS    = -O2 -byteswapio $(INC)
+         endif
+         LD		= $(FC)
+         LDLIBS       = -L/usr/common/usg/netcdf/3.6.0/lib -lnetcdf -L/usr/common/usg/acml/4.0/pathscale64/lib -lacml -L$(DOE_CA)/esmf/lib/libO/Linux.pathscale.64.mpiuni.default -lesmf -lrt -lstdc++
+       else
+         ifdef ALTIX   # NAS Columbia
+           FC           = ifort
+           FIXED        = -fixed -extend_source
+           FREE         = -free
+           ESMF_ARCH = modO/Linux.intel.64.columbia
+           INC = -I$(ESMFMOD) -I/u/dazlich/include
+           ifdef DEBUG
+              FFLAGS    = -size_lp64 -g  -convert big_endian -assume byterecl $(INC)
+           else
+              FFLAGS    = -size_lp64 -O2 -convert big_endian -assume byterecl $(INC)
+           endif
+           LD		= $(FC)
+           LDLIBS       = -lmpi -L$(DOE_CA)/esmf/lib/libO/Linux.intel.64.columbia -lesmf -lnetcdf
+         else
+           FC           = /usr/local/intelFortran/bin/mpif77
+           FIXED        = -extend_source
+           FREE         = -free
+           ESMF_ARCH = modO/Linux.intel.32.default
+           INC = -I$(ESMFMOD) -I/usr/local/intelFortran/include
+           ifdef DEBUG
+              FFLAGS    = -g  -convert big_endian -assume byterecl $(INC)
+           else
+              FFLAGS    = -O2 -convert big_endian -assume byterecl $(INC)
+           endif
+           LD		= $(FC)
+           LDLIBS       = -L/usr/local/intelFortran/lib -lnetcdf -L$(DOE_CA)/esmf/lib/libO/Linux.intel.32.default -lesmf
+         endif
+       endif
+     endif
+   endif
+endif
+
+#-----------------------------------------------------------------------------
+# SUN (not up to date)
+#-----------------------------------------------------------------------------
+ifeq ($(OS),SunOS)
+   DSUN		= -Dsun_os=1
+   CPP		= /usr/ccs/lib/cpp
+   FC		= f90
+   AR		= ar -rcu
+   RANLIB	= ranlib
+   CPPFLAGS	= 
+   SUF		= f90
+   FIXED	= -fixed
+   FREE		=
+   ifdef DEBUG
+#    -g for debugging with dbx, -C for checking array bounds
+      FFLAGS	= -g -e -C
+   else
+      FFLAGS	= -e
+   endif
+   LD		= $(FC)
+   LDLIBS	=
+endif
+
+#-----------------------------------------------------------------------------
+# Mac G4 power pc, debug
+#-----------------------------------------------------------------------------
+ifeq ($(OS),Darwin)
+   DG4_PPC	= -Dg4_ppc=1
+   ifdef SLIKROCK_CPP
+      CPP		= /usr/bin/cpp3
+   else
+      CPP		= /usr/bin/cpp
+   endif
+   AR		= ar -rcu
+   RANLIB	= ranlib -c
+   CPPFLAGS	= -P -traditional
+   SUF		= f90
+   ifdef ABSOFT_COMP
+      ESMF_ARCH = modO/Darwin.absoft.32.default
+      FC		= f95 
+      INC = -I/usr/local/absoft/include -p $(ESMFMOD)
+      ifdef DEBUG
+         FFLAGS	= -g -round=nearest -N11 $(INC) 
+      else
+         FFLAGS	= -O -round=nearest -N11 $(INC)
+      endif
+      FIXED	= -f fixed -W 132
+      FREE		= -f free
+      LD		= $(FC)
+      LDLIBS    = -L/usr/local/lib -lmpi -lU77 -lnetcdf -L$(DOE_CA)/esmf/lib/libO/Darwin.absoft.32.default -lesmf
+   else
+     ifdef INTEL_COMP
+#      ESMF_ARCH = modO/Darwin.intel.32.default   #32 bit
+#      INC =  -I/usr/local/include -I$(ESMFMOD)   #32 bit
+#      FC                = /usr/local/bin/mpif90
+#      LDLIBS       = -L/usr/local/lib -lnetcdf -L$(DOE_CA)/esmf/lib/libO/Darwin.intel.32.default -lesmf -lstdc++ -llapack -lblas
+       ESMF_ARCH = modO/Darwin.intelgcc.64.mpiuni.default
+       INC =  -I/usr/local/intel/include -I$(ESMFMOD)
+       FC                = /usr/local/intel/bin/mpif90 -m64
+       LDLIBS       = -L/usr/local/intel/lib -lnetcdf -L$(DOE_CA)/esmf/lib/libO/Darwin.intelgcc.64.mpiuni.default -lesmf -lstdc++ -llapack -lblas
+       ifdef DEBUG
+          FFLAGS    = -g  -convert big_endian -assume byterecl $(INC)
+       else
+          FFLAGS    = -O2 -convert big_endian -assume byterecl $(INC)
+       endif
+       FIXED        = -fixed -extend_source
+       FREE         = -free
+       LD		= $(FC) -m64
+     else
+       ifdef GFORTRAN_COMP
+         ESMF_ARCH = modO/Darwin.gfortran.64.mpiuni.default
+         INC =  -I/usr/local/gfortran/include -I$(ESMFMOD)
+         FC                = /usr/local/gfortran/bin/mpif90 
+         LDLIBS       = -L/usr/local/gfortran/lib -lnetcdf -L$(DOE_CA)/esmf/lib/libO/Darwin.gfortran.64.mpiuni.default -lesmf -lstdc++ -llapack -lblas
+         ifdef DEBUG
+            FFLAGS    = -g  -fconvert=big-endian $(INC)
+         else
+            FFLAGS    = -O -fconvert=big-endian $(INC)
+         endif
+         FIXED        = -ffixed-form -ffixed-line-length-132
+         FREE         = -ffree-form
+         LD		= $(FC)
+        else
+          ESMF_ARCH = modO/Darwin.xlf.32.default 
+          FC           = /usr/local/xlf/bin/mpif77
+          INC =  -I/usr/local/xlf/include -I$(ESMFMOD)
+          ifdef DEBUG  
+             FFLAGS    += -g -qfloat=fltint:rsqrt  -bmaxdata:2000000000 -qsuffix=f=f90 $(INC)
+          else
+             FFLAGS    += -O3 -qfloat=fltint:rsqrt  -bmaxdata:2000000000 -qsuffix=f=f90 $(INC)
+          endif
+          FIXED        = -qfixed=132
+          FREE         = -qfree=f90
+          LD		= $(FC) -L/usr/lib/gcc/darwin/3.3 -L/usr/lib/gcc/darwin -L/usr/libexec/gcc/darwin/ppc/3.3/../../..
+          LDLIBS       = -L/usr/local/xlf/lib -lnetcdf -L/usr/local/lib -lmpi -L$(DOE_CA)/esmf/lib/libO/Darwin.xlf.32.default -lesmf -lstdc++
+        endif
+      endif
+    endif
+endif
+
+#-----------------------------------------------------------------------------
+# SGI O2k series, 32bit
+#-----------------------------------------------------------------------------
+ifeq ($(OS),IRIX64)
+   DSGI		= -Dsgi=1
+   CPP		= /usr/lib/cpp
+   FC		= f90 -I/usr/local/include
+   AR		= ar -rcu
+   RANLIB	= touch
+   CPPFLAGS	= -P
+   SUF		= f
+   FIXED	= -col80 -fixedform
+   FREE		= -extend_source -freeform
+   MPHFLAGS     = -r8const -r8 -i4 -O2 -r10000 -n32
+   ESMF_ARCH = modO/IRIX64.default.32.default
+   INC =  -I/usr/local/include -I$(ESMFMOD)
+   ifdef DEBUG
+      FFLAGS	= -n32 -g -trapuv -DEBUG:subscript_check:conform_check:verbose_runtime $(INC) 
+   else
+      FFLAGS	= -O3 -n32 -mips4 -r10000 -OPT:roundoff=3:IEEE_arithmetic=3 $(INC) 
+   endif
+   LD		= $(FC)
+endif
+
+#-----------------------------------------------------------------------------
+# IBM, 64bit (here bassi, nersc power 5)
+#-----------------------------------------------------------------------------
+ifeq ($(OS),AIX)
+   DIBM		= -Dibm=1
+   CPP		= /usr/ccs/lib/cpp
+   FC		= mpxlf
+   AR		= ar -rcu
+   RANLIB	= ranlib
+   FIXED	= -qfixed=132
+   FREE		= -qfree
+   FFLAGS	= -qfixed=132 -bmaxstack:250000000 -bmaxdata:2000000000 -qzerosize
+   INC = -I/usr/common/usg/netcdf/64/3.6.2/include -I$(ESMFMOD)
+   ESMF_ARCH = modO/AIX.default.64.default
+   ifdef DEBUG
+      FFLAGS	+= -g -qinitauto -qmoddir=. $(INC)
+   else
+      FFLAGS	+= -O3 -qarch=ppc -qfloat=fltint:hssngl:rsqrt:hsflt $(INC)
+   endif
+   SUF		= f
+   LD		= $(FC)
+   LDLIBS       = -L/usr/common/usg/LAPACK/3.1.1 -llapack -lblas -L/usr/common/usg/netcdf/64/3.6.2/lib -lnetcdf -L$(DOE_CA)/esmf/lib/libO/AIX.default.64.default -lesmf -brtl -lC
+endif

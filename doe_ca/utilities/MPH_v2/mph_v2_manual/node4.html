@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>How to Compile and Run</TITLE>
+<META NAME="description" CONTENT="How to Compile and Run">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html115" HREF="node5.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html113" HREF="mph.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html107" HREF="node3.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html117" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html116" HREF="node5.html">Acknowledgement</A>
+<B>Up:</B> <A NAME="tex2html114" HREF="mph.html">Multi Program-Components Handshaking (MPH) </A>
+<B> Previous:</B> <A NAME="tex2html108" HREF="node3.html">How to Use</A>
+<BR> <P>
+<H1><A NAME="SECTION00040000000000000000">How to Compile and Run</A></H1>
+<P>
+   <PRE>   
+   The shared &quot;Makefile&quot; detects the machine architecture and 
+   compiles appropriately for IBM, SGI and Compaq. For test case 1,
+   type &quot;make test1&quot;, and for test case 2, type &quot;make test2&quot;. 
+   or &quot;gmake ...&quot; depends on your machine). 
+  
+   After compile, you will have executables generated (&quot;ice_land&quot;,
+   &quot;cpl&quot;, &quot;pop_atm&quot; for test1, and &quot;ice_land&quot;, &quot;cpl&quot; for test2) in
+   the corresponding subdirectory. Each sample subdirectoy also 
+   includes batch scripts and sample output. 
+  
+   Go to that directory first (here we use test2 as an example), 
+   and then: 
+  
+   1) To run on NERSC and NCAR IBM SP interactively: 
+      a) % unsetenv MP_TASKS_PER_NODE 
+      b) % setenv ice_out_env ice.log 
+         % setenv land_out_env land.log 
+         % setenv cpl_out_env cpl.log 
+      c) Make sure the following command in ONE LINE: 
+         % poe -pgmmodel mpmd -cmdfimle tasklist -nodes 3 -procs 6 
+               -stdoutmode ordered -infolevel 2 &gt; &amp; output &amp; 
+        
+      This is to run the executables listed in user supplied &quot;tasklist&quot;
+      in the mpmd mode on total of 3 nodes and 6 procs.   
+      
+      And &quot;tasklist&quot; looks like this:
+            ice_land
+            ice_land
+            cpl
+            cpl
+            ice_land
+            ice_land
+              
+      To run on IBM SP with batch script: 
+      % llsubmit runscript.ibm
+  
+      And &quot;runscript.ibmc&quot; looks like this: 
+          #! /usr/bin/csh -f 
+          # @ output  = poe.stdout.$(jobid).$(stepid)
+          # @ error  = poe.stderr.$(jobid).$(stepid)
+          # @ class = debug
+          # @ job_type = parallel
+          # @ task_geometry = {(0,2)(1,3)(4,5)}
+          # @ total_tasks=6
+          # @ network.MPI = css0, not_shared, us 
+          # @ queue
+          setenv MP_PGMMODEL       mpmd  
+          setenv MP_CMDFILE        tasklist
+          setenv ice_out_env ice.log
+          setenv land_out_env land.log
+          setenv cpl_out_env cpl.log
+          poe  
+ 
+      Again, it needs a user supplied &quot;tasklist&quot;, and it runs in mpmd mode.
+      The task_geometry keyword specifies which tasks run in the same node.
+ 
+   2) We could not run it on NERSC CRAY T3E since there is no mpmd
+      mechnism. 
+  
+   3) To run on NCAR SGI interactively: 
+      a) % setenv ice_out_env ice.log 
+         % setenv land_out_env land.log 
+         % setenv cpl_out_env cpl.log 
+      b) % mpirun -p &quot;[%g]&quot; -np 4 ice_land : -np 2 cpl &gt; output 
+ 
+      This is to run ice_land on 4 procs and cpl on 2 procs.   
+      [%g] is to print the global id as a prefix for each output line.  
+  
+   4) To run on NCAR Compaq with batch script:    
+      % prun -n6 -t runscript.dec
+  
+      And &quot;runscript.dec&quot; looks like this: 
+            #! /bin/csh 
+            if ($RMS_RANK &gt;= 0 &amp;&amp; $RMS_RANK &lt;= 3) ice-land &amp;                        
+            if ($RMS_RANK &gt;= 4 &amp;&amp; $RMS_RANK &lt;= 5) cpl &amp;                      
+            exit</PRE>
+<P>
+  <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

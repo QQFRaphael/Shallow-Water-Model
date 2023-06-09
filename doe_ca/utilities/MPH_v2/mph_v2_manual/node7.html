@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Module MPH_module - Multi Program-Components Handshaking  (Source File: mph.F)</TITLE>
+<META NAME="description" CONTENT="Module MPH_module - Multi Program-Components Handshaking  (Source File: mph.F)">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html175" HREF="node8.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html173" HREF="node6.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html169" HREF="node6.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html177" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html176" HREF="node8.html">MPH_components - main MPH </A>
+<B>Up:</B> <A NAME="tex2html174" HREF="node6.html">Routine/Function Prologues</A>
+<B> Previous:</B> <A NAME="tex2html170" HREF="node6.html">Routine/Function Prologues</A>
+<BR> <P>
+<H2><A NAME="SECTION00061000000000000000">Module MPH_module - Multi Program-Components Handshaking  (Source File: mph.F)</A></H2>
+<P>
+       This module multiple executables with multiple components in
+       each executable.  This module multiple executables with multiple
+       components in.
+<P>
+<P><I>REVISION HISTORY:</I>
+<PRE>       2001-Nov-15 -- add PROTEX convention
+       2001-May-20 -- first prototype</PRE><I>INTERFACE:</I>
+<PRE>       module MPH_module</PRE><EM>USES:</EM>
+<PRE>       implicit none
+       include 'mpif.h'
+       private    ! except</PRE><I>PUBLIC MEMBER FUNCTIONS:</I>
+<PRE>       public :: MPH_components
+       public :: PE_in_component
+       public :: PE_in_num_comps
+       public :: MPH_global_id
+       public :: MPH_comm_join
+       public :: MPH_redirect_output
+       public :: MPH_help
+       public :: MPH_debug
+       public :: MPH_timer
+       public :: MPH_total_components
+       public :: MPH_comp_name
+       public :: MPH_comp_id
+       public :: MPH_local_world
+       public :: MPH_exe_id
+       public :: MPH_total_num_exe
+       public :: MPH_num_comps
+       public :: MPH_local_proc_id
+       public :: MPH_local_totProcs
+       public :: MPH_global_proc_id
+       public :: MPH_global_totProcs
+       public :: MPH_exe_world
+       public :: MPH_exe_low_proc_limit
+       public :: MPH_exe_up_proc_limit</PRE><I>PUBLIC DATA MEMBERS:</I>
+<PRE>       integer, public :: istatus(MPI_STATUS_SIZE), ierr  
+       integer, public :: MPH_Global_World  ! total processor for the whole world</PRE><EM>DEFINED PARAMETERS:</EM>
+<PRE>       integer, parameter :: max_num_comps=10     ! maximum number of components
+       integer, parameter :: maxProcs_comp=128    ! maximum number of procs per comp
+       integer, parameter :: max_num_exes=10      ! maximum number of executables    
+       integer, parameter :: N_CHANNELS=10        ! number of channels for timing</PRE><I>LOCAL VARIABLES:</I>
+<PRE>       type Acomponent
+          character (len=32) :: name         ! component name
+          integer :: num_process             ! number of processors 
+          integer :: process_list (maxProcs_comp) 
+                                     ! global processor_id, increasing order
+       end type Acomponent    
+   
+       type (Acomponent) :: components (max_num_comps) ! allocate components
+       integer :: MPI_Acomponent
+   
+       integer :: local_world (max_num_comps)    ! communicator for each component
+       integer :: local_proc_id (max_num_comps)  ! proc id in each component
+       integer :: local_totProcs (max_num_comps) 
+                               ! total number of processors in each component
+       integer :: global_proc_id     ! proc id in the whole world
+       integer :: global_totProcs    ! total number of processors
+ 
+       integer :: COMM_master    ! communicator for submaster of each component
+       integer :: total_components  ! total number of components
+       character (len=32) :: component_names (max_num_comps)  ! component names
+       character (len=32) :: name (max_num_comps)  ! name array used in setup
+       integer comp_id (max_num_comps)        ! component id of each component
+ 
+       integer :: num_comps (max_num_comps)  
+                                   ! number of components in each executable
+       integer :: exe_low_proc_limit (max_num_comps)
+                                   ! lower processor limit of each component
+                                   ! in each executable world
+       integer :: exe_up_proc_limit (max_num_comps)
+                                   ! upper processor limit of each component
+                                   ! in each executable world
+       integer :: exe_world_proc_id (max_num_exes)
+                                   ! processor id in the executable world
+       integer :: exe_world_totProcs (max_num_exes) 
+                                   ! number of processors in each executable
+       integer :: exe_world (max_num_exes)  
+                                   ! communicator for each executable 
+       integer :: exe_ids (max_num_comps)  ! executable ids
+       integer :: total_num_exe    ! total number of executables
+       integer :: exe_id           ! executable id
+ 
+       integer :: debug_level = 0  ! level of debug
+       .. for timer ..
+       real (kind=8) :: init_time = -1.0
+       real (kind=8) :: last_time, tot_time (0:N_CHANNELS)</PRE>
+<P>
+\
+<P>
+  <BR> <HR>
+<UL> 
+<LI> <A NAME="tex2html178" HREF="node8.html#SECTION00061100000000000000">MPH_components - main MPH setup function</A>
+<LI> <A NAME="tex2html179" HREF="node9.html#SECTION00061200000000000000">MPH_init - initialize MPI and read the processors map info</A>
+<LI> <A NAME="tex2html180" HREF="node10.html#SECTION00061300000000000000">MPH_local - local handshaking</A>
+<LI> <A NAME="tex2html181" HREF="node11.html#SECTION00061400000000000000">MPH_global - global handshaking</A>
+<LI> <A NAME="tex2html182" HREF="node12.html#SECTION00061500000000000000">PE_in_component - check if a processor is in a component</A>
+<LI> <A NAME="tex2html183" HREF="node13.html#SECTION00061600000000000000">PE_in_num_comps - return the number of components a processor</A>
+<LI> <A NAME="tex2html184" HREF="node14.html#SECTION00061700000000000000">MPH_global_id - find global processor id</A>
+<LI> <A NAME="tex2html185" HREF="node15.html#SECTION00061800000000000000">MPH_comm_join - join two components</A>
+<LI> <A NAME="tex2html186" HREF="node16.html#SECTION00061900000000000000">MPH_redirect_output - redirect output from each component</A>
+<LI> <A NAME="tex2html187" HREF="node17.html#SECTION000611000000000000000">MPH_read_list - read and process info from &quot;processors_map.in&quot;</A>
+<LI> <A NAME="tex2html188" HREF="node18.html#SECTION000611100000000000000">MPH_find_name - find name in a namelist</A>
+<LI> <A NAME="tex2html189" HREF="node19.html#SECTION000611200000000000000">MPH_help - display help info</A>
+<LI> <A NAME="tex2html190" HREF="node20.html#SECTION000611300000000000000">MPH_debug - define debug level</A>
+<LI> <A NAME="tex2html191" HREF="node21.html#SECTION000611400000000000000">MPH_timer - collect timing info in different channels.</A>
+<LI> <A NAME="tex2html192" HREF="node22.html#SECTION000611500000000000000">MPH_total_components - find number of total components</A>
+<LI> <A NAME="tex2html193" HREF="node23.html#SECTION000611600000000000000">MPH_comp_name - find component name given component id</A>
+<LI> <A NAME="tex2html194" HREF="node24.html#SECTION000611700000000000000">MPH_comp_id - find component id given component name</A>
+<LI> <A NAME="tex2html195" HREF="node25.html#SECTION000611800000000000000">MPH_local_world - find local communicator given component name</A>
+<LI> <A NAME="tex2html196" HREF="node26.html#SECTION000611900000000000000">MPH_exe_id - find executable id given component name</A>
+<LI> <A NAME="tex2html197" HREF="node27.html#SECTION000612000000000000000">MPH_total_num_exe - find total number of executables</A>
+<LI> <A NAME="tex2html198" HREF="node28.html#SECTION000612100000000000000">MPH_num_comps - find number of components in an executable</A>
+<LI> <A NAME="tex2html199" HREF="node29.html#SECTION000612200000000000000">MPH_local_proc_id - find local processor id in a component</A>
+<LI> <A NAME="tex2html200" HREF="node30.html#SECTION000612300000000000000">MPH_local_totProcs - find total number of processors </A>
+<LI> <A NAME="tex2html201" HREF="node31.html#SECTION000612400000000000000">MPH_global_proc_id - find global processor id</A>
+<LI> <A NAME="tex2html202" HREF="node32.html#SECTION000612500000000000000">MPH_global_proc_id - find total number of processors</A>
+<LI> <A NAME="tex2html203" HREF="node33.html#SECTION000612600000000000000">MPH_local_world - find local communicator of an executable</A>
+<LI> <A NAME="tex2html204" HREF="node34.html#SECTION000612700000000000000">MPH_exe_low_proc_limit - find lower proc limit of an executable</A>
+<LI> <A NAME="tex2html205" HREF="node35.html#SECTION000612800000000000000">MPH_exe_up_proc_limit - find upper proc limit of an executable</A>
+</UL>
+<BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

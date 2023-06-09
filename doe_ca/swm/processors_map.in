@@ -1,0 +1,14 @@
+PROCESSORS_MAP
+BEGIN
+Multi_Comp_Start
+2
+coupler     0  1
+swm         0  1
+Multi_Comp_End
+END 
+ADD any comments in this line and below.
+  for multiple components in single executable, 
+  include component info between Multi_Comp_Start
+  and Multi_Comp_End, list the number of components,
+  and each component's relative processor_id in
+  that executable world. 

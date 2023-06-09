@@ -1,0 +1,111 @@
+GFORTRAN module version '3' created from /Users/dazlich/gfortran/esmf//src/Infrastructure/Route/interface/ESMF_XPacket.F90 on Tue Dec 22 13:10:50 2009
+MD5:7edd14339f06520b5c06a65f0a0ec44d -- If you edit this, you'll get what you deserve.
+
+(()
+() () () () () () () () () () () () () () () () () () () () () () () ()
+() ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'esmf_xpacket' 'esmf_xpacketmod' 'esmf_xpacket' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0 SEQUENCE PRIVATE_COMP) (
+UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 ((3 'rank' (INTEGER 4 0 0 INTEGER
+()) () (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0)
+UNKNOWN-ACCESS ()) (4 'offset' (INTEGER 4 0 0 INTEGER ()) () (
+UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0) UNKNOWN-ACCESS
+()) (5 'contig_length' (INTEGER 4 0 0 INTEGER ()) () (UNKNOWN-FL
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0) UNKNOWN-ACCESS ()) (6
+'stride' (INTEGER 4 0 0 INTEGER ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '7')) (
+UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0 DIMENSION)
+UNKNOWN-ACCESS ()) (7 'rep_count' (INTEGER 4 0 0 INTEGER ()) (1 EXPLICIT
+(CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '7')) (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 DIMENSION) UNKNOWN-ACCESS ()) (8 'isinit' (INTEGER 8 0 0
+INTEGER ()) () (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0)
+UNKNOWN-ACCESS (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '76838410')))
+PRIVATE (() () () ()) () 0 0)
+9 'esmf_xpacketget' 'esmf_xpacketmod' 'esmf_xpacketget' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN 0 SUBROUTINE ALWAYS_EXPLICIT) (
+UNKNOWN 0 0 0 UNKNOWN ()) 10 0 (11 12 13 14) () 0 () () () 0 0)
+15 'esmf_xpacketgetinit' 'esmf_xpacketmod' 'esmf_xpacketgetinit' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN 0 FUNCTION
+ALWAYS_EXPLICIT) (INTEGER 8 0 0 INTEGER ()) 16 0 (17) () 15 () () () 0 0)
+18 'esmf_xpacketinit' 'esmf_xpacketmod' 'esmf_xpacketinit' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN 0 SUBROUTINE) (
+UNKNOWN 0 0 0 UNKNOWN ()) 19 0 (20) () 0 () () () 0 0)
+21 'esmf_xpacketprint' 'esmf_xpacketmod' 'esmf_xpacketprint' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN 0 SUBROUTINE
+ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 22 0 (23 24 25) () 0 () () ()
+0 0)
+26 'esmf_xpacketset' 'esmf_xpacketmod' 'esmf_xpacketset' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN 0 SUBROUTINE ALWAYS_EXPLICIT) (
+UNKNOWN 0 0 0 UNKNOWN ()) 27 0 (28 29 30 31) () 0 () () () 0 0)
+32 'esmf_xpacketsetdefault' 'esmf_xpacketmod' 'esmf_xpacketsetdefault' 1
+((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN 0 SUBROUTINE
+ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 33 0 (34 35 36 37 38 39 40)
+() 0 () () () 0 0)
+41 'esmf_xpacketvalidate' 'esmf_xpacketmod' 'esmf_xpacketvalidate' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN 0 SUBROUTINE
+ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 42 0 (43 44) () 0 () () () 0
+0)
+17 's' '' 's' 16 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 OPTIONAL
+DUMMY) (DERIVED 2 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
+20 's' '' 's' 19 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN 0 DUMMY)
+(DERIVED 2 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
+43 's' '' 's' 42 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN 0 DUMMY)
+(DERIVED 2 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
+44 'rc' '' 'rc' 42 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+11 'xpacket' '' 'xpacket' 10 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 DUMMY) (DERIVED 2 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
+12 'value1' '' 'value1' 10 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+13 'value2' '' 'value2' 10 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+14 'rc' '' 'rc' 10 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+23 'xpacket' '' 'xpacket' 22 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 DUMMY) (DERIVED 2 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
+24 'options' '' 'options' 22 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+0 OPTIONAL DUMMY) (CHARACTER 1 0 0 CHARACTER (())) 0 0 () () 0 () () ()
+0 0)
+25 'rc' '' 'rc' 22 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+28 'xpacket' '' 'xpacket' 27 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 DUMMY) (DERIVED 2 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
+29 'value1' '' 'value1' 27 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+30 'value2' '' 'value2' 27 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+31 'rc' '' 'rc' 27 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+34 'xpacket' '' 'xpacket' 33 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 DUMMY) (DERIVED 2 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
+35 'rank' '' 'rank' 33 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+36 'offset' '' 'offset' 33 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+37 'contig_length' '' 'contig_length' 33 ((VARIABLE IN UNKNOWN-PROC
+UNKNOWN UNKNOWN 0 DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () ()
+0 0)
+38 'stride' '' 'stride' 33 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0
+DIMENSION DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () (1 ASSUMED_SHAPE (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () () 0 0)
+39 'rep_count' '' 'rep_count' 33 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 DIMENSION DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () (1
+ASSUMED_SHAPE (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () ()
+0 0)
+40 'rc' '' 'rc' 33 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN 0
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+)
+
+('esmf_xpacket' 0 2 'esmf_xpacketget' 0 9 'esmf_xpacketgetinit' 0 15
+'esmf_xpacketinit' 0 18 'esmf_xpacketprint' 0 21 'esmf_xpacketset' 0 26
+'esmf_xpacketsetdefault' 0 32 'esmf_xpacketvalidate' 0 41)

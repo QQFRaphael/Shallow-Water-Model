@@ -1,0 +1,198 @@
+Tue Jan  8 15:27:42 PST 2002 -- CSM EXECUTION BEGINS HERE
+ ===================================
+ name( 1 )=ice                             
+ name( 2 )=land                            
+ name( 3 )=                                
+ name( 4 )=                                
+ name( 5 )=                                
+ name( 6 )=                                
+ name( 7 )=                                
+ name( 8 )=                                
+ name( 9 )=                                
+ name( 10 )=                                
+ warning: local procs  1  to  2  is overlapped in these two components of the executable: ice                             land                            
+ global_proc_id= 0
+ infos I have for all proc of all components are:
+    ice                             
+     3
+     0 1 3
+    land                            
+     3
+     1 3 4
+    coupler                         
+     2
+     2 5
+ Message from MPH_help:
+ default debug level=0, choose 1 or 2 for more        debug messages
+ MPH: multiple executables with multiple components   in each executable
+ Sample setup functions are: 
+    ICE_LAND_World = MPH_components (name1="ice",     name2="land")
+    CPL_World = MPH_components ("name1=coupler")
+ Required input file is "processors_map.in"
+ Subroutine call to join two communicators is:
+    MPH_comm_join (name1,name2,comm_joined)
+ Available inquiry functions are:
+ (arguments are optional except for MPH_global_id)
+    integer MPH_global_id(cname,lid)
+    integer MPH_total_components()
+    character (len=32) MPH_comp_name(cid)
+    integer MPH_comp_id(cname)
+    integer MPH_local_world(cname)
+    integer MPH_exe_id(cname)
+    integer MPH_total_num_exe()
+    integer MPH_num_comps(eid)
+    integer MPH_local_proc_id(cid)
+    integer MPH_local_totProcs(cid)
+    integer MPH_global_proc_id()
+    integer MPH_global_totProcs()
+    integer MPH_exe_world(eid)
+    integer MPH_exe_low_proc_limit(eid)
+    integer MPH_exe_up_proc_limit(eid)
+ 
+ I am in ice, I joined COMM_cpl_ice
+ myProc_joined= 2
+  sum of joined ranks in cpl_ice is  10
+ ===================================
+ name( 1 )=ice                             
+ name( 2 )=land                            
+ name( 3 )=                                
+ name( 4 )=                                
+ name( 5 )=                                
+ name( 6 )=                                
+ name( 7 )=                                
+ name( 8 )=                                
+ name( 9 )=                                
+ name( 10 )=                                
+ global_proc_id= 1
+ infos I have for all proc of all components are:
+    ice                             
+     3
+     0 1 3
+    land                            
+     3
+     1 3 4
+    coupler                         
+     2
+     2 5
+ warning: global processor  1        is overlapped
+ I am in ice, I joined COMM_cpl_ice
+ myProc_joined= 3
+  sum of joined ranks in cpl_ice is  10
+ 1  in sub ice ===  1  in global
+ my comp_id in sub ice= 1
+ ===================================
+ name( 1 )=coupler                         
+ name( 2 )=                                
+ name( 3 )=                                
+ name( 4 )=                                
+ name( 5 )=                                
+ name( 6 )=                                
+ name( 7 )=                                
+ name( 8 )=                                
+ name( 9 )=                                
+ name( 10 )=                                
+ global_proc_id= 2
+ infos I have for all proc of all components are:
+    ice                             
+     3
+     0 1 3
+    land                            
+     3
+     1 3 4
+    coupler                         
+     2
+     2 5
+ I am in cpl, I joined the COMM_cpl_ice
+ myProc_joined= 0
+  sum of joined ranks in cpl_ice is  10
+ ===================================
+ name( 1 )=ice                             
+ name( 2 )=land                            
+ name( 3 )=                                
+ name( 4 )=                                
+ name( 5 )=                                
+ name( 6 )=                                
+ name( 7 )=                                
+ name( 8 )=                                
+ name( 9 )=                                
+ name( 10 )=                                
+ global_proc_id= 3
+ infos I have for all proc of all components are:
+    ice                             
+     3
+     0 1 3
+    land                            
+     3
+     1 3 4
+    coupler                         
+     2
+     2 5
+ warning: global processor  3        is overlapped
+ I am in ice, I joined COMM_cpl_ice
+ myProc_joined= 4
+  sum of joined ranks in cpl_ice is  10
+ 2  in sub ice ===  3  in global
+ my comp_id in sub ice= 1
+ I am ice 2 (g=2), recv from cpl 1 (g=5)
+ I am ice 2, expect c2i=abcdefg
+ ice 2 gets c2i(1)=abcdefg   
+ 1  in sub land===  3  in global
+ my comp_id in sub land= 2
+ 
+ ===================================
+ name( 1 )=ice                             
+ name( 2 )=land                            
+ name( 3 )=                                
+ name( 4 )=                                
+ name( 5 )=                                
+ name( 6 )=                                
+ name( 7 )=                                
+ name( 8 )=                                
+ name( 9 )=                                
+ name( 10 )=                                
+ global_proc_id= 4
+ infos I have for all proc of all components are:
+    ice                             
+     3
+     0 1 3
+    land                            
+     3
+     1 3 4
+    coupler                         
+     2
+     2 5
+ 2  in sub land===  4  in global
+ my comp_id in sub land= 2
+ I am land 2 (g=3), send to cpl 0 (g=4)
+ 
+ ===================================
+ name( 1 )=coupler                         
+ name( 2 )=                                
+ name( 3 )=                                
+ name( 4 )=                                
+ name( 5 )=                                
+ name( 6 )=                                
+ name( 7 )=                                
+ name( 8 )=                                
+ name( 9 )=                                
+ name( 10 )=                                
+ global_proc_id= 5
+ infos I have for all proc of all components are:
+    ice                             
+     3
+     0 1 3
+    land                            
+     3
+     1 3 4
+    coupler                         
+     2
+     2 5
+ I am in cpl, I joined the COMM_cpl_ice
+ myProc_joined= 1
+  sum of joined ranks in cpl_ice is  10
+ 1  in sub cpl===  5  in global
+ my comp_id in sub cpl= 3
+ I am cpl 1 (g=5), send to ice 2 (g=2)
+ cpl 0 sent to ice 2 successfully
+ 
+Tue Jan  8 15:27:46 PST 2002 -- CSM EXECUTION finishes HERE

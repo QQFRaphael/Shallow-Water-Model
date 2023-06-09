@@ -1,0 +1,63 @@
+SYSTEM=$(shell uname -s)
+
+##################
+# for IBM
+
+ifeq ($(SYSTEM),AIX)
+   F90 = mpxlf90_r 
+   CPPOPTS = -WF,-DMPH,-DAIX
+
+   LD = mpxlf90_r
+   LFLAGS =
+   #LIBS = -lmpi
+   LIBS = 
+   CFOPTS =
+   FFLAGS = -qfixed -qarch=pwr3 -O3 -qstrict
+endif
+
+##################
+# for CRAY T3E
+# for CRAY machines, the "uname" command returns "sn6711" (which is the machine
+# serial number) instead of "CRAY" or "T3E" or "SV1", etc.
+
+ifeq ($(SYSTEM),sn6711)
+#ifeq ($(SYSTEM),CRAY)
+   F90 = f90
+   CPPOPTS = -DMPH -Dsn6711
+   LD = f90
+   CFOPTS =
+   FFLAGS = -O3
+endif
+
+##################
+# for SGI
+ifeq ($(SYSTEM),IRIX64)
+   F90 = f90
+   CPPOPTS = -DMPH -DIRIX64
+   LD = f90
+   LFLAGS = 
+   LIBS = -lmpi
+   FFLAGS = -r8const -r8 -i4 -O2 -r10000 -n32 -I/usr/local/include -I$(MPT_SGI)/usr/include
+endif
+
+##################
+# for Compaq
+ifeq ($(SYSTEM),OSF1)
+   F90 = f90
+   CPPOPTS = -DMPH -DOSF1
+   LD = f90
+   LFLAGS =
+   LIBS = -lmpi -lelan -lelan3
+   CFOPTS =
+   FFLAGS = -O4 -fast -arch ev6 -real_size 64 -fpe1 -convert big_endian 
+endif
+
+########################
+# for test1
+SRC1 = mph.F
+
+.F.o:
+	$(F90) $(CPPOPTS) $(FFLAGS) -c $(CFOPTS) $<
+
+MPH: mph.o
+	$(LD) $(LFLAGS) -o mph.o $(LIBS)

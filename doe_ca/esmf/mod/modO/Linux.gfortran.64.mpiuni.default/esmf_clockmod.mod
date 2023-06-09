@@ -1,0 +1,660 @@
+GFORTRAN module created from /Users/dazlich/doe_ca/esmf/src/Infrastructure/TimeMgr/interface/ESMF_Clock.F90 on Mon Sep 10 14:57:39 2012
+If you edit this, you'll get what you deserve.
+
+(() () () () () () ()
+() () () () () (2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22
+23 24 25 26) (27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45
+46 47) () () () () () () ())
+
+()
+
+(('esmf_clockcreate' '' 48 49))
+
+()
+
+()
+
+(50 'esmf_clockadvance' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 51 0 (52 53
+54 55 56) () 0 () ())
+57 'esmf_clock' 'esmf_clocktypemod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((58 'this' (
+DERIVED 59 ()) () 0 0 ()) (60 'isinit' (INTEGER 8 ()) () 0 0 (CONSTANT (
+INTEGER 4 ()) 0 '76838410'))) PRIVATE ())
+61 'esmf_clockdestroy' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 62 0 (63 64)
+() 0 () ())
+65 'esmf_clockgetalarm' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 66 0 (67 68
+69 70) () 0 () ())
+71 'esmf_clockget' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 72 0 (73 74
+75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91) () 0 () ())
+92 'esmf_clockgetnexttime' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 93 0 (94 95
+96 97) () 0 () ())
+98 'esmf_clockisreverse' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (LOGICAL 4 ()) 99 0 (100 101)
+() 98 () ())
+102 'esmf_clockisstoptime' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (LOGICAL 4 ()) 103 0 (104 105)
+() 102 () ())
+106 'esmf_clockisdone' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (LOGICAL 4 ()) 107 0 (108 109)
+() 106 () ())
+110 'esmf_clockset' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 111 0 (112
+113 114 115 116 117 118 119 120 121 122 123) () 0 () ())
+124 'esmf_clockstoptimedisable' 'esmf_clockmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ())
+125 0 (126 127) () 0 () ())
+128 'esmf_clockstoptimeenable' 'esmf_clockmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ())
+129 0 (130 131 132) () 0 () ())
+133 'esmf_clocksynctorealtime' 'esmf_clockmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ())
+134 0 (135 136) () 0 () ())
+137 'esmf_clockreadrestart' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (DERIVED 57 ()) 138 0 (139
+140 141) () 137 () ())
+142 'esmf_clockprint' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 143 0 (144
+145 146) () 0 () ())
+147 'esmf_clockisstoptimeenabled' 'esmf_clockmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (LOGICAL 4 ())
+148 0 (149 150) () 147 () ())
+151 'esmf_clockgetalarmlist' 'esmf_clockmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ())
+152 0 (153 154 155 156 157 158) () 0 () ())
+159 'esmf_clockwriterestart' 'esmf_clockmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ())
+160 0 (161 162 163) () 0 () ())
+164 'esmf_clockvalidate' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 165 0 (166
+167 168) () 0 () ())
+78 'runduration' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 169 ()) 0 0 () () 0 () ())
+63 'clock' '' 62 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 57 ()) 0 0 () () 0 () ())
+77 'stoptime' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 170 ()) 0 0 () () 0 () ())
+76 'starttime' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 170 ()) 0 0 () () 0 () ())
+75 'timestep' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 169 ()) 0 0 () () 0 () ())
+73 'clock' '' 72 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57 ())
+0 0 () () 0 () ())
+59 'esmf_pointer' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((171 'ptr' (
+INTEGER 8 ()) () 0 0 ())) PUBLIC ())
+74 'name' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+6 'esmf_lgeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 172 0 (173 174) () 6 () ())
+8 'esmf_tnfeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 175 0 (176 177) () 8 () ())
+7 'esmf_freq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 178 0 (179 180) () 7 () ())
+9 'esmf_ctfeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 181 0 (182 183) () 9 () ())
+5 'esmf_dmeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 184 0 (185 186) () 5 () ())
+3 'esmf_rfeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 187 0 (188 189) () 3 () ())
+10 'esmf_bfeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 190 0 (191 192) () 10 () ())
+14 'esmf_dkeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 193 0 (194 195) () 14 () ())
+13 'esmf_pteq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 196 0 (197 198) () 13 () ())
+33 'esmf_bfne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 199 0 (200 201) () 33 () ())
+31 'esmf_tnfne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 202 0 (203 204) () 31 () ())
+32 'esmf_ctfne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 205 0 (206 207) () 32 () ())
+38 'esmf_sfne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 208 0 (209 210) () 38 () ())
+48 'esmf_clockcreatecopy' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (DERIVED 57 ()) 211 0 (212
+213) () 48 () ())
+34 'esmf_aine' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 214 0 (215 216) () 34 () ())
+30 'esmf_frne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 217 0 (218 219) () 30 () ())
+11 'esmf_aieq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 220 0 (221 222) () 11 () ())
+35 'esmf_tfne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 223 0 (224 225) () 35 () ())
+29 'esmf_lgne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 226 0 (227 228) () 29 () ())
+36 'esmf_ptne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 229 0 (230 231) () 36 () ())
+15 'esmf_sfeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 232 0 (233 234) () 15 () ())
+4 'esmf_ifeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 235 0 (236 237) () 4 () ())
+52 'clock' '' 51 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+57 ()) 0 0 () () 0 () ())
+12 'esmf_tfeq' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 238 0 (239 240) () 12 () ())
+233 'sf1' '' 232 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 241
+()) 0 0 () () 0 () ())
+241 'esmf_status' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((242 'status'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+234 'sf2' '' 232 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 241
+()) 0 0 () () 0 () ())
+198 'pt2' '' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 59 ())
+0 0 () () 0 () ())
+194 'dk1' '' 193 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 243
+()) 0 0 () () 0 () ())
+243 'esmf_typekind' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((244 'dkind'
+(INTEGER 4 ()) () 0 0 ())) PUBLIC ())
+222 'ai2' '' 220 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 245
+()) 0 0 () () 0 () ())
+245 'esmf_axisindex' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((246 'min' (
+INTEGER 4 ()) () 0 0 ()) (247 'max' (INTEGER 4 ()) () 0 0 ()) (248
+'stride' (INTEGER 4 ()) () 0 0 ()) (249 'pad' (INTEGER 4 ()) () 0 0 ())
+(250 'isinit' (INTEGER 8 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '76838410')))
+PUBLIC ())
+197 'pt1' '' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 59 ())
+0 0 () () 0 () ())
+221 'ai1' '' 220 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 245
+()) 0 0 () () 0 () ())
+239 'tf1' '' 238 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 251
+()) 0 0 () () 0 () ())
+251 'esmf_logical' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((252 'value'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+191 'bf1' '' 190 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 253
+()) 0 0 () () 0 () ())
+253 'esmf_blockingflag' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((254 'value'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+195 'dk2' '' 193 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 243
+()) 0 0 () () 0 () ())
+192 'bf2' '' 190 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 253
+()) 0 0 () () 0 () ())
+2 'esmf_clockeq' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 255 0 (256 257) () 2 () ())
+28 'esmf_dmne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 258 0 (259 260) () 28 () ())
+37 'esmf_dkne' 'esmf_utiltypesmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 261 0 (262 263) () 37 () ())
+173 'lg1' '' 172 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 264
+()) 0 0 () () 0 () ())
+264 'esmf_localglobalflag' 'esmf_utiltypesmod' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0
+((265 'value' (INTEGER 4 ()) () 0 0 ())) PUBLIC ())
+179 'fr1' '' 178 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 266
+()) 0 0 () () 0 () ())
+266 'esmf_direction' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((267 'value'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+188 'rf1' '' 187 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 268
+()) 0 0 () () 0 () ())
+268 'esmf_regionflag' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((269 'i_type'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+180 'fr2' '' 178 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 266
+()) 0 0 () () 0 () ())
+210 'sf2' '' 208 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 241
+()) 0 0 () () 0 () ())
+186 'dm2' '' 184 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 270
+()) 0 0 () () 0 () ())
+270 'esmf_domaintypeflag' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((271 'value'
+(INTEGER 4 ()) () 0 0 ())) PUBLIC ())
+236 'if1' '' 235 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 272
+()) 0 0 () () 0 () ())
+272 'esmf_indexflag' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((273 'i_type'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+240 'tf2' '' 238 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 251
+()) 0 0 () () 0 () ())
+182 'ctf1' '' 181 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 274
+()) 0 0 () () 0 () ())
+274 'esmf_contextflag' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((275 'value'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+176 'tnf1' '' 175 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 276
+()) 0 0 () () 0 () ())
+276 'esmf_terminationflag' 'esmf_utiltypesmod' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0
+((277 'value' (INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+237 'if2' '' 235 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 272
+()) 0 0 () () 0 () ())
+230 'pt1' '' 229 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 59 ())
+0 0 () () 0 () ())
+219 'fr2' '' 217 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 266
+()) 0 0 () () 0 () ())
+200 'bf1' '' 199 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 253
+()) 0 0 () () 0 () ())
+204 'tnf2' '' 202 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 276
+()) 0 0 () () 0 () ())
+203 'tnf1' '' 202 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 276
+()) 0 0 () () 0 () ())
+231 'pt2' '' 229 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 59 ())
+0 0 () () 0 () ())
+218 'fr1' '' 217 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 266
+()) 0 0 () () 0 () ())
+177 'tnf2' '' 175 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 276
+()) 0 0 () () 0 () ())
+228 'lg2' '' 226 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 264
+()) 0 0 () () 0 () ())
+227 'lg1' '' 226 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 264
+()) 0 0 () () 0 () ())
+209 'sf1' '' 208 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 241
+()) 0 0 () () 0 () ())
+260 'dm2' '' 258 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 270
+()) 0 0 () () 0 () ())
+259 'dm1' '' 258 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 270
+()) 0 0 () () 0 () ())
+189 'rf2' '' 187 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 268
+()) 0 0 () () 0 () ())
+201 'bf2' '' 199 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 253
+()) 0 0 () () 0 () ())
+185 'dm1' '' 184 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 270
+()) 0 0 () () 0 () ())
+174 'lg2' '' 172 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 264
+()) 0 0 () () 0 () ())
+207 'ctf2' '' 205 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 274
+()) 0 0 () () 0 () ())
+216 'ai2' '' 214 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 245
+()) 0 0 () () 0 () ())
+183 'ctf2' '' 181 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 274
+()) 0 0 () () 0 () ())
+263 'dk2' '' 261 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 243
+()) 0 0 () () 0 () ())
+225 'tf2' '' 223 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 251
+()) 0 0 () () 0 () ())
+262 'dk1' '' 261 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 243
+()) 0 0 () () 0 () ())
+26 'esmf_timeeq' 'esmf_timemod' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC
+DECL FUNCTION) (LOGICAL 4 ()) 278 0 (279 280) () 26 () ())
+21 'esmf_calendartypeandcaleq' 'esmf_calendarmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 281 0 (282 283)
+() 21 () ())
+22 'esmf_calendarcalandtypeeq' 'esmf_calendarmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 284 0 (285 286)
+() 22 () ())
+215 'ai1' '' 214 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 245
+()) 0 0 () () 0 () ())
+224 'tf1' '' 223 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 251
+()) 0 0 () () 0 () ())
+42 'esmf_calendartypeandcalne' 'esmf_calendarmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 287 0 (288 289)
+() 42 () ())
+23 'esmf_calendartypeeq' 'esmf_calendarmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 290 0 (291 292) () 23 () ())
+24 'esmf_calendareq' 'esmf_calendarmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 293 0 (294 295) () 24 () ())
+45 'esmf_calendarne' 'esmf_calendarmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 296 0 (297 298) () 45 () ())
+19 'esmf_iorweq' 'esmf_iospecmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 299 0 (300 301) () 19 () ())
+300 'iorw1' '' 299 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+302 ()) 0 0 () () 0 () ())
+302 'esmf_iorwtype' 'esmf_iospecmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((303 'iorwtype'
+(INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+301 'iorw2' '' 299 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+302 ()) 0 0 () () 0 () ())
+44 'esmf_calendartypene' 'esmf_calendarmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 304 0 (305 306) () 44 () ())
+43 'esmf_calendarcalandtypene' 'esmf_calendarmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 307 0 (308 309)
+() 43 () ())
+20 'esmf_iospeq' 'esmf_iospecmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 310 0 (311 312) () 20 () ())
+312 'iosp2' '' 310 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+313 ()) 0 0 () () 0 () ())
+313 'esmf_iofileformat' 'esmf_iospecmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((314
+'iofileformat' (INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+311 'iosp1' '' 310 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+313 ()) 0 0 () () 0 () ())
+41 'esmf_iospne' 'esmf_iospecmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 315 0 (316 317) () 41 () ())
+316 'iosp1' '' 315 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+313 ()) 0 0 () () 0 () ())
+317 'iosp2' '' 315 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+313 ()) 0 0 () () 0 () ())
+40 'esmf_iorwne' 'esmf_iospecmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 318 0 (319 320) () 40 () ())
+320 'iorw2' '' 318 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+302 ()) 0 0 () () 0 () ())
+319 'iorw1' '' 318 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+302 ()) 0 0 () () 0 () ())
+17 'esmf_lhteq' 'esmf_logerrmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 321 0 (322 323) () 17 () ())
+18 'esmf_lmteq' 'esmf_logerrmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 324 0 (325 326) () 18 () ())
+16 'esmf_llteq' 'esmf_logerrmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 327 0 (328 329) () 16 () ())
+323 'ht2' '' 321 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 330
+()) 0 0 () () 0 () ())
+330 'esmf_halttype' 'esmf_logerrmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((331 'htype'
+(INTEGER 4 ()) () 0 0 ())) PUBLIC ())
+39 'esmf_lltne' 'esmf_logerrmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 332 0 (333 334) () 39 () ())
+333 'lt1' '' 332 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 335
+()) 0 0 () () 0 () ())
+335 'esmf_logtype' 'esmf_logerrmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((336 'ftype'
+(INTEGER 4 ()) () 0 0 ())) PUBLIC ())
+334 'lt2' '' 332 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 335
+()) 0 0 () () 0 () ())
+325 'mt1' '' 324 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 337
+()) 0 0 () () 0 () ())
+337 'esmf_msgtype' 'esmf_logerrmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((338 'mtype'
+(INTEGER 4 ()) () 0 0 ())) PUBLIC ())
+328 'lt1' '' 327 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 335
+()) 0 0 () () 0 () ())
+49 'esmf_clockcreatenew' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (DERIVED 57 ()) 339 0 (340
+341 342 343 344 345 346 347) () 49 () ())
+346 'reftime' '' 339 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 170 ()) 0 0 () () 0 () ())
+347 'rc' '' 339 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+344 'runduration' '' 339 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 169 ()) 0 0 () () 0 () ())
+345 'runtimestepcount' '' 339 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+OPTIONAL DUMMY) (INTEGER 4 ()) 0 0 () () 0 () ())
+342 'starttime' '' 339 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 170 ()) 0 0 () () 0 () ())
+54 'ringingalarmlist' '' 51 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN
+DIMENSION OPTIONAL DUMMY) (DERIVED 348 ()) 0 0 () (1 ASSUMED_SHAPE (
+CONSTANT (INTEGER 4 ()) 0 '1') ()) 0 () ())
+322 'ht1' '' 321 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 330
+()) 0 0 () () 0 () ())
+27 'esmf_clockne' 'esmf_clockmod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 349 0 (350 351) () 27 () ())
+329 'lt2' '' 327 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 335
+()) 0 0 () () 0 () ())
+326 'mt2' '' 324 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 337
+()) 0 0 () () 0 () ())
+295 'calendar2' '' 293 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+352 'esmf_calendar' 'esmf_calendarmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((353 'this' (
+DERIVED 59 ()) () 0 0 ()) (354 'isinit' (INTEGER 8 ()) () 0 0 (CONSTANT
+(INTEGER 4 ()) 0 '76838410'))) PRIVATE ())
+294 'calendar1' '' 293 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+291 'calendartype1' '' 290 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+355 'esmf_calendartype' 'esmf_calendarmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((356
+'calendartype' (INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+212 'clock' '' 211 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57
+()) 0 0 () () 0 () ())
+285 'calendar' '' 284 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+309 'calendartype' '' 307 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+288 'calendartype' '' 287 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+289 'calendar' '' 287 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+292 'calendartype2' '' 290 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+297 'calendar1' '' 296 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+305 'calendartype1' '' 304 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+306 'calendartype2' '' 304 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+298 'calendar2' '' 296 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+282 'calendartype' '' 281 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+308 'calendar' '' 307 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+286 'calendartype' '' 284 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 355 ()) 0 0 () () 0 () ())
+55 'ringingalarmcount' '' 51 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN
+OPTIONAL DUMMY) (INTEGER 4 ()) 0 0 () () 0 () ())
+279 'time1' '' 278 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+170 ()) 0 0 () () 0 () ())
+340 'name' '' 339 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+47 'esmf_timene' 'esmf_timemod' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC
+DECL FUNCTION) (LOGICAL 4 ()) 357 0 (358 359) () 47 () ())
+359 'time2' '' 357 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+170 ()) 0 0 () () 0 () ())
+280 'time2' '' 278 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+170 ()) 0 0 () () 0 () ())
+56 'rc' '' 51 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+46 'esmf_timeintervalne' 'esmf_timeintervalmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 360 0 (361 362)
+() 46 () ())
+25 'esmf_timeintervaleq' 'esmf_timeintervalmod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL FUNCTION) (LOGICAL 4 ()) 363 0 (364 365)
+() 25 () ())
+169 'esmf_timeinterval' 'esmf_timeintervaltypemod' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0
+((366 's' (INTEGER 8 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (367 'sn'
+(INTEGER 4 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (368 'sd' (
+INTEGER 4 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (369 's1' (
+INTEGER 8 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (370 'sn1' (
+INTEGER 4 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (371 'sd1' (
+INTEGER 4 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (372 'calendar1' (
+DERIVED 59 ()) () 0 0 (STRUCTURE (DERIVED 59 ()) 0 (((CONSTANT (INTEGER
+8 ()) 0 '0') ())) ())) (373 'timezone1' (INTEGER 4 ()) () 0 0 (CONSTANT
+(INTEGER 4 ()) 0 '0')) (374 's2' (INTEGER 8 ()) () 0 0 (CONSTANT (
+INTEGER 4 ()) 0 '0')) (375 'sn2' (INTEGER 4 ()) () 0 0 (CONSTANT (
+INTEGER 4 ()) 0 '0')) (376 'sd2' (INTEGER 4 ()) () 0 0 (CONSTANT (
+INTEGER 4 ()) 0 '0')) (377 'calendar2' (DERIVED 59 ()) () 0 0 (
+STRUCTURE (DERIVED 59 ()) 0 (((CONSTANT (INTEGER 8 ()) 0 '0') ())) ()))
+(378 'timezone2' (INTEGER 4 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0'))
+(379 'calendar' (DERIVED 59 ()) () 0 0 (STRUCTURE (DERIVED 59 ()) 0 (((
+CONSTANT (INTEGER 8 ()) 0 '0') ())) ())) (380 'yy' (INTEGER 8 ()) () 0 0
+(CONSTANT (INTEGER 4 ()) 0 '0')) (381 'mm' (INTEGER 8 ()) () 0 0 (
+CONSTANT (INTEGER 4 ()) 0 '0')) (382 'd' (INTEGER 8 ()) () 0 0 (
+CONSTANT (INTEGER 4 ()) 0 '0')) (383 'isinit' (INTEGER 8 ()) () 0 0 (
+CONSTANT (INTEGER 4 ()) 0 '76838410'))) PRIVATE ())
+358 'time1' '' 357 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+170 ()) 0 0 () () 0 () ())
+283 'calendar' '' 281 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 352 ()) 0 0 () () 0 () ())
+206 'ctf1' '' 205 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 274
+()) 0 0 () () 0 () ())
+213 'rc' '' 211 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+341 'timestep' '' 339 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 169 ()) 0 0 () () 0 () ())
+361 'timeinterval1' '' 360 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 169 ()) 0 0 () () 0 () ())
+364 'timeinterval1' '' 363 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 169 ()) 0 0 () () 0 () ())
+170 'esmf_time' 'esmf_timetypemod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((384 's' (
+INTEGER 8 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (385 'sn' (
+INTEGER 4 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (386 'sd' (
+INTEGER 4 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0 '0')) (387 'calendar' (
+DERIVED 59 ()) () 0 0 (STRUCTURE (DERIVED 59 ()) 0 (((CONSTANT (INTEGER
+8 ()) 0 '0') ())) ())) (388 'timezone' (INTEGER 4 ()) () 0 0 (CONSTANT (
+INTEGER 4 ()) 0 '0')) (389 'isinit' (INTEGER 8 ()) () 0 0 (CONSTANT (
+INTEGER 4 ()) 0 '76838410'))) PRIVATE ())
+365 'timeinterval2' '' 363 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 169 ()) 0 0 () () 0 () ())
+53 'timestep' '' 51 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 169 ()) 0 0 () () 0 () ())
+362 'timeinterval2' '' 360 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 169 ()) 0 0 () () 0 () ())
+80 'reftime' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+DERIVED 170 ()) 0 0 () () 0 () ())
+79 'runtimestepcount' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (REAL 8 ()) 0 0 () () 0 () ())
+82 'prevtime' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 170 ()) 0 0 () () 0 () ())
+83 'currsimtime' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 169 ()) 0 0 () () 0 () ())
+84 'prevsimtime' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 169 ()) 0 0 () () 0 () ())
+85 'calendar' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 352 ()) 0 0 () () 0 () ())
+88 'advancecount' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (INTEGER 8 ()) 0 0 () () 0 () ())
+90 'direction' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 266 ()) 0 0 () () 0 () ())
+91 'rc' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+89 'alarmcount' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(INTEGER 4 ()) 0 0 () () 0 () ())
+87 'timezone' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(INTEGER 4 ()) 0 0 () () 0 () ())
+86 'calendartype' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 355 ()) 0 0 () () 0 () ())
+81 'currtime' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 170 ()) 0 0 () () 0 () ())
+343 'stoptime' '' 339 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 170 ()) 0 0 () () 0 () ())
+67 'clock' '' 66 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+57 ()) 0 0 () () 0 () ())
+64 'rc' '' 62 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+70 'rc' '' 66 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+153 'clock' '' 152 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57
+()) 0 0 () () 0 () ())
+69 'alarm' '' 66 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 348
+()) 0 0 () () 0 () ())
+68 'name' '' 66 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1 (
+())) 0 0 () () 0 () ())
+348 'esmf_alarm' 'esmf_alarmtypemod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((390 'this' (
+DERIVED 59 ()) () 0 0 ()) (391 'isinit' (INTEGER 8 ()) () 0 0 (CONSTANT
+(INTEGER 4 ()) 0 '76838410'))) PRIVATE ())
+155 'alarmlist' '' 152 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DIMENSION
+DUMMY) (DERIVED 348 ()) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ())
+0 '1') ()) 0 () ())
+157 'timestep' '' 152 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 169 ()) 0 0 () () 0 () ())
+95 'nexttime' '' 93 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+170 ()) 0 0 () () 0 () ())
+96 'timestep' '' 93 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 169 ()) 0 0 () () 0 () ())
+97 'rc' '' 93 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+94 'clock' '' 93 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57 ())
+0 0 () () 0 () ())
+108 'clock' '' 107 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57
+()) 0 0 () () 0 () ())
+158 'rc' '' 152 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+109 'rc' '' 107 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+104 'clock' '' 103 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57
+()) 0 0 () () 0 () ())
+101 'rc' '' 99 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+100 'clock' '' 99 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57
+()) 0 0 () () 0 () ())
+156 'alarmcount' '' 152 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+105 'rc' '' 103 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+149 'clock' '' 148 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57
+()) 0 0 () () 0 () ())
+150 'rc' '' 148 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+146 'rc' '' 143 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+145 'options' '' 143 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(CHARACTER 1 (())) 0 0 () () 0 () ())
+139 'name' '' 138 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1
+(())) 0 0 () () 0 () ())
+144 'clock' '' 143 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 57
+()) 0 0 () () 0 () ())
+140 'iospec' '' 138 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+DERIVED 392 ()) 0 0 () () 0 () ())
+392 'esmf_iospec' 'esmf_iospecmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((393 'iostatus'
+(DERIVED 241 ()) () 0 0 ()) (394 'iofileformat' (DERIVED 313 ()) () 0 0
+()) (395 'iorwtype' (DERIVED 302 ()) () 0 0 ()) (396 'filename' (
+CHARACTER 1 ((CONSTANT (INTEGER 4 ()) 0 '128'))) () 0 0 ()) (397 'asyncio'
+(LOGICAL 4 ()) () 0 0 ())) PRIVATE ())
+113 'name' '' 111 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+112 'clock' '' 111 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 57 ()) 0 0 () () 0 () ())
+141 'rc' '' 138 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+115 'starttime' '' 111 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 170 ()) 0 0 () () 0 () ())
+114 'timestep' '' 111 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 169 ()) 0 0 () () 0 () ())
+117 'runduration' '' 111 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 169 ()) 0 0 () () 0 () ())
+121 'advancecount' '' 111 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (INTEGER 8 ()) 0 0 () () 0 () ())
+120 'currtime' '' 111 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 170 ()) 0 0 () () 0 () ())
+119 'reftime' '' 111 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 170 ()) 0 0 () () 0 () ())
+118 'runtimestepcount' '' 111 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+OPTIONAL DUMMY) (INTEGER 4 ()) 0 0 () () 0 () ())
+122 'direction' '' 111 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 266 ()) 0 0 () () 0 () ())
+116 'stoptime' '' 111 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN OPTIONAL
+DUMMY) (DERIVED 170 ()) 0 0 () () 0 () ())
+126 'clock' '' 125 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 57 ()) 0 0 () () 0 () ())
+132 'rc' '' 129 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+131 'stoptime' '' 129 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(DERIVED 170 ()) 0 0 () () 0 () ())
+130 'clock' '' 129 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 57 ()) 0 0 () () 0 () ())
+166 'clock' '' 165 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 57 ()) 0 0 () () 0 () ())
+136 'rc' '' 134 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+167 'options' '' 165 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(CHARACTER 1 (())) 0 0 () () 0 () ())
+135 'clock' '' 134 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 57 ()) 0 0 () () 0 () ())
+127 'rc' '' 125 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+161 'clock' '' 160 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 57 ()) 0 0 () () 0 () ())
+163 'rc' '' 160 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+257 'clock2' '' 255 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+57 ()) 0 0 () () 0 () ())
+350 'clock1' '' 349 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+57 ()) 0 0 () () 0 () ())
+256 'clock1' '' 255 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+57 ()) 0 0 () () 0 () ())
+351 'clock2' '' 349 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+57 ()) 0 0 () () 0 () ())
+162 'iospec' '' 160 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+DERIVED 392 ()) 0 0 () () 0 () ())
+168 'rc' '' 165 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+123 'rc' '' 111 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+154 'alarmlisttype' '' 152 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 398 ()) 0 0 () () 0 () ())
+398 'esmf_alarmlisttype' 'esmf_alarmtypemod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((399
+'alarmlisttype' (INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+)
+
+('esmf_clockvalidate' 0 164 'esmf_clockgetalarmlist' 0 151 'esmf_clock'
+0 57 'esmf_clockadvance' 0 50 'esmf_clockdestroy' 0 61 'esmf_clockget' 0
+71 'esmf_clockgetalarm' 0 65 'esmf_clockisstoptimeenabled' 0 147
+'esmf_clockisdone' 0 106 'esmf_clockgetnexttime' 0 92
+'esmf_clockisstoptime' 0 102 'esmf_clockisreverse' 0 98 'esmf_clockprint'
+0 142 'esmf_clockreadrestart' 0 137 'esmf_clockset' 0 110
+'esmf_clocksynctorealtime' 0 133 'esmf_clockstoptimeenable' 0 128
+'esmf_clockstoptimedisable' 0 124 'esmf_clockwriterestart' 0 159)

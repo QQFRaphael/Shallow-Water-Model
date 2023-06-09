@@ -1,0 +1,17 @@
+Analysis programs - for comparing STSWM results to our shallow-water model
+
+reftogeo.f -- sample the stswm reference solution at the specified geodesic
+  grid lat/lon values. Output file is the stswm layer thicknesses sampled
+  at the given geodesic grid resolution.
+
+errnorms.f -- compute the l1, l2, and l-infinity norms.  Input the stswm 
+  and geodesic swm layer thicknesses as well as the file containing the 
+  geodesic grid cell areas.  
+
+To run the this analysis program, you only need to edit the input text file.
+
+Edit the "runit" and choose the set of compile option for your machine,
+or add your machine options if your platform is not present.
+
+Edit input and set the paths according to the instructions, then type
+"runit" at the command line.

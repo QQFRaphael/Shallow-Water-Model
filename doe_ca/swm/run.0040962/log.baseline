@@ -1,0 +1,1020 @@
+  
+  set_assign_owner : NOTE : sbdmn_assign FILE NOT FOUND
+     internally generating mechanism to distribute domains
+  
+  
+  generating grid_center_mask
+  
+  diagnostics for grid_center_mask
+  each process writes out the number of "real" cells owned
+  *** process   0  sum of centers    40962.0000000000
+  *** process   0  sum polygon_type    38379.0000000000
+  *** process   0  maxval polygon_type    4.00000000000000
+  finished in set_grid_center_mask
+  
+  
+  generating mask in set_grid_corner_mask
+  
+  diagnostics for grid_corner_mask
+  each process writes out the number of "real" cells owned
+  *** process   0  sum of corners    81920.0000000000
+  finished in set_grid_corner_mask
+  
+  
+ -------------------------------------------------------
+  generating operator weights in generate_grid_metrics
+  for resolution :   40962
+  total area at this resolution :   510061781330814.
+  
+  Diagnostics for scalar weights (s_weights) for each task
+  maxval of s_weights will be 0.333 on a perfect hexagonal grid
+  maxval of sum_weights should be 1.000 to round-off
+  minval of sum_weights should be 1.000 to round-off
+  *** process   0  maxval s_weights :    0.381951796914517
+  *** process   0  maxval sum s_weights :    1.00000000000000
+  *** process   0  minval sum s_weights :    1.00000000000000
+  
+  *** process   0  max error in Laplacian weights    1.550963648536927E-025
+  
+  finished in generate_grid_metrics at this resolution
+ -------------------------------------------------------
+  
+  
+  
+  set_assign_owner : NOTE : sbdmn_assign FILE NOT FOUND
+     internally generating mechanism to distribute domains
+  
+  
+  set_assign_owner : NOTE : sbdmn_assign FILE NOT FOUND
+     internally generating mechanism to distribute domains
+  
+  
+  set_assign_owner : NOTE : sbdmn_assign FILE NOT FOUND
+     internally generating mechanism to distribute domains
+  
+  
+  set_assign_owner : NOTE : sbdmn_assign FILE NOT FOUND
+     internally generating mechanism to distribute domains
+  
+  
+  set_assign_owner : NOTE : sbdmn_assign FILE NOT FOUND
+     internally generating mechanism to distribute domains
+  
+  
+ -------------------------------------------------------
+  generating operator weights in generate_grid_metrics
+  for resolution :   40962
+  total area at this resolution :   510061781330814.
+  
+  Diagnostics for scalar weights (s_weights) for each task
+  maxval of s_weights will be 0.333 on a perfect hexagonal grid
+  maxval of sum_weights should be 1.000 to round-off
+  minval of sum_weights should be 1.000 to round-off
+  *** process   0  maxval s_weights :    0.381951796914517
+  *** process   0  maxval sum s_weights :    1.00000000000000
+  *** process   0  minval sum s_weights :    1.00000000000000
+  
+  *** process   0  max error in Laplacian weights    1.550963648536927E-025
+  
+  finished in generate_grid_metrics at this resolution
+ -------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------
+  generating operator weights in generate_grid_metrics
+  for resolution :   10242
+  total area at this resolution :   509948054359658.
+  
+  Diagnostics for scalar weights (s_weights) for each task
+  maxval of s_weights will be 0.333 on a perfect hexagonal grid
+  maxval of sum_weights should be 1.000 to round-off
+  minval of sum_weights should be 1.000 to round-off
+  *** process   0  maxval s_weights :    0.381901055807944
+  *** process   0  maxval sum s_weights :    1.00000000000000
+  *** process   0  minval sum s_weights :    1.00000000000000
+  
+  *** process   0  max error in Laplacian weights    3.877409121342318E-026
+  
+  finished in generate_grid_metrics at this resolution
+ -------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------
+  generating operator weights in generate_grid_metrics
+  for resolution :   2562
+  total area at this resolution :   509493540424469.
+  
+  Diagnostics for scalar weights (s_weights) for each task
+  maxval of s_weights will be 0.333 on a perfect hexagonal grid
+  maxval of sum_weights should be 1.000 to round-off
+  minval of sum_weights should be 1.000 to round-off
+  *** process   0  maxval s_weights :    0.381703768732764
+  *** process   0  maxval sum s_weights :    1.00000000000000
+  *** process   0  minval sum s_weights :    1.00000000000000
+  
+  *** process   0  max error in Laplacian weights    6.462348535570529E-027
+  
+  finished in generate_grid_metrics at this resolution
+ -------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------
+  generating operator weights in generate_grid_metrics
+  for resolution :   642
+  total area at this resolution :   507681788881670.
+  
+  Diagnostics for scalar weights (s_weights) for each task
+  maxval of s_weights will be 0.333 on a perfect hexagonal grid
+  maxval of sum_weights should be 1.000 to round-off
+  minval of sum_weights should be 1.000 to round-off
+  *** process   0  maxval s_weights :    0.380932448202993
+  *** process   0  maxval sum s_weights :    1.00000000000000
+  *** process   0  minval sum s_weights :    1.00000000000000
+  
+  *** process   0  max error in Laplacian weights    1.615587133892632E-027
+  
+  finished in generate_grid_metrics at this resolution
+ -------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------
+  generating operator weights in generate_grid_metrics
+  for resolution :   162
+  total area at this resolution :   500535662650257.
+  
+  Diagnostics for scalar weights (s_weights) for each task
+  maxval of s_weights will be 0.333 on a perfect hexagonal grid
+  maxval of sum_weights should be 1.000 to round-off
+  minval of sum_weights should be 1.000 to round-off
+  *** process   0  maxval s_weights :    0.377997226747367
+  *** process   0  maxval sum s_weights :    1.00000000000000
+  *** process   0  minval sum s_weights :    1.00000000000000
+  
+  *** process   0  max error in Laplacian weights    4.038967834731580E-028
+  
+  finished in generate_grid_metrics at this resolution
+ -------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------
+  generating operator weights in generate_grid_metrics
+  for resolution :   42
+  total area at this resolution :   473548670090621.
+  
+  Diagnostics for scalar weights (s_weights) for each task
+  maxval of s_weights will be 0.333 on a perfect hexagonal grid
+  maxval of sum_weights should be 1.000 to round-off
+  minval of sum_weights should be 1.000 to round-off
+  *** process   0  maxval s_weights :    0.367480711059152
+  *** process   0  maxval sum s_weights :    1.00000000000000
+  *** process   0  minval sum s_weights :    1.00000000000000
+  
+  *** process   0  max error in Laplacian weights    1.009741958682895E-028
+  
+  finished in generate_grid_metrics at this resolution
+ -------------------------------------------------------
+  
+  
+ 
+  writing coordinate data for OpenDX visualization
+ 
+  finished writing coordinate data describing faces
+  finished writing coordinate data describing vertices
+  finished writing coordinate data describing vector positions
+ 
+  writing coordinate data complete
+ 
+Will save hqp: thickness       thickness of fliud layer                  in hqp slot     1
+Will save hqp: height          surface height of fliud layer             in hqp slot     2
+Will save hqp: relative        relative vorticity of fluid               in hqp slot     3
+Will save hqp: divergence      divergence of fluid                       in hqp slot     4
+Will save hqp: absolute        absolute vorticity of fliud layer         in hqp slot     5
+Will save hqp: kinetic_energy  kinetic energy of fluid                   in hqp slot     6
+Will save hqp: tracer_1        tracer field #1                           in hqp slot     7
+Will save hqp: tracer_2        tracer field #2                           in hqp slot     8
+Will save hqp: tracer_3        tracer field #3                           in hqp slot     9
+Will save hqp: tracer_4        tracer field #4                           in hqp slot    10
+Will save hqp: tracer_5        tracer field #5                           in hqp slot    11
+ 
+ min/max of Coriolis parameter   -1.458399929106233E-004  1.458399929106233E-004
+ 
+ 
+  input : tau_end        =   0.998999999952503
+  input : tau_end_day    =   0.000000000000000
+  input : tau_end_hour   =   1.00000000000000
+  input : time step      =   100.000000000000
+ 
+ 
+  generating initial conditions for SW Test Case 5
+ 
+ 
+  finished generating initial conditions
+ 
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :    0.00000000E+00
+ Log10 of Frac Pot. Enstrophy Change :    0.00000000E+00
+
+
+ 
+  WRITING OUTPUT to ./dx/output
+  ******** writing data from process   0
+ 
+ 
+  WRITING OUTPUT to ./dx/output
+  ******** writing data from process   0
+ 
+   1  100  2.777777798473835E-002
+  iterations/resid  :   3 T  8.578534258311119E-023  1.831868441168333E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.02778
+ min/max divergence     :    -0.3784602106E-08    0.4056717680E-07
+ min/max rel vorticity  :    -0.8878482669E-05    0.8878482669E-05
+ min/max kinetic energy :     0.5023614221E-01    0.1999890918E+03
+ min/max mass thickness :     0.3755969598E+04    0.5960000000E+04
+ min/max eastward wind  :     0.3169699264E+00    0.2000000162E+02
+ min/max northward wind :    -0.1029451564E-01    0.1029451476E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89375907E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.89438686E+01
+
+
+   2  200  5.555555596947670E-002
+  iterations/resid  :   3 F  9.692950908763246E-027  9.273299600508366E-023  3.290515263558577E-012  2.995235361624981E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.05556
+ min/max divergence     :    -0.1766719867E-06    0.1949288658E-06
+ min/max rel vorticity  :    -0.8877552568E-05    0.8877552568E-05
+ min/max kinetic energy :     0.5022672925E-01    0.1999890994E+03
+ min/max mass thickness :     0.3756199351E+04    0.5960000003E+04
+ min/max eastward wind  :     0.3169296828E+00    0.1999999951E+02
+ min/max northward wind :    -0.1106517770E-01    0.1106478485E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.88881882E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.90464185E+01
+
+
+   3  300  8.333333581686020E-002
+  iterations/resid  :   3 F  2.042772009041639E-026  2.551752541965115E-022  5.530162878026018E-012  5.042495972548349E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.08333
+ min/max divergence     :    -0.4681608026E-06    0.5180906042E-06
+ min/max rel vorticity  :    -0.8875998668E-05    0.8875998708E-05
+ min/max kinetic energy :     0.5021215319E-01    0.1999891137E+03
+ min/max mass thickness :     0.3756407449E+04    0.5960000016E+04
+ min/max eastward wind  :     0.3168733474E+00    0.1999999999E+02
+ min/max northward wind :    -0.1178208347E-01    0.1178149732E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.88996515E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.91809968E+01
+
+
+   4  400  0.111111111938953
+  iterations/resid  :   3 F  7.368811660374460E-026  3.925171667040636E-022  1.097754570977269E-011  6.233835117722291E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.11111
+ min/max divergence     :    -0.8243694185E-06    0.9230479735E-06
+ min/max rel vorticity  :    -0.8874276804E-05    0.8874276885E-05
+ min/max kinetic energy :     0.5019412194E-01    0.1999890941E+03
+ min/max mass thickness :     0.3756582925E+04    0.5960000029E+04
+ min/max eastward wind  :     0.3168122356E+00    0.2000000019E+02
+ min/max northward wind :    -0.1244414268E-01    0.1244381522E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89002386E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.93771154E+01
+
+
+   5  500  0.138888895511627
+  iterations/resid  :   3 F  1.790294481348716E-025  5.409949081785157E-022  1.722120780396977E-011  7.173217378311226E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.13889
+ min/max divergence     :    -0.1230806799E-05    0.1399085870E-05
+ min/max rel vorticity  :    -0.8872512016E-05    0.8872512151E-05
+ min/max kinetic energy :     0.5017387930E-01    0.1999891225E+03
+ min/max mass thickness :     0.3756723133E+04    0.5960000048E+04
+ min/max eastward wind  :     0.3167494849E+00    0.2000000030E+02
+ min/max northward wind :    -0.1299931641E-01    0.1299938132E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89002689E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.97451793E+01
+
+
+   6  600  0.166666671633720
+  iterations/resid  :   3 F  3.648819372843150E-025  6.517186865222042E-022  2.451211689730165E-011  7.637293981501553E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.16667
+ min/max divergence     :    -0.1659347861E-05    0.1917519225E-05
+ min/max rel vorticity  :    -0.8870851196E-05    0.8870851398E-05
+ min/max kinetic energy :     0.5015318566E-01    0.1999891541E+03
+ min/max mass thickness :     0.3756817831E+04    0.5960000072E+04
+ min/max eastward wind  :     0.3166899082E+00    0.2000000041E+02
+ min/max northward wind :    -0.1341366413E-01    0.1341408047E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89005367E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.10218988E+02
+
+
+   7  700  0.194444447755814
+  iterations/resid  :   3 F  6.302642219421545E-025  7.143293980999855E-022  3.196833777633078E-011  9.801619594751958E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.19444
+ min/max divergence     :    -0.2077715866E-05    0.2446286795E-05
+ min/max rel vorticity  :    -0.8869496273E-05    0.8869496551E-05
+ min/max kinetic energy :     0.5013523673E-01    0.1999891880E+03
+ min/max mass thickness :     0.3756864471E+04    0.5960000097E+04
+ min/max eastward wind  :     0.3166411569E+00    0.2000000057E+02
+ min/max northward wind :    -0.1366631482E-01    0.1366711996E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89007877E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.95212785E+01
+
+
+   8  800  0.222222223877907
+  iterations/resid  :   3 F  9.697890855986550E-025  7.447486844552642E-022  3.905981434458941E-011  1.211824136490381E-009
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.22222
+ min/max divergence     :    -0.2461403291E-05    0.2959171554E-05
+ min/max rel vorticity  :    -0.8868549587E-05    0.8868549948E-05
+ min/max kinetic energy :     0.5012233109E-01    0.1999892179E+03
+ min/max mass thickness :     0.3756868536E+04    0.5960000125E+04
+ min/max eastward wind  :     0.3166063627E+00    0.2000000120E+02
+ min/max northward wind :    -0.1373275085E-01    0.1373388454E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89009171E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.92656463E+01
+
+
+   9  900  0.250000000000000
+  iterations/resid  :   3 F  1.372648962625873E-024  7.453119151060236E-022  4.548321695724879E-011  1.355689607786889E-009
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.25000
+ min/max divergence     :    -0.2791898233E-05    0.3432417117E-05
+ min/max rel vorticity  :    -0.8868013698E-05    0.8868014147E-05
+ min/max kinetic energy :     0.5011503272E-01    0.1999892336E+03
+ min/max mass thickness :     0.3756838292E+04    0.5960000154E+04
+ min/max eastward wind  :     0.3165866802E+00    0.2000000158E+02
+ min/max northward wind :    -0.1360650989E-01    0.1360773615E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89015104E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.91054277E+01
+
+
+   10  1000  0.277777791023254
+  iterations/resid  :   3 F  1.815192807476298E-024  7.309725412243774E-022  5.092372807496867E-011  1.399295734810488E-009
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.27778
+ min/max divergence     :    -0.3132809623E-05    0.3846298819E-05
+ min/max rel vorticity  :    -0.8867841709E-05    0.8867842250E-05
+ min/max kinetic energy :     0.5011272390E-01    0.1999892335E+03
+ min/max mass thickness :     0.3756784402E+04    0.5960000182E+04
+ min/max eastward wind  :     0.3165804913E+00    0.2000000168E+02
+ min/max northward wind :    -0.1330562003E-01    0.1330667784E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89029145E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.89883378E+01
+
+
+   11  1100  0.305555552244186
+  iterations/resid  :   3 F  2.273534412858469E-024  7.225807425510878E-022  5.516077542073950E-011  1.354186305225927E-009
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.30556
+ min/max divergence     :    -0.3519369001E-05    0.4187434196E-05
+ min/max rel vorticity  :    -0.8867941235E-05    0.8867941870E-05
+ min/max kinetic energy :     0.5011393282E-01    0.1999892207E+03
+ min/max mass thickness :     0.3756719298E+04    0.5960000209E+04
+ min/max eastward wind  :     0.3165843000E+00    0.2000000159E+02
+ min/max northward wind :    -0.1286410045E-01    0.1286478579E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89051012E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.88959460E+01
+
+
+   12  1200  0.333333343267441
+  iterations/resid  :   3 F  2.729560787189027E-024  7.302985798463753E-022  6.028215781698747E-011  1.232898875101921E-009
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.33333
+ min/max divergence     :    -0.3848714082E-05    0.4448844205E-05
+ min/max rel vorticity  :    -0.8868183833E-05    0.8868184563E-05
+ min/max kinetic energy :     0.5011677880E-01    0.1999891979E+03
+ min/max mass thickness :     0.3756654965E+04    0.5960000234E+04
+ min/max eastward wind  :     0.3165925953E+00    0.2000000215E+02
+ min/max northward wind :    -0.1232981398E-01    0.1232997322E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89080079E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.88195803E+01
+
+
+   13  1300  0.361111104488373
+  iterations/resid  :   3 F  3.171391445295494E-024  7.555040455174865E-022  6.768253753227876E-011  1.061410820214895E-009
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.36111
+ min/max divergence     :    -0.4109734680E-05    0.4629757884E-05
+ min/max rel vorticity  :    -0.8868438059E-05    0.8868438887E-05
+ min/max kinetic energy :     0.5011960290E-01    0.1999891696E+03
+ min/max mass thickness :     0.3756601326E+04    0.5960000257E+04
+ min/max eastward wind  :     0.3166013300E+00    0.2000000275E+02
+ min/max northward wind :    -0.1176146355E-01    0.1176102235E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89115495E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.87544626E+01
+
+
+   14  1400  0.388888895511627
+  iterations/resid  :   3 F  3.597149431244606E-024  7.911567354814750E-022  7.360441684754239E-011  8.784952274972591E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.38889
+ min/max divergence     :    -0.4296718993E-05    0.4735274762E-05
+ min/max rel vorticity  :    -0.8868596408E-05    0.8868597334E-05
+ min/max kinetic energy :     0.5012127862E-01    0.1999891435E+03
+ min/max mass thickness :     0.3756565362E+04    0.5960000277E+04
+ min/max eastward wind  :     0.3166066870E+00    0.2000000333E+02
+ min/max northward wind :    -0.1121914920E-01    0.1121814516E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89154681E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.86976795E+01
+
+
+   15  1500  0.416666656732559
+  iterations/resid  :   3 F  4.015015795275783E-024  8.226432982944587E-022  7.814593328422679E-011  8.284873589485869E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.41667
+ min/max divergence     :    -0.4409733991E-05    0.4775385599E-05
+ min/max rel vorticity  :    -0.8868588553E-05    0.8868589581E-05
+ min/max kinetic energy :     0.5012118711E-01    0.1999891719E+03
+ min/max mass thickness :     0.3756550511E+04    0.5960000296E+04
+ min/max eastward wind  :     0.3166061756E+00    0.2000000385E+02
+ min/max northward wind :    -0.1075497302E-01    0.1075353222E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89194664E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.86473112E+01
+
+
+   16  1600  0.444444447755814
+  iterations/resid  :   3 F  4.437900434935906E-024  8.360186765797502E-022  8.158266551135750E-011  7.980947173377258E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.44444
+ min/max divergence     :    -0.4454519301E-05    0.4763630117E-05
+ min/max rel vorticity  :    -0.8868388562E-05    0.8868389695E-05
+ min/max kinetic energy :     0.5011911569E-01    0.1999891880E+03
+ min/max mass thickness :     0.3756556557E+04    0.5960000314E+04
+ min/max eastward wind  :     0.3165988828E+00    0.2000000428E+02
+ min/max northward wind :    -0.1040660899E-01    0.1040489558E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89233624E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.86020354E+01
+
+
+   17  1700  0.472222208976746
+  iterations/resid  :   3 F  4.878601484768437E-024  8.258677843754764E-022  8.427165353506622E-011  7.488955594757092E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.47222
+ min/max divergence     :    -0.4441785453E-05    0.4715622912E-05
+ min/max rel vorticity  :    -0.8868014871E-05    0.8868016113E-05
+ min/max kinetic energy :     0.5011519111E-01    0.1999891923E+03
+ min/max mass thickness :     0.3756580105E+04    0.5960000333E+04
+ min/max eastward wind  :     0.3165854717E+00    0.2000000463E+02
+ min/max northward wind :    -0.1019271494E-01    0.1019088830E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89270879E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.85608964E+01
+
+
+   18  1800  0.500000000000000
+  iterations/resid  :   3 F  5.347165347534589E-024  7.968569011682007E-022  8.659072579972984E-011  7.222656764485914E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.50000
+ min/max divergence     :    -0.4385975781E-05    0.4906621986E-05
+ min/max rel vorticity  :    -0.8867520622E-05    0.8867521976E-05
+ min/max kinetic energy :     0.5010984314E-01    0.1999891874E+03
+ min/max mass thickness :     0.3756615451E+04    0.5960000352E+04
+ min/max eastward wind  :     0.3165678361E+00    0.2000000493E+02
+ min/max northward wind :    -0.1011106209E-01    0.1010923793E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89306987E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.85231808E+01
+
+
+   19  1900  0.527777791023254
+  iterations/resid  :   3 F  5.849449411358099E-024  7.597603999538574E-022  8.884226721409691E-011  6.884290288983359E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.52778
+ min/max divergence     :    -0.4478334624E-05    0.5068174868E-05
+ min/max rel vorticity  :    -0.8866978091E-05    0.8866979560E-05
+ min/max kinetic energy :     0.5010375832E-01    0.1999891784E+03
+ min/max mass thickness :     0.3756655683E+04    0.5960000373E+04
+ min/max eastward wind  :     0.3165485445E+00    0.2000000523E+02
+ min/max northward wind :    -0.1014056287E-01    0.1013878123E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89343591E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.84883437E+01
+
+
+   20  2000  0.555555582046509
+  iterations/resid  :   3 F  6.387238612244362E-024  7.255287110647260E-022  9.117808394369918E-011  6.413235541282321E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.55556
+ min/max divergence     :    -0.4595615663E-05    0.5170537645E-05
+ min/max rel vorticity  :    -0.8866461979E-05    0.8866463564E-05
+ min/max kinetic energy :     0.5009777249E-01    0.1999891706E+03
+ min/max mass thickness :     0.3756693846E+04    0.5960000395E+04
+ min/max eastward wind  :     0.3165302456E+00    0.2000000557E+02
+ min/max northward wind :    -0.1024645480E-01    0.1024467093E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89383237E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.84559585E+01
+
+
+   21  2100  0.583333313465118
+  iterations/resid  :   3 F  6.959894008075898E-024  7.010711349427494E-022  9.359483408526481E-011  6.373520124274696E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.58333
+ min/max divergence     :    -0.4653648544E-05    0.5219675586E-05
+ min/max rel vorticity  :    -0.8866034375E-05    0.8866036075E-05
+ min/max kinetic energy :     0.5009268693E-01    0.1999891682E+03
+ min/max mass thickness :     0.3756724014E+04    0.5960000418E+04
+ min/max eastward wind  :     0.3165151353E+00    0.2000000599E+02
+ min/max northward wind :    -0.1038725253E-01    0.1038535343E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89428448E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.84256875E+01
+
+
+   22  2200  0.611111104488373
+  iterations/resid  :   3 F  7.566270067677496E-024  6.882823869710771E-022  9.597406914479633E-011  6.353653535518757E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.61111
+ min/max divergence     :    -0.4659349161E-05    0.5224629246E-05
+ min/max rel vorticity  :    -0.8865733835E-05    0.8865735649E-05
+ min/max kinetic energy :     0.5008906396E-01    0.1999891729E+03
+ min/max mass thickness :     0.3756742103E+04    0.5960000441E+04
+ min/max eastward wind  :     0.3165039650E+00    0.2000000652E+02
+ min/max northward wind :    -0.1052229025E-01    0.1052012747E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89480994E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.83972577E+01
+
+
+   23  2300  0.638888895511627
+  iterations/resid  :   3 F  8.206101541539159E-024  6.855056308179922E-022  9.814102846807646E-011  6.115396584771410E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.63889
+ min/max divergence     :    -0.4623110182E-05    0.5196548700E-05
+ min/max rel vorticity  :    -0.8865570540E-05    0.8865572464E-05
+ min/max kinetic energy :     0.5008709236E-01    0.1999891843E+03
+ min/max mass thickness :     0.3756746328E+04    0.5960000462E+04
+ min/max eastward wind  :     0.3164973150E+00    0.2000000715E+02
+ min/max northward wind :    -0.1061853958E-01    0.1061596913E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89541459E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.83704464E+01
+
+
+   24  2400  0.666666686534882
+  iterations/resid  :   3 F  8.880948247568337E-024  6.895088801396430E-022  9.993629472298352E-011  6.252298193008545E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.66667
+ min/max divergence     :    -0.4557731924E-05    0.5147572450E-05
+ min/max rel vorticity  :    -0.8865527842E-05    0.8865529874E-05
+ min/max kinetic energy :     0.5008657917E-01    0.1999891990E+03
+ min/max mass thickness :     0.3756737268E+04    0.5960000482E+04
+ min/max eastward wind  :     0.3164947910E+00    0.2000000787E+02
+ min/max northward wind :    -0.1065541760E-01    0.1065233844E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89609136E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.83450699E+01
+
+
+   25  2500  0.694444417953491
+  iterations/resid  :   3 F  9.594697059126045E-024  6.966894239156823E-022  1.012825088656303E-010  6.360062779879565E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.69444
+ min/max divergence     :    -0.4524479593E-05    0.5089675352E-05
+ min/max rel vorticity  :    -0.8865568998E-05    0.8865571136E-05
+ min/max kinetic energy :     0.5008705711E-01    0.1999892126E+03
+ min/max mass thickness :     0.3756717575E+04    0.5960000498E+04
+ min/max eastward wind  :     0.3164952310E+00    0.2000000863E+02
+ min/max northward wind :    -0.1062683890E-01    0.1062321942E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89682115E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.83209718E+01
+
+
+   26  2600  0.722222208976746
+  iterations/resid  :   3 F  1.035335432298053E-023  7.037877497157488E-022  1.022213949072120E-010  6.319042037878134E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.72222
+ min/max divergence     :    -0.4595462087E-05    0.5044400862E-05
+ min/max rel vorticity  :    -0.8865647098E-05    0.8865649339E-05
+ min/max kinetic energy :     0.5008794843E-01    0.1999892202E+03
+ min/max mass thickness :     0.3756691376E+04    0.5960000511E+04
+ min/max eastward wind  :     0.3164971206E+00    0.2000000938E+02
+ min/max northward wind :    -0.1054040344E-01    0.1053628891E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89757577E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.82980251E+01
+
+
+   27  2700  0.750000000000000
+  iterations/resid  :   3 F  1.116412453653475E-023  7.088453051743545E-022  1.029120895082837E-010  6.156492209457460E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.75000
+ min/max divergence     :    -0.4620553369E-05    0.5105564961E-05
+ min/max rel vorticity  :    -0.8865715813E-05    0.8865718157E-05
+ min/max kinetic energy :     0.5008871722E-01    0.1999892181E+03
+ min/max mass thickness :     0.3756663509E+04    0.5960000521E+04
+ min/max eastward wind  :     0.3164989350E+00    0.2000001009E+02
+ min/max northward wind :    -0.1041413114E-01    0.1040963100E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89832595E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.82761158E+01
+
+
+   28  2800  0.777777791023254
+  iterations/resid  :   3 F  1.203412396502626E-023  7.122110904731383E-022  1.035953349428988E-010  6.682392420815232E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.77778
+ min/max divergence     :    -0.4606433755E-05    0.5127908115E-05
+ min/max rel vorticity  :    -0.8865738648E-05    0.8865741096E-05
+ min/max kinetic energy :     0.5008896844E-01    0.1999892047E+03
+ min/max mass thickness :     0.3756638714E+04    0.5960000528E+04
+ min/max eastward wind  :     0.3164994377E+00    0.2000001072E+02
+ min/max northward wind :    -0.1027158598E-01    0.1026684535E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89904532E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.82551491E+01
+
+
+   29  2900  0.805555582046509
+  iterations/resid  :   3 F  1.296914448421665E-023  7.165746792935385E-022  1.045338882669743E-010  7.034850728654688E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.80556
+ min/max divergence     :    -0.4562104872E-05    0.5118616114E-05
+ min/max rel vorticity  :    -0.8865694935E-05    0.8865697490E-05
+ min/max kinetic energy :     0.5008848873E-01    0.1999891814E+03
+ min/max mass thickness :     0.3756620908E+04    0.5960000533E+04
+ min/max eastward wind  :     0.3164978798E+00    0.2000001125E+02
+ min/max northward wind :    -0.1013650266E-01    0.1013166541E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.89972138E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.82350394E+01
+
+
+   30  3000  0.833333313465118
+  iterations/resid  :   3 F  1.397276896624274E-023  7.253722345175690E-022  1.059447348558971E-010  7.181958304432639E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.83333
+ min/max divergence     :    -0.4498057691E-05    0.5086159977E-05
+ min/max rel vorticity  :    -0.8865581731E-05    0.8865584393E-05
+ min/max kinetic energy :     0.5008724605E-01    0.1999891712E+03
+ min/max mass thickness :     0.3756612649E+04    0.5960000539E+04
+ min/max eastward wind  :     0.3164940721E+00    0.2000001169E+02
+ min/max northward wind :    -0.1002803196E-01    0.1002320508E-01
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.90035120E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.82157135E+01
+
+
+   31  3100  0.861111104488373
+  iterations/resid  :   3 F  1.504592821788160E-023  7.402707367552042E-022  1.079424400912323E-010  7.106765202574050E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.86111
+ min/max divergence     :    -0.4500201361E-05    0.5039553221E-05
+ min/max rel vorticity  :    -0.8865411742E-05    0.8865414513E-05
+ min/max kinetic energy :     0.5008536536E-01    0.1999891735E+03
+ min/max mass thickness :     0.3756614862E+04    0.5960000548E+04
+ min/max eastward wind  :     0.3164883356E+00    0.2000001205E+02
+ min/max northward wind :    -0.9957487550E-02    0.9952715754E-02
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.90094529E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.81971075E+01
+
+
+   32  3200  0.888888895511627
+  iterations/resid  :   3 F  1.618678538537004E-023  7.594918662266371E-022  1.105093469198260E-010  6.809907207832371E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.88889
+ min/max divergence     :    -0.4537524636E-05    0.5028102051E-05
+ min/max rel vorticity  :    -0.8865208228E-05    0.8865211111E-05
+ min/max kinetic energy :     0.5008308681E-01    0.1999891772E+03
+ min/max mass thickness :     0.3756626849E+04    0.5960000563E+04
+ min/max eastward wind  :     0.3164813545E+00    0.2000001233E+02
+ min/max northward wind :    -0.9927090725E-02    0.9922347481E-02
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.90152050E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.81791653E+01
+
+
+   33  3300  0.916666686534882
+  iterations/resid  :   3 F  1.739084541113789E-023  7.783474649554977E-022  1.135001022039050E-010  6.881014155331699E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.91667
+ min/max divergence     :    -0.4538655303E-05    0.5076902618E-05
+ min/max rel vorticity  :    -0.8864998377E-05    0.8865001370E-05
+ min/max kinetic energy :     0.5008070753E-01    0.1999891827E+03
+ min/max mass thickness :     0.3756646546E+04    0.5960000589E+04
+ min/max eastward wind  :     0.3164739767E+00    0.2000001253E+02
+ min/max northward wind :    -0.9930754843E-02    0.9925951289E-02
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.90209693E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.81618341E+01
+
+
+   34  3400  0.944444417953491
+  iterations/resid  :   3 F  1.865137889204117E-023  7.917352443216495E-022  1.166791065354107E-010  7.270951254857914E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.94444
+ min/max divergence     :    -0.4509940019E-05    0.5127971149E-05
+ min/max rel vorticity  :    -0.8864806783E-05    0.8864809887E-05
+ min/max kinetic energy :     0.5007851262E-01    0.1999891901E+03
+ min/max mass thickness :     0.3756670981E+04    0.5960000632E+04
+ min/max eastward wind  :     0.3164670110E+00    0.2000001266E+02
+ min/max northward wind :    -0.9956519599E-02    0.9951528445E-02
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.90269045E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.81450696E+01
+
+
+   35  3500  0.972222208976746
+  iterations/resid  :   3 F  1.996038004235131E-023  7.968610499744470E-022  1.197810220786318E-010  7.454438585196041E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             0.97222
+ min/max divergence     :    -0.4513715656E-05    0.5176085702E-05
+ min/max rel vorticity  :    -0.8864650473E-05    0.8864653687E-05
+ min/max kinetic energy :     0.5007671097E-01    0.1999891982E+03
+ min/max mass thickness :     0.3756696837E+04    0.5960000703E+04
+ min/max eastward wind  :     0.3164610638E+00    0.2000001270E+02
+ min/max northward wind :    -0.9989933772E-02    0.9984621528E-02
+
+
+
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.90330731E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.81288318E+01
+
+
+   36  3600  1.00000000000000
+  iterations/resid  :   3 F  2.131012364302967E-023  7.943734986383525E-022  1.225786802866352E-010  7.405147318233941E-010
+
+
+ GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :             1.00000
+ min/max divergence     :    -0.4572018695E-05    0.5217083111E-05
+ min/max rel vorticity  :    -0.8864536369E-05    0.8864539692E-05
+ min/max kinetic energy :     0.5007539462E-01    0.1999893134E+03
+ min/max mass thickness :     0.3756721017E+04    0.5960000818E+04
+ min/max eastward wind  :     0.3164564450E+00    0.2000001262E+02
+ min/max northward wind :    -0.1001755165E-01    0.1001181070E-01
+
+
+
+   11
+   1  1 thickness       thickness       thickness                     
+   2  2 height          height          height                        
+   3  3 relative        relative        relative                      
+   4  4 divergence      divergence      divergence                    
+   5  5 absolute        absolute        absolute                      
+   6  6 kinetic_energy  kinetic_energy  kinetic_energy                
+   7  7 tracer_1        tracer_1        tracer_1                      
+   8  8 tracer_2        tracer_2        tracer_2                      
+   9  9 tracer_3        tracer_3        tracer_3                      
+   10  10 tracer_4        tracer_4        tracer_4                      
+   11  11 tracer_5        tracer_5        tracer_5                      
+ before write
+ gwrt_nc: writing geodesic data for gatm
+ after write
+ 
+  WRITING OUTPUT to ./dx/output
+  ******** writing data from process   0
+ 
+
+
+ Total Mass :    0.56199256E+04
+ Log10 of Frac Energy Change :   -0.90394534E+01
+ Log10 of Frac Pot. Enstrophy Change :   -0.81130862E+01
+
+
+  
+  TIMINGS (process:event,running,cpu,wall,100*(wall/total wall))
+     0 : total time          F        0.00000       49.35268
+  
+     0 : diagnostics         F        0.00000        0.83350    1.69
+     0 : elliptic solve      F        0.00000        6.76399   13.71
+     0 : initialization      F        0.00000       34.24032   69.38
+     0 : momentum            F        0.00000        2.24128    4.54
+     0 : multigrid           F        0.00000        5.40725   10.96
+     0 : output              F        0.00000        1.98006    4.01
+     0 : step_mass_tracer    F        0.00000        2.54866    5.16
+     0 : time manager        F        0.00000        0.00079    0.00
+     0 : wrapping            F        0.00000        0.66851    1.35

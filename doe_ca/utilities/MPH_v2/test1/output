@@ -1,0 +1,82 @@
+Tue Jan  8 15:26:42 PST 2002 -- CSM EXECUTION BEGINS HERE
+ ===================================
+ warning: local procs  1  to  2  is overlapped in these two components of the executable: ice                             land                            
+ global_proc_id= 0
+ Message from MPH_help:
+ default debug level=0, choose 1 or 2 for more        debug messages
+ MPH: multiple executables with multiple components   in each executable
+ Sample setup functions are: 
+    ICE_LAND_World = MPH_components (name1="ice",     name2="land")
+    CPL_World = MPH_components ("name1=coupler")
+ Required input file is "processors_map.in"
+ Subroutine call to join two communicators is:
+    MPH_comm_join (name1,name2,comm_joined)
+ Available inquiry functions are:
+ (arguments are optional except for MPH_global_id)
+    integer MPH_global_id(cname,lid)
+    integer MPH_total_components()
+    character (len=32) MPH_comp_name(cid)
+    integer MPH_comp_id(cname)
+    integer MPH_local_world(cname)
+    integer MPH_exe_id(cname)
+    integer MPH_total_num_exe()
+    integer MPH_num_comps(eid)
+    integer MPH_local_proc_id(cid)
+    integer MPH_local_totProcs(cid)
+    integer MPH_global_proc_id()
+    integer MPH_global_totProcs()
+    integer MPH_exe_world(eid)
+    integer MPH_exe_low_proc_limit(eid)
+    integer MPH_exe_up_proc_limit(eid)
+ 
+ component=ice, local_id= 0 , exe_pid= 0 , global_id= 0
+ 
+ ===================================
+ global_proc_id= 1
+ component=ocean, local_id= 0 , exe_pid= 0 , global_id= 1
+ 
+ ===================================
+ global_proc_id= 2
+ component=ocean, local_id= 1 , exe_pid= 1 , global_id= 2
+ 
+ ===================================
+ global_proc_id= 3
+ warning: global processor  3        is overlapped
+ component=ice, local_id= 1 , exe_pid= 1 , global_id= 3
+ component=land, local_id= 0 , exe_pid= 1 , global_id= 3
+ 
+ ===================================
+ global_proc_id= 4
+ component=coupler, local_id= 0 , global_id= 4
+ 
+ ===================================
+ global_proc_id= 5
+ warning: global processor  5        is overlapped
+ component=ice, local_id= 2 , exe_pid= 2 , global_id= 5
+ component=land, local_id= 1 , exe_pid= 2 , global_id= 5
+ 
+ ===================================
+ global_proc_id= 6
+ component=ocean, local_id= 2 , exe_pid= 2 , global_id= 6
+ 
+ ===================================
+ global_proc_id= 7
+ component=atmosphere, local_id= 0 , exe_pid= 3 , global_id= 7
+ 
+ ===================================
+ global_proc_id= 8
+ component=land, local_id= 2 , exe_pid= 3 , global_id= 8
+ 
+ ===================================
+ global_proc_id= 9
+ component=coupler, local_id= 1 , global_id= 9
+ 
+ ===================================
+ global_proc_id= 10
+ component=atmosphere, local_id= 1 , exe_pid= 4 , global_id= 10
+ 
+ ===================================
+ global_proc_id= 11
+ component=atmosphere, local_id= 2 , exe_pid= 5 , global_id= 11
+ 
+Tue Jan  8 15:26:46 PST 2002 -- CSM EXECUTION finishes HERE

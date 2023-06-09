@@ -1,0 +1,12 @@
+A D/AIX.default.32.default////
+A D/Darwin.absoft.32.default////
+A D/Darwin.gfortran.64.mpiuni.default////
+A D/Darwin.intel.32.default////
+A D/Darwin.intelgcc.64.mpiuni.default////
+A D/Darwin.xlf.32.default////
+A D/IRIX64.default.32.default////
+A D/Linux.gfortran.64.mpiuni.default////
+A D/Linux.intel.32.default////
+A D/Linux.pgi.32.default////
+A D/Linux.pgi.64.mpiuni.carver////
+A D/Linux.pgigcc.64.mpiuni.default////

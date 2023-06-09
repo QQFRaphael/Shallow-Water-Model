@@ -1,0 +1,14 @@
+# NOTE
+# choose your platform and set the correct path to the netcdf libaries
+# also set the path via -I to the netcdf.inc file
+
+# SGI options
+ f90 -O3 -o refsoln interp_refsoln_to_geo.f -I/usr/local/include -L/usr/local/lib -lnetcdf
+ f90 -O3 -o errnorms compute_error_norms.f -I/usr/local/include -L/usr/local/lib -lnetcdf
+
+#Darwin/Absoft Options
+#f95 -YEXT_NAMES=LCS -YEXT_SFX=_ -YCFRL=1 -O -round=nearest -N11 -o refsoln interp_refsoln_to_geo.f -I/Users/todd/lib/netcdf -L/Users/todd/lib/netcdf -lnetcdf
+#f95 -YEXT_NAMES=LCS -YEXT_SFX=_ -YCFRL=1 -O -round=nearest -N11 -o errnorms compute_error_norms.f -I/Users/todd/lib/netcdf -L/Users/todd/lib/netcdf -lnetcdf
+
+refsoln < input
+errnorms < input

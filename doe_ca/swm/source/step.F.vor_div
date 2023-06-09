@@ -1,0 +1,833 @@
+
+	module step
+
+!-----------------------------------------------------------------------
+! PURPOSE: call a series of subroutine which each time step a single
+!       prognostic variable.  Prognostic variables are held in prognostics.F
+!-----------------------------------------------------------------------
+
+	use kinds
+        use params_physical
+        use timer
+        use params_parallel_xxx
+        use swm_parameters
+        use params_grid_horizontal_xxx
+        use model_control
+        use global_reductions
+        use grid_metrics_variables_xxx
+	use operators_hl_xxx
+        use mass_fct
+        use tracer_fct
+        use elliptic_solver_xxx
+        use wrap_data
+        use prognostics
+        use spectral_transforms_xxx
+	use remap
+
+	implicit none
+	save
+
+!-----------------------------------------------------------------------
+! work arrays used throughout the module
+!-----------------------------------------------------------------------
+	real (kind = dbl_kind) ::                                     &
+      			work1 (iim,jjm),                              &
+      			work2 (iim,jjm),                              &
+                        work3 (iim,jjm),                              &
+                        rhs(iim,jjm,2,nsdm),                          &
+                        xout(iim,jjm,2,nsdm),                         &
+                        work1_c(nspace,ncorners,iim,jjm),             &
+                        work2_c(       ncorners,iim,jjm),             &
+                        h_c(1,ncorners,iim,jjm,nsdm),                 &
+                        eta_c(1,ncorners,iim,jjm,nsdm),               &
+                        vorticity_flux(1,nedges,iim,jjm,nsdm),        &
+                        div_curl_term(1,nedges,iim,jjm,nsdm),         &
+      			f1,f2
+
+!-----------------------------------------------------------------------
+! pick an advection scheme (one, and only one, of the following can be 
+! set to true)
+!-----------------------------------------------------------------------
+        logical, parameter :: l_upwind = .false.,                      &
+                              l_centered = .false.,                    &
+                              l_fct = .true.,                          &
+                              l_remap = .false.
+  
+!-----------------------------------------------------------------------
+! integer used to loop over the subdomains and tracer fields
+!-----------------------------------------------------------------------
+	integer (kind = int_kind) :: ksdm, itracer, ispace
+
+	private ::                                                    &
+                        work1,                                        &
+                        work2,                                        &
+                        work3,                                        &
+                        rhs, xout,                                    &
+      			work1_c,                                      &
+      			h_c,                                          &
+      			eta_c,                                        &
+                        vorticity_flux,                               &
+                        div_curl_term
+
+!----------------------------------------------------------------------------
+! VARIABLE DESCRIPTION
+!----------------------------------------------------------------------------
+!       n{4,3,2}        : pointer of time level index {n+1,n,n-1} for prognostics
+!       n{3,2,1}_f      : pointer of time level index {n, n-1, n-2} for tendencies
+!       ntprog          : number of time level which prognostics must be saved
+!       nttend          : number of time level which tendencies  must be saved
+!	ntracer		: number of passive tracers to integrate in time
+!       div             : divergence (im,jm,ntprog)
+!	div_f		: time tendency of divergence (im,jm,nttend)
+!       eta             : absolute vorticity (im,jm,ntprog)
+!       eta_f           : time tendency of eta (im,jm,nttend)
+!       tracer          : passive tracers advected by flow
+!       tracer_f        : tendency of passive tracers
+!       psi             : steamfunction at step_count
+!       chi             : velocity potential at step_count
+!       w{3,2,1}        : weights for time integration
+!       step_count      : counter index
+!       hs              : surface height (m)
+!	work*		: local work arrays, scalars defined at cell centers
+!	work*_c		: local work arrays, vectors defined at cell corners
+!	h_c		: mass averaged to cell corners
+!	eta_c		: vorticity averaged to cell corners
+!----------------------------------------------------------------------------
+
+!----------------------------------------------------------------------------
+! COMMENTS
+!	all tendency terms included in the *_f arrays will be integrated
+!	using Adams Bashforth 3rd Order integration. all tendency terms
+!	included in the *_src arrays will be integrated Euler forward
+!----------------------------------------------------------------------------
+
+!**********************************************************************
+
+	contains
+
+!**********************************************************************
+
+
+!======================================================================
+! BEGINNING OF STEP_DT
+!======================================================================
+      subroutine step_dt
+
+	implicit none
+
+!--------------------------------------------------------------------------
+! predict the mass and tracer field at n+1 time level
+!  the result of calling any get_*_flux routine is mass and tracer @ n+1
+!  compute other terms that require wrapping
+!--------------------------------------------------------------------------
+        do ksdm=1,nsdm
+        call timer_start('step_mass_tracer')
+        call average_to_cell_corners(                                      &
+                npad,iim,jjm,ndata,ncorners,                               &
+                s_weights(:,:,:,:,ksdm),                                   &
+                h(:,:,n3,ksdm),                                            &
+                h_c(1,:,:,:,ksdm ), .true. )
+        call timer_stop('step_mass_tracer')
+        call timer_start('vor_div')
+        call average_to_cell_corners(                                      &
+                npad,iim,jjm,ndata,ncorners,                               &
+                s_weights(:,:,:,:,ksdm),                                   &
+                eta(:,:,n3,ksdm),                                          &
+                eta_c(1,:,:,:,ksdm ), .true. )
+         call timer_stop('vor_div')
+         enddo
+         call timer_start('step_mass_tracer')
+         call wrap(swm_name,vrtx_1L=h_c(:,:,:,:,:))
+         call wrap(swm_name,vrtx_1L=eta_c(:,:,:,:,:))
+         if(l_upwind) call get_upwind_flux
+         if(l_centered) call get_centered_flux
+         if(l_fct) call get_fct_flux
+	 if(l_remap) call get_remap_flux
+         call timer_stop('step_mass_tracer')
+
+         call timer_start('vor_div')
+         do ksdm=1,nsdm
+         call centered_vorticity_flux(npad,iim,jjm,nedges,               &
+           mass_flux(1,:,:,:,ksdm),h(:,:,n3,ksdm),eta(:,:,n3,ksdm),      &
+           vorticity_flux(1,:,:,:,ksdm))
+         call centered_divergence_curl(npad,iim,jjm,ndata,               &
+           ncorners,nedges,nspace,r3,dc(:,:,:,:,ksdm),                   &
+           tangent(:,:,:,:,:,ksdm),h_c(1,:,:,:,ksdm),eta(:,:,n3,ksdm),   &
+           u(:,:,:,:,n3,ksdm),h(:,:,n3,ksdm),div_curl_term(1,:,:,:,ksdm))
+         enddo
+         call wrap(swm_name,edge_1L=vorticity_flux(:,:,:,:,:))
+         call wrap(swm_name,edge_1L=div_curl_term(:,:,:,:,:))
+         call timer_stop('vor_div')
+
+!--------------------------------------------------------------------------
+! UPDATE VORTICITY and DIVERGENCE
+!--------------------------------------------------------------------------
+        call timer_start('vor_div')
+        do ksdm=1,nsdm
+ 	call step_vorticity
+        call step_divergence
+        enddo
+        call timer_stop('vor_div')
+
+!----------------------------------------------------------------
+! UPDATE PSI AND CHI
+! solve for streamfunction and velocity potential
+! calculate velocity based on psi and chi
+!----------------------------------------------------------------
+    call timer_start('elliptic solve')
+	relative(:,:,:) = eta(:,:,n4,:) - f(:,:,:)
+        rhs(:,:,1,:) = relative(:,:,:)
+        rhs(:,:,2,:) = div(:,:,n4,:)
+        call elliptic('swm',2,rhs,xout)
+        eta(:,:,n4,:) = rhs(:,:,1,:) + f(:,:,:)
+        psi(:,:,:) = xout(:,:,1,:)
+        chi(:,:,:) = xout(:,:,2,:)
+
+        do ksdm=1,nsdm
+        call calculate_velocity(npad,iim,jjm,ndata,nspace,ncorners,    &
+               corner_area_inv(:,:,:,ksdm),v_weights(:,:,:,:,:,ksdm),  &
+               psi(:,:,ksdm),chi(:,:,ksdm),u(:,:,:,:,n4,ksdm))
+        enddo
+        call wrap(swm_name,vrtx_1L=u(:,:,:,:,n4,:))
+        do ksdm=1,nsdm
+        work2_c(:,:,:) = p5 * (   u(1,:,:,:,n4,ksdm) * u(1,:,:,:,n4,ksdm)   &
+                                + u(2,:,:,:,n4,ksdm) * u(2,:,:,:,n4,ksdm)  )
+
+          call calculate_center_kinetic_energy(                        &
+                npad,iim,jjm,ndata,nspace,ncorners,                    &
+                sub_area(:,:,:,:,ksdm),                                &
+                area_inv(:,:,ksdm),                                    &
+                work2_c(:,:,:),                                        &
+                ke(:,:,ksdm)       )
+         enddo
+        call wrap (swm_name, face_1L=ke(:,:,:))
+        call timer_stop('elliptic solve')
+
+	if(l_diagnostics) then
+          call timer_start('diagnostics')
+          call dump_min_max
+          call timer_stop('diagnostics')
+        endif
+        
+	end subroutine step_dt
+!===========================================================================
+! END OF STEP_DT
+!===========================================================================
+
+
+!=======================================================================
+! START STEP_SURFACE_HEIGHT
+!=======================================================================
+        subroutine step_surface_height(ksdm)
+
+!-----------------------------------------------------------------------------
+! PURPOSE : find tendencies of the surface height and integrate it in time.
+!-----------------------------------------------------------------------------
+
+	implicit none
+	
+        integer (kind=int_kind), intent(in) :: ksdm
+	integer (kind=int_kind) :: i,j,ispace
+
+!-----------------------------------------------------------------------------
+! take divergence of mass flux
+!-----------------------------------------------------------------------------
+        call div_of_an_edge_flux(                                         &
+                npad,                                                     &
+                iim,                                                      &
+                jjm,                                                      &          
+                nedges,                                                   & 
+                area_inv(:,:,ksdm),                                       & 
+                mass_flux(1,:,:,:,ksdm),                                  & 
+                work1(:,:) )
+
+!----------------------------------------------------------------------------
+! SUM ALL THE TENDENCIES
+!----------------------------------------------------------------------------
+        h_f(:,:,n3_f,ksdm) = -work1(:,:)
+
+!-----------------------------------------------------------------------------
+! INCREMENT LAYER THICKNESS
+!-----------------------------------------------------------------------------
+        h(:,:,n4,ksdm) = h(:,:,n3,ksdm) +                                  &
+                                dt*(w3*h_f(:,:,n3_f,ksdm) +                &
+                                    w2*h_f(:,:,n2_f,ksdm) +                &
+                                    w1*h_f(:,:,n1_f,ksdm)   )
+
+!-----------------------------------------------------------------------------
+! if massless layers are present, reset them to a small number
+!-----------------------------------------------------------------------------
+        where(h(:,:,n4,ksdm) < 1.0e-10) h(:,:,n4,ksdm) = 1.0e-10
+
+        end subroutine step_surface_height
+!=======================================================================
+! END OF STEP_SURFACE_HEIGHT
+!=======================================================================
+
+
+!===========================================================================
+!  START OF STEP_TRACER
+!===========================================================================
+        subroutine step_tracer(ksdm)
+
+!---------------------------------------------------------------------------
+! PURPOSE
+!  compute the time tendency of tracers and integrate them in time
+!---------------------------------------------------------------------------
+
+        implicit none
+
+        integer (kind=int_kind), intent(in) :: ksdm
+	integer (kind=int_kind) :: itracer
+
+!-----------------------------------------------------------------------------
+! LOOP OVER TRACERS
+!-----------------------------------------------------------------------------
+        do itracer=1,ntracer
+
+!-----------------------------------------------------------------------------
+! take divergence of that flux
+!-----------------------------------------------------------------------------
+        call div_of_an_edge_flux(                                         &
+                npad,                                                     &
+                iim,                                                      &
+                jjm,                                                      &
+                nedges,                                                   &
+                area_inv(:,:,ksdm),                                       &
+                tracer_flux(1,:,:,:,itracer,ksdm),                        &
+                work1(:,:) )
+
+!----------------------------------------------------------------------------
+! SUM ALL THE TENDENCIES 
+!----------------------------------------------------------------------------
+        tracer_f(:,:,itracer,n3_f,ksdm) = -work1(:,:)
+
+!-----------------------------------------------------------------------------
+! INCREMENT TRACER FIELD
+!-----------------------------------------------------------------------------
+        tracer(:,:,itracer,n4,ksdm) =                                       &
+             tracer (:,:,itracer,n3,ksdm)*h(:,:,n3,ksdm) +                  &
+                                dt*(w3*tracer_f(:,:,itracer,n3_f,ksdm)  +   &
+                                    w2*tracer_f(:,:,itracer,n2_f,ksdm)  +   &
+                                    w1*tracer_f(:,:,itracer,n1_f,ksdm)) 
+
+!-----------------------------------------------------------------------------
+! where there is mass
+!-----------------------------------------------------------------------------
+        where(h(:,:,n4,ksdm) > 1.0e-10)
+          tracer(:,:,itracer,n4,ksdm) = tracer(:,:,itracer,n4,ksdm) /   &
+                                          h   (:,:,      n4,ksdm)
+        endwhere
+
+!-----------------------------------------------------------------------------
+! end loop over tracer field
+!-----------------------------------------------------------------------------
+        enddo
+
+        end subroutine step_tracer
+!===========================================================================
+!  END OF STEP_TRACER
+!===========================================================================
+
+
+!======================================================================
+! BEGINNING OF STEP_VORTICITY
+!======================================================================
+        subroutine step_vorticity
+
+!---------------------------------------------------------------------------
+! PURPOSE :
+!  compute the time tendency of vorticity and integrate them in time
+!---------------------------------------------------------------------------
+
+        implicit none
+
+!-----------------------------------------------------------------------------
+! take divergence of that flux
+!-----------------------------------------------------------------------------
+        call div_of_an_edge_flux(                                         &
+                npad,                                                     &
+                iim,                                                      &
+                jjm,                                                      &
+                nedges,                                                   &
+                area_inv(:,:,ksdm),                                       &
+                vorticity_flux(1,:,:,:,ksdm),                             &
+                work1(:,:) )
+
+!----------------------------------------------------------------------------
+! SUM ALL THE TENDENCIES
+!----------------------------------------------------------------------------
+        eta_f(:,:,n3_f,ksdm) = -work1(:,:)
+
+!-----------------------------------------------------------------------------
+! INCREMENT ETA FIELD
+!-----------------------------------------------------------------------------
+        eta(:,:,n4,ksdm) =                                       &
+             eta (:,:,n3,ksdm) +                                 &
+                                dt*(w3*eta_f(:,:,n3_f,ksdm)  +   &
+                                    w2*eta_f(:,:,n2_f,ksdm)  +   &
+                                    w1*eta_f(:,:,n1_f,ksdm))
+        end subroutine step_vorticity
+!===========================================================================
+!  END OF STEP_VORTICITY
+!===========================================================================
+
+
+!======================================================================
+! BEGINNING OF STEP_DIVERGENCE
+!======================================================================
+        subroutine step_divergence
+
+!----------------------------------------------------------------------------
+! PURPOSE : find tendencies for the divergence equation
+!   and integrated it in time
+!----------------------------------------------------------------------------
+
+        implicit none
+
+!-----------------------------------------------------------------------------
+! fill the rotational terms
+!-----------------------------------------------------------------------------
+        do ispace = 1,nspace
+	  work1_c(ispace,:,:,:) = u(ispace,:,:,:,n3,ksdm) * eta_c(1,:,:,:,ksdm)
+        enddo
+
+!-----------------------------------------------------------------------------
+! compute the curl term by summing over the edges
+!-----------------------------------------------------------------------------
+        call div_of_an_edge_flux(                                         &
+                npad,                                                     &
+                iim,                                                      &
+                jjm,                                                      &
+                nedges,                                                   &
+                area_inv(:,:,ksdm),                                       &
+                div_curl_term(1,:,:,:,ksdm),                              &
+                work3(:,:) )
+
+
+!-----------------------------------------------------------------------------
+! compute the Laplacian terms
+!-----------------------------------------------------------------------------
+        work1(:,:) = ke(:,:,ksdm) + grav*(h(:,:,n3,ksdm) + hs(:,:,ksdm))
+        call laplacian_of_a_scalar(npad,iim,jjm,nweights,                  &
+                l_weights(:,:,:,ksdm), work1(:,:), work2(:,:))
+
+!----------------------------------------------------------------------------
+! SUM ALL THE TENDENCIES
+!----------------------------------------------------------------------------
+        div_f(:,:,n3_f,ksdm) = -work2 + work3
+
+!---- -----------------------------------------------------------------------
+! step divergence forward in time
+!----------------------------------------------------------------------------
+	 div(:,:,n4,ksdm) = div(:,:,n3,ksdm) +                           &
+                                dt*(w3*div_f(:,:,n3_f,ksdm) +            &
+                                    w2*div_f(:,:,n2_f,ksdm) +            &
+                                    w1*div_f(:,:,n1_f,ksdm)   )
+
+
+        end subroutine step_divergence
+!===========================================================================
+! END OF STEP_DIVERGENCE
+!===========================================================================
+
+
+!===========================================================================
+! BEGINNING OF WRAP_PROGNOSTICS
+!===========================================================================
+	subroutine wrap_prognostics
+	implicit none
+	integer (kind=int_kind) :: i,j,ksdm,ivar,itracer
+	integer (kind=int_kind), parameter :: nvar = 6+ntracer
+	real (kind=dbl_kind) :: buffer(iim,jjm,nvar,nsdm)
+
+!-----------------------------------------------------------------------------
+! compute inverse of mass for time level n4
+!-----------------------------------------------------------------------------
+        where(grid_center_mask.eq.c1)
+          inv_h(:,:,:) = c1 / h(:,:,n4,:)
+        elsewhere
+          inv_h(:,:,:) = c0
+        endwhere
+
+	do ksdm=1,nsdm
+	do j=1,jjm
+	do i=1,iim
+	buffer(i,j,1,ksdm) = h        (i,j,n4,ksdm)
+        buffer(i,j,2,ksdm) = eta      (i,j,n4,ksdm)
+        buffer(i,j,3,ksdm) = div      (i,j,n4,ksdm)
+        buffer(i,j,4,ksdm) = relative (i,j,   ksdm)
+        buffer(i,j,5,ksdm) = ke       (i,j,   ksdm)
+        buffer(i,j,6,ksdm) = inv_h    (i,j,   ksdm)
+	ivar = 6
+	  do itracer=1,ntracer
+	  ivar=ivar+1
+	  buffer(i,j,ivar,ksdm) = tracer(i,j,itracer,n4,ksdm)
+	  enddo
+	enddo
+	enddo
+	enddo
+
+	call wrap(swm_name,face=buffer)
+
+        do ksdm=1,nsdm
+        do j=1,jjm
+        do i=1,iim
+	h        (i,j,n4,ksdm) = buffer(i,j,1,ksdm)
+	eta      (i,j,n4,ksdm) = buffer(i,j,2,ksdm)
+	div      (i,j,n4,ksdm) = buffer(i,j,3,ksdm)
+	relative (i,j,   ksdm) = buffer(i,j,4,ksdm)
+	ke       (i,j,   ksdm) = buffer(i,j,5,ksdm)
+	inv_h    (i,j,   ksdm) = buffer(i,j,6,ksdm)
+        ivar = 6
+          do itracer=1,ntracer
+          ivar=ivar+1
+	  tracer(i,j,itracer,n4,ksdm) = buffer(i,j,ivar,ksdm)
+          enddo
+        enddo
+        enddo
+        enddo
+
+	call wrap(swm_name,vrtx=u)
+
+	end subroutine wrap_prognostics
+!===========================================================================
+! END OF WRAP_PROGNOSTICS
+!===========================================================================
+
+
+!===========================================================================
+! BEGINNING OF GET_UPWIND_FLUX
+!===========================================================================
+        subroutine get_upwind_flux
+        implicit none
+        integer (kind=int_kind) :: ksdm, itracer
+
+!----------------------------------------------------------------------
+! based on the velocity field at time level n, choose the mass
+!  and tracer field at the grid cell edges from the upstream direction
+!----------------------------------------------------------------------
+        do ksdm=1,nsdm
+
+          call upstream_mass_flux(                                         &
+                npad,                                                      &
+                iim,                                                       &
+                jjm,                                                       &
+                ndata,                                                     &
+                ncorners,                                                  &
+                nedges,                                                    &
+                nspace,                                                    &
+                r3,                                                        &
+                dc    (:,  :,:,:,   ksdm),                                 &
+                normal(:,:,:,:,:,   ksdm),                                 &
+                u     (  :,:,:,:,n3,ksdm),                                 &
+                h(:,:,n3,ksdm),                                            &
+                mass_flux(1,:,:,:,ksdm ))
+
+          do itracer = 1,ntracer
+          call upstream_tracer_flux(                                       &
+                npad,                                                      &
+                iim,                                                       &
+                jjm,                                                       &
+                nedges,                                                    &
+                mass_flux (1,    :,:,:,   ksdm),                           &        
+                tracer(:,:,itracer,n3,ksdm),                               &
+                tracer_flux(1,:,:,:,itracer,ksdm ))
+          enddo
+
+	enddo
+        call wrap(swm_name,edge_1L=mass_flux(:,:,:,:,:))
+        call wrap(swm_name,edge=tracer_flux(:,:,:,:,:,:))
+
+        do ksdm = 1,nsdm
+          call step_surface_height(ksdm)
+          call step_tracer(ksdm)
+        enddo
+
+        end subroutine get_upwind_flux
+!===========================================================================
+! END OF GET_UPWIND_FLUX
+!===========================================================================
+
+
+!===========================================================================
+! BEGINNING OF GET_CENTERED_FLUX
+!===========================================================================
+	subroutine get_centered_flux
+        implicit none
+        integer (kind=int_kind) :: ksdm, itracer
+
+!----------------------------------------------------------------------
+! compute the flux at the cell edges as the centered in space approximation
+!----------------------------------------------------------------------
+        do ksdm=1,nsdm
+
+          call centered_mass_flux(                                         &
+                npad,                                                      &
+                iim,                                                       &
+                jjm,                                                       &
+                ndata,                                                     &
+                ncorners,                                                  &
+                nedges,                                                    &
+                nspace,                                                    &
+                r3,                                                        &
+                dc    (:,  :,:,:,   ksdm),                                 &
+                normal(:,:,:,:,:,   ksdm),                                 &
+                h_c (1,    :,:,:,   ksdm),                                 &
+                u     (  :,:,:,:,n3,ksdm),                                 &
+                h(:,:,n3,ksdm),                                            &
+                mass_flux(1,:,:,:,ksdm ))
+
+          do itracer=1,ntracer
+          call centered_tracer_flux(                                       &
+                npad,                                                      &
+                iim,                                                       &
+                jjm,                                                       & 
+                nedges,                                                    &
+                mass_flux (1,    :,:,:,   ksdm),                           &
+                tracer(:,:,itracer,n3,ksdm),                               &
+                tracer_flux(1,:,:,:,itracer,ksdm ))
+           enddo
+
+  	enddo
+        call wrap(swm_name,edge_1L=mass_flux(:,:,:,:,:))
+        call wrap(swm_name,edge=tracer_flux(:,:,:,:,:,:))
+
+
+        do ksdm = 1,nsdm
+          call step_surface_height(ksdm)
+          call step_tracer(ksdm)
+        enddo
+
+	end subroutine get_centered_flux
+!===========================================================================
+! END OF GET_CENTERED_FLUX
+!===========================================================================
+
+
+!===========================================================================
+! BEGINNING OF GET_FCT_FLUX
+!===========================================================================
+        subroutine get_fct_flux
+        implicit none
+        save
+
+!----------------------------------------------------------------------
+! compute the fluxes across cell edges via the Flux Corrected Transport
+!  method. See the FCT routines for more information
+!----------------------------------------------------------------------
+
+        integer (kind=int_kind) :: nlm, tend_index(nttend)
+        real (kind=dbl_kind) :: tend_weight(nttend)
+
+        real (kind=dbl_kind) ::  &
+              work_mass(                iim,jjm,1,ntprog,nsdm), &
+              work_c   (       ncorners,iim,jjm,1,       nsdm), &
+              work_u   (nspace,ncorners,iim,jjm,1,       nsdm), &
+              work_low (                iim,jjm,1,       nsdm), &
+              work_flux(       nedges  ,iim,jjm,1,       nsdm), &
+              work_tr  (                iim,jjm,1,       nsdm), &
+              work_trh (                iim,jjm,1,       nsdm), &
+              work_trn4(                iim,jjm,1,       nsdm), &
+              work_tend(       nedges,  iim,jjm,1,nttend,nsdm) = 0.0_dbl_kind, &
+              work_old (                iim,jjm,  ntracer,nsdm) = 0.0_dbl_kind
+
+        nlm = 1
+        tend_index(1) = n3_f; tend_index(2) = n2_f; tend_index(3) = n1_f
+        tend_weight(1) = w3 ; tend_weight(2) = w2 ; tend_weight(3) = w1
+        work_mass (    :,:,1,:,:) = h   (      :,:,: ,:)
+        work_c    (  :,:,:,1,  :) = h_c (1,  :,:,:,   :)
+        work_u    (:,:,:,:,1,  :) = u   (  :,:,:,:,n3,:)
+        work_low  = c0
+        work_flux = c0
+
+        call set_mass_fct ( swm_name,  &
+                            iim, jjm, nlm, nsdm,                       &
+                            ntprog, nttend,                            &
+                            ncorners, ndata, nedges, nspace, npad, r3, &
+                            n3, n4,                                    &
+                            tend_index, tend_weight,                   &
+                            dt, area_inv, area, dc, normal,            &
+                            work_mass, work_c, work_u,                 &
+                            work_low, work_flux, work_tend)    
+
+        h(:,:,n4,:) = work_mass(:,:,1,n4,:)
+        mass_flux(1,:,:,:,:) = work_flux(:,:,:,1,:)
+        call wrap(swm_name,edge_1L=mass_flux(:,:,:,:,:))
+
+        do itracer = 1,ntracer
+        work_tr   (    :,:,1,:) = tracer(:,:,itracer,n3,:)
+        work_trh  (    :,:,1,:) = &
+                        w3*tracer(:,:,itracer,n3,:) + &
+                        w2*tracer(:,:,itracer,n4,:) + &
+                        w1*work_old(:,:,itracer,:)
+        work_old(:,:,itracer,:) = tracer(:,:,itracer,n4,:)
+
+        call set_tracer_fct( swm_name, &
+             iim, jjm, nlm, nsdm,nedges,                &
+             dt, area_inv, area,                        &
+             work_tr(:,:,:,:), work_trh(:,:,:,:),       &
+             work_mass(:,:,:,n3,:), work_low(:,:,:,:), work_mass(:,:,:,n4,:), &
+             work_flux(:,:,:,:,:),                      &
+             work_trn4(:,:,:,:)   )
+
+        tracer(:,:,itracer,n4,:) = work_trn4(:,:,1,:)
+
+        enddo
+
+        end subroutine get_fct_flux
+!===========================================================================
+! END OF GET_FCT_FLUX
+!===========================================================================
+
+
+!===========================================================================
+! BEGINNING OF GET_REMAP_FLUX
+!===========================================================================
+        subroutine get_remap_flux
+
+        implicit none
+        save
+
+!----------------------------------------------------------------------
+! Compute the transports across cell edges via incremental remapping,
+! then use AB3 to update mass and tracers.
+!----------------------------------------------------------------------
+
+        integer (kind=int_kind), parameter ::                          &
+             nmass = 1      ! # of mass fields (1 for swm, ncat for sea ice)
+
+	real (kind=dbl_kind), dimension(iim,jjm,nmass,nsdm) ::         &
+             h_rmp          ! thickness field; work array for remapping
+
+	real (kind=dbl_kind), dimension(iim,jjm,ntracer,nmass,nsdm) :: &
+             tracer_rmp     ! tracer fields; work arrays for remapping
+
+        real (kind=int_kind) :: dti          ! 1./dt
+
+	integer (kind=int_kind) :: nt
+
+	dti = c1/dt
+
+!-----------------------------------------------------------------------------
+! Load thickness and tracer fields into work arrays for remapping
+!-----------------------------------------------------------------------------
+
+        h_rmp(:,:,1,:) = h(:,:,n3,:)
+
+        do nt = 1, ntracer
+           tracer_rmp(:,:,nt,1,:) = tracer(:,:,nt,n3,:)
+        enddo
+
+!-----------------------------------------------------------------------------
+! Remap to get new fields
+!-----------------------------------------------------------------------------
+
+	call remap_mass_and_tracers (swm_name,                               &
+                                     nmass,          ntracer,                &
+                                     h_rmp(:,:,:,:), tracer_rmp(:,:,:,:,:),  &
+                                     dt,             u(:,:,:,:,n3,:),        &
+                                     edgeflux = mass_flux)
+
+!-----------------------------------------------------------------------------
+! Increment layer thickness using AB3
+!-----------------------------------------------------------------------------
+
+	do ksdm = 1, nsdm
+
+	   h_f(:,:,n3_f,ksdm) = (h_rmp(:,:,1,ksdm) - h(:,:,n3,ksdm)) * dti
+
+	   h(:,:,n4,ksdm) = h(:,:,n3,ksdm) +                                 &
+                             dt*(w3*h_f(:,:,n3_f,ksdm) +                     &
+                                 w2*h_f(:,:,n2_f,ksdm) +                     &
+                                 w1*h_f(:,:,n1_f,ksdm)   )
+
+!-----------------------------------------------------------------------------
+! Increment tracer using AB3
+!-----------------------------------------------------------------------------
+
+	   do nt = 1, ntracer
+
+	      tracer_f(:,:,nt,n3_f,ksdm) =                                   &
+	            (h_rmp(:,:, 1,ksdm)*tracer_rmp(:,:,nt, 1,ksdm) -         &
+                         h(:,:,n3,ksdm)*    tracer(:,:,nt,n3,ksdm))          &
+                         * dti
+
+              tracer(:,:,nt,n4,ksdm) =                             &
+                    (h(:,:,n3,ksdm) * tracer  (:,:,nt,n3,  ksdm) +   &
+                               dt*(w3*tracer_f(:,:,nt,n3_f,ksdm) +   &
+                                   w2*tracer_f(:,:,nt,n2_f,ksdm) +   &
+                                   w1*tracer_f(:,:,nt,n1_f,ksdm) ) ) &
+                                  / h(:,:,n4,ksdm)
+
+           enddo                ! nt
+	enddo			! nsdm
+
+!-----------------------------------------------------------------------  
+! Write times.
+!-----------------------------------------------------------------------   
+!	call timer_write(swm_name)
+
+        end subroutine get_remap_flux
+!===========================================================================
+! END OF GET_REMAP_FLUX
+!===========================================================================
+
+
+!===========================================================================
+! BEGINNING OF DUMP_MIN_MAX
+!===========================================================================
+          subroutine dump_min_max
+          implicit none
+
+          if(my_task==0) write(6,19) tau
+          f1 = global_real_maxval_mask(div(:,:,n4,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          f2 = global_real_minval_mask(div(:,:,n4,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          if(my_task==0) write(6,20) f2,f1
+          f1 = global_real_maxval_mask(relative(:,:,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          f2 = global_real_minval_mask(relative(:,:,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          if(my_task==0) write(6,21) f2,f1
+          f1 = global_real_maxval_mask(ke(:,:,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          f2 = global_real_minval_mask(ke(:,:,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          if(my_task==0) write(6,22) f2,f1
+          f1 = global_real_maxval_mask(h(:,:,n4,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          f2 = global_real_minval_mask(h(:,:,n4,:), &
+               grid_center_mask,iim*jjm*nsdm,swm_name)
+          if(my_task==0) write(6,23) f2,f1
+          f1 = global_real_maxval_mask(u(1,:,:,:,n4,:), &
+               grid_corner_mask,iim*jjm*nsdm,swm_name)
+          f2 = global_real_minval_mask(u(1,:,:,:,n4,:), &
+               grid_corner_mask,iim*jjm*nsdm,swm_name)
+          if(my_task==0) write(6,24) f2,f1
+          f1 = global_real_maxval_mask(u(2,:,:,:,n4,:), &
+               grid_corner_mask,iim*jjm*nsdm,swm_name)
+          f2 = global_real_minval_mask(u(2,:,:,:,n4,:), &
+               grid_corner_mask,iim*jjm*nsdm,swm_name)
+          if(my_task==0) write(6,25) f2,f1
+          if(my_task==0) write(6,26)
+          call timer_stop('diagnostics')
+
+ 19     format(//, ' GLOBAL MIN AND MAX OF SELECT FIELDS at time (hours) :',f20.5)
+ 20     format(' min/max divergence     : ',2e20.10)
+ 21     format(' min/max rel vorticity  : ',2e20.10)
+ 22     format(' min/max kinetic energy : ',2e20.10)
+ 23     format(' min/max mass thickness : ',2e20.10)
+ 24     format(' min/max eastward wind  : ',2e20.10)
+ 25     format(' min/max northward wind : ',2e20.10)
+ 26     format(//)
+
+        end subroutine dump_min_max
+!===========================================================================
+! END OF DUMP_MIN_MAX
+!===========================================================================
+
+	end module step
+
+!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

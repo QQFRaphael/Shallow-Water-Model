@@ -1,0 +1,8 @@
+
+the log.baseline can be used to test to see if your
+version of the swm is producing similar results as
+the version used at CSU.
+
+this log file is for a 1 hour integration with diagnostics
+written every time step. the swm exec was compile in
+optimized mode and run under MPI on 4 processors.

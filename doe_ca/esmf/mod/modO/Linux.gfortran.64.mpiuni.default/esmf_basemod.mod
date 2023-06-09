@@ -1,0 +1,228 @@
+GFORTRAN module created from /Users/dazlich/doe_ca/esmf/src/Infrastructure/Base/interface/ESMF_Base.F90 on Mon Sep 10 14:57:34 2012
+If you edit this, you'll get what you deserve.
+
+(() () () () () () () () () () () () () () () () () () () () ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'esmf_base' 'esmf_basemod' 1 ((DERIVED UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((3 'this' (DERIVED 4 ()) ()
+0 0 ()) (5 'isinit' (INTEGER 8 ()) () 0 0 (CONSTANT (INTEGER 4 ()) 0
+'76838410'))) PUBLIC ())
+6 'esmf_baseattcopyall' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 7 0 (8 9 10)
+() 0 () ())
+11 'esmf_baseattcopy' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 12 0 (13 14
+15 16) () 0 () ())
+17 'esmf_attribute' 'esmf_basemod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((18 'attr_name'
+(CHARACTER 1 ((CONSTANT (INTEGER 4 ()) 0 '128'))) () 0 0 ()) (19
+'attr_value' (DERIVED 20 ()) () 0 0 ())) PRIVATE ())
+21 'esmf_baseattgetlist' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 22 0 (23 24
+25 26) () 0 () ())
+27 'esmf_baseattgetcount' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 28 0 (29 30
+31) () 0 () ())
+32 'esmf_baseattgetnamelist' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 33 0 (34 35
+36 37) () 0 () ())
+38 'esmf_baseattsetobjectlist' 'esmf_basemod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ())
+39 0 (40 41 42 43) () 0 () ())
+44 'esmf_basecreate' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 45 0 (46 47
+48 49 50) () 0 () ())
+51 'esmf_baseattsetlist' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 52 0 (53 54
+55 56) () 0 () ())
+57 'esmf_baseattset' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 58 0 (59 60
+61 62) () 0 () ())
+63 'esmf_basegetinit' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL FUNCTION ALWAYS_EXPLICIT) (INTEGER 8 ()) 64 0 (65) ()
+63 () ())
+66 'esmf_baseprint' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 67 0 (68 69
+70) () 0 () ())
+71 'esmf_basevalidate' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 72 0 (73 74
+75) () 0 () ())
+76 'esmf_basedestroy' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 77 0 (78 79)
+() 0 () ())
+80 'esmf_baseattgetobjectlist' 'esmf_basemod' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ())
+81 0 (82 83 84 85) () 0 () ())
+86 'esmf_baseattgetbynumber' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 87 0 (88 89
+90 91 92) () 0 () ())
+93 'esmf_baseattget' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 94 0 (95 96
+97 98) () 0 () ())
+99 'esmf_getname' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 100 0 (101
+102 103) () 0 () ())
+104 'esmf_setname' 'esmf_basemod' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 ()) 105 0 (106
+107 108 109) () 0 () ())
+30 'count' '' 28 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (INTEGER 4 ())
+0 0 () () 0 () ())
+59 'base' '' 58 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2 ())
+0 0 () () 0 () ())
+31 'rc' '' 28 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+29 'anytype' '' 28 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2
+()) 0 0 () () 0 () ())
+62 'rc' '' 58 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+95 'base' '' 94 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2 ())
+0 0 () () 0 () ())
+97 'value' '' 94 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 20
+()) 0 0 () () 0 () ())
+98 'rc' '' 94 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+60 'name' '' 58 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1 (
+())) 0 0 () () 0 () ())
+61 'value' '' 58 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 20 ())
+0 0 () () 0 () ())
+96 'name' '' 94 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1 (
+())) 0 0 () () 0 () ())
+56 'rc' '' 52 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+55 'valuelist' '' 52 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DIMENSION DUMMY)
+(DERIVED 20 ()) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0 '1')
+()) 0 () ())
+89 'number' '' 87 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (INTEGER 4 ())
+0 0 () () 0 () ())
+25 'valuelist' '' 22 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DIMENSION DUMMY)
+(DERIVED 20 ()) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0 '1')
+()) 0 () ())
+24 'namelist' '' 22 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DIMENSION DUMMY)
+(CHARACTER 1 (())) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0 '1')
+()) 0 () ())
+26 'rc' '' 22 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+40 'anytypelist' '' 39 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DIMENSION
+DUMMY) (DERIVED 2 ()) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0
+'1') ()) 0 () ())
+43 'rc' '' 39 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+88 'anytype' '' 87 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2
+()) 0 0 () () 0 () ())
+84 'valuelist' '' 81 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DIMENSION DUMMY)
+(DERIVED 20 ()) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0 '1')
+()) 0 () ())
+83 'name' '' 81 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1 (
+())) 0 0 () () 0 () ())
+91 'value' '' 87 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 20
+()) 0 0 () () 0 () ())
+90 'name' '' 87 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1 (
+())) 0 0 () () 0 () ())
+82 'anytypelist' '' 81 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DIMENSION
+DUMMY) (DERIVED 2 ()) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0
+'1') ()) 0 () ())
+42 'value' '' 39 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DIMENSION DUMMY) (
+DERIVED 20 ()) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0 '1') ())
+0 () ())
+34 'anytype' '' 33 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2
+()) 0 0 () () 0 () ())
+35 'count' '' 33 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (INTEGER 4 ())
+0 0 () () 0 () ())
+92 'rc' '' 87 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+36 'namelist' '' 33 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN DIMENSION
+DUMMY) (CHARACTER 1 (())) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ())
+0 '1') ()) 0 () ())
+41 'name' '' 39 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1 (
+())) 0 0 () () 0 () ())
+54 'namelist' '' 52 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DIMENSION DUMMY)
+(CHARACTER 1 (())) 0 0 () (1 ASSUMED_SHAPE (CONSTANT (INTEGER 4 ()) 0 '1')
+()) 0 () ())
+4 'esmf_pointer' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((110 'ptr' (
+INTEGER 8 ()) () 0 0 ())) PUBLIC ())
+20 'esmf_datavalue' 'esmf_utiltypesmod' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN SEQUENCE) (UNKNOWN 0 ()) 0 0 () () 0 ((111 'pad' (
+INTEGER 4 ()) () 0 0 ())) PRIVATE ())
+53 'anytype' '' 52 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2
+()) 0 0 () () 0 () ())
+37 'rc' '' 33 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+23 'anytype' '' 22 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2
+()) 0 0 () () 0 () ())
+46 'base' '' 45 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 2 ()) 0 0 () () 0 () ())
+50 'rc' '' 45 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+47 'superclass' '' 45 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+13 'name' '' 12 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER 1 (
+())) 0 0 () () 0 () ())
+16 'rc' '' 12 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+15 'destination' '' 12 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 2 ()) 0 0 () () 0 () ())
+8 'source' '' 7 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2 ())
+0 0 () () 0 () ())
+14 'source' '' 12 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2 ())
+0 0 () () 0 () ())
+85 'rc' '' 81 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+49 'nattr' '' 45 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+48 'name' '' 45 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+10 'rc' '' 7 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+107 'name' '' 105 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+109 'rc' '' 105 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+102 'name' '' 100 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN DUMMY) (CHARACTER
+1 (())) 0 0 () () 0 () ())
+108 'namespace' '' 105 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY)
+(CHARACTER 1 (())) 0 0 () () 0 () ())
+101 'base' '' 100 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2 ())
+0 0 () () 0 () ())
+106 'base' '' 105 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN DUMMY)
+(DERIVED 2 ()) 0 0 () () 0 () ())
+9 'destination' '' 7 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED
+2 ()) 0 0 () () 0 () ())
+103 'rc' '' 100 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+68 'base' '' 67 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2 ())
+0 0 () () 0 () ())
+69 'options' '' 67 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+79 'rc' '' 77 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+78 'base' '' 77 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN DUMMY) (
+DERIVED 2 ()) 0 0 () () 0 () ())
+70 'rc' '' 67 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+73 'base' '' 72 ((VARIABLE IN UNKNOWN-PROC UNKNOWN DUMMY) (DERIVED 2 ())
+0 0 () () 0 () ())
+65 'base' '' 64 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+DERIVED 2 ()) 0 0 () () 0 () ())
+75 'rc' '' 72 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+INTEGER 4 ()) 0 0 () () 0 () ())
+74 'options' '' 72 ((VARIABLE IN UNKNOWN-PROC UNKNOWN OPTIONAL DUMMY) (
+CHARACTER 1 (())) 0 0 () () 0 () ())
+)
+
+('esmf_baseattget' 0 93 'esmf_attribute' 0 17 'esmf_baseattcopy' 0 11
+'esmf_base' 0 2 'esmf_baseattcopyall' 0 6 'esmf_baseattgetbynumber' 0 86
+'esmf_baseattgetobjectlist' 0 80 'esmf_baseattgetnamelist' 0 32
+'esmf_baseattgetcount' 0 27 'esmf_baseattgetlist' 0 21 'esmf_basedestroy'
+0 76 'esmf_baseattset' 0 57 'esmf_baseattsetlist' 0 51 'esmf_basecreate'
+0 44 'esmf_baseattsetobjectlist' 0 38 'esmf_basevalidate' 0 71
+'esmf_basegetinit' 0 63 'esmf_baseprint' 0 66 'esmf_getname' 0 99
+'esmf_setname' 0 104)

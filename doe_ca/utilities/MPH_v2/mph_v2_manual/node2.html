@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Introduction</TITLE>
+<META NAME="description" CONTENT="Introduction">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html93" HREF="node3.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html91" HREF="mph.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html85" HREF="node1.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html95" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html94" HREF="node3.html">How to Use</A>
+<B>Up:</B> <A NAME="tex2html92" HREF="mph.html">Multi Program-Components Handshaking (MPH) </A>
+<B> Previous:</B> <A NAME="tex2html86" HREF="node1.html">Contents</A>
+<BR> <P>
+<H1><A NAME="SECTION00020000000000000000">Introduction</A></H1>
+<P>
+   <PRE>   MPH version 2 combines all features of MPH version 1, unifies the
+   interfaces, and provides more flexible components integration/execution 
+   modes.  
+  
+   In a distributed multi-component environment, each executable resides
+   on a set of SMP nodes. Components within an executable may overlap on
+   different nodes or processors. 
+  
+   MPH Version 2 contains the following functionality: 
+   
+     o component name registration 
+     o resource allocation 
+     o multi-component single executable, multi-component 
+       multi-executable, etc. 
+     o inter-component communication 
+     o inquiry on the multi-component environment 
+     o standard in/out redirect 
+  
+   Please see more information at 
+      http://www.nersc.gov/research/SCG/acpi/MPH
+   and please list the following in your reference if useful:      
+        &quot;MPH: a Library for Distributed Multi-Component Environment&quot; 
+         Chris Ding and Yun He, Lawrence Berkeley Nat'l Lab Tech 
+         Report 47930, May 2001. 
+  
+   Consider the entire simulation system (CCSM) consists of many
+   executables, each executable containing one or more components.  
+   This architecture offers complete flexibility, and is consistent
+   with CORBA, DCE, CCA et al.
+  
+   1) Every executable starts with
+  
+      mpi_exec_world =                       &amp;
+            MPH_components(name1='ocean', name2='atmosphere',...)
+  
+      You may have only one component in this executable, or up to
+      10 components in this executable. Component names are nametags
+      (place holder) and are completely arbitrary.  They must be 
+      self-consistently used, and match the &quot;processors_map.in&quot; 
+      registration file.  This setup subroutine replaces MPH_setup()
+      in MPH version 1.  All other MPH functionality remains identical.
+  
+   2) Some usages:
+  
+      a) CCSM example.  Ice &amp; Land share one executable.
+   
+             coupler - one executable 
+          atmosphere - one executable 
+               ocean - one executable 
+          ice &amp; land - one executable with 2 components, 
+                       they may overlap on processors 
+      
+      b) CCSM example.  Multiple instances of atmosphere.
+  
+             coupler - one executable 
+          atmosphere - one executable of 3 components 
+                       each is a CCM instance of a different Dycore. 
+               ocean - one executable 
+                land - one executable with 3 components for CCMs.
+                       each is a land model to match the CCM 
+                 ice - one executable 
+    
+     c) PCM example. 
+  
+                   couple - one executable 
+        atmosphere &amp; land - one executable 
+              ocean &amp; ice - one executable 
+  
+   3) &quot;processors_map.in&quot; registration file
+  
+      The following example contains 3 executables:
+        1st executable has a single component: coupler 
+        2nd executable has 2 components: ocean, ice 
+        3rd executable has 3 components: atmosphere, land, chemistry 
+     
+          BEGIN
+          coupler
+          Multi_Comp_Start
+          2
+          ocean      0  3
+          ice        4 10
+          Multi_Comp_End
+          Multi_Comp_Start
+          3
+          atmosphere 0  10
+          land       11 13
+          chemistry  14 25
+          Multi_Comp_End
+          END
+     
+     a) Allocation of processors for each executable is controlled 
+        by job launching process (different on IBM, SGI, Compaq).
+  
+     b) Processor ranges for each components are defined local 
+        to the exeutable.</PRE>
+<P>
+   <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

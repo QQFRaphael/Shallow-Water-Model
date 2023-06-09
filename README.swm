@@ -1,0 +1,42 @@
+This package contains the CSU geodesic shallow water model (SWM), developed under a cooperative agreement with the Department of Energy. 
+
+Datasets are provided to run the code at the following resolutions:
+	Number of grid cells	Resolution(km)
+	2562			240
+	10242			120
+	40962			60
+	163842			30
+	655362			15
+
+Building the model: 
+cd doe_ca/swm. The file build.pl has options in the first 20 lines that the user may edit. Of particular interest are:
+$res    = '0010242';   # atm grid resolution (0002562, 0010242, 0040962)
+$cmode  = 0;           # 0 = debug mode compile, 1 = optimized
+$mpi    = 1;           # 0 or 1
+$subd   = '00040';     # number of atm subdomains.  only modified if mpi=1
+                       # possible vals:  00010,00040,00160,00640
+$npe    = 2;           # number of processors.  only modified if mpi=1
+$xlf    = 2;           # on MacOSX 0 = Absoft compiler, 1 = IBM xlf compiler (lam mpi),2=intel/openmpi, 3=gfortran.
+$pgi    = 0;           # on Linux, 0 = Intel compiler (lam-mpi), 1 = PGI compiler (mpich), 2=pathscale compiler
+
+The possible resolutions are the 5 listed above. The number of subdomains is limited by the resolution. With mpi, 40 is the minimum. Permitted are obtained by multiplying by 4. A practical limit is (number of grid cells - 2)/64, and one should use as few as are permitted by the number of processes selected. The number of mpi processes $npe is limited of course by your machine architecture, and must be a factor of the number of subdomains.
+
+
+After editing, a fresh build of the code is done by typing './build.pl -C'. This cleans everything before compiling. For an incremental build just type './build.pl'. Modifying build.pl requires a fresh build, modifying source code only requires an incremental build.
+
+Running the model:
+cd swm/run.xxxxxxx where xxxxxxx is the number of gridcells you are running (set in build.pl). You will find the swm executable here. If you built without mpi just type 'swm'. With mpi you type 'mpirun -np xx swm' where xx is the number of processors specified in build.pl. data/namelist has some parameters, self-described within the file, that the user may edit. The units of the final three parameters are number of timesteps, and they are the output interval for those categories of output.
+
+Model output:
+The SWM writes netcdf formatted output into the qp_output directory. Each process running the model writes its local domain to its own file, e.g. an 8-process run will write 8 files. The idl program ezplot will read and stitch these together automatically to produce global plots. If you wish to stitch the files into one global file there is a program post-processing/qpcat.f that can be compiled and run to do this. This program has informative user prompts, and must be linked with the netcdf library.
+
+Reference solutions:
+Reference solutions from the NCAR spectral swm are available in the spectral_swm/refsol directory. These have been interpolated to the geodesic grid at various resolutions. Additionally, the spectral swm code is available here and can be built and run.
+
+Porting the model:
+The SWM has some prebuilt options for MAC OSX and various compilers, as well as for some Linux clusters and CRAY machines. If the model will not build for you here are the places you need most likely need to go to perform a port to your architecture. utilities/compile and swm/compile have Makefile.host files for specifying compilers, options and library paths. If the OS/compiler of your machine are here you may just need to edit the netcdf library and include paths. If the OS/compiler do not exist you will need to add a block of code for it.
+The directory doe_ca/esmf/lib/libO has prebuilt esmf libraries that the model uses. For some OS/compiler configurations the library must be uncompressed and untarred. It is possible that esmf has not been built for your configuration, or that the existing build is obsolete. The esmf_5_2_0p1_src.tar file is available for doing a fresh build. esmf/build_notes has some guidance to the setting for environment variables that may be required.
+There may be conditions where porting your code requires the editing of the lower portion of build.pl. That is the edge of the map where "Here there be sea-monsters."
+
+Questions - Don Dazlich dazlich@atmos.colostate.edu
+30 November 2012

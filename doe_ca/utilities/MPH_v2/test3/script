@@ -1,0 +1,17 @@
+#! /usr/bin/csh -f 
+# @ output  = poe.stdout.$(jobid).$(stepid)
+# @ error  = poe.stderr.$(jobid).$(stepid)
+# @ wall_clock_limit = 50
+# @ class = debug
+# @ job_type = parallel
+# @ node = 1
+# @ total_tasks=8
+# @ network.MPI = csss, shared, us 
+# @ queue
+
+  setenv MP_STDOUTMODE     ordered
+  setenv MP_INFOLEVEL      2
+ 
+  echo "`date` -- CSM EXECUTION BEGINS HERE" 
+  poe main 
+  echo "`date` -- CSM EXECUTION finishes HERE" 

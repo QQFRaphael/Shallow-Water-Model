@@ -1,0 +1,32 @@
+GFORTRAN module version '3' created from /Users/dazlich/gfortran/esmf//src/Infrastructure/TimeMgr/interface/ESMF_BaseTime.F90 on Tue Dec 22 13:09:16 2009
+MD5:e50099664a50ed5c45de747d289cca84 -- If you edit this, you'll get what you deserve.
+
+(() () () ()
+() () () () () () () () () () () () () () () () () () () () () () ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'esmf_basetime' 'esmf_basetimemod' 'esmf_basetime' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0 SEQUENCE PRIVATE_COMP) (
+UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 ((3 's' (INTEGER 8 0 0 INTEGER ())
+() (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0)
+UNKNOWN-ACCESS (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '0')) (4 'sn' (
+INTEGER 4 0 0 INTEGER ()) () (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN 0) UNKNOWN-ACCESS (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'0')) (5 'sd' (INTEGER 4 0 0 INTEGER ()) () (UNKNOWN-FL UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN 0) UNKNOWN-ACCESS (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '0')) (6 'pad1' (INTEGER 4 0 0 INTEGER ()) () (UNKNOWN-FL
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0) UNKNOWN-ACCESS (CONSTANT
+(INTEGER 4 0 0 INTEGER ()) 0 '0')) (7 'pad2' (INTEGER 4 0 0 INTEGER ())
+() (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0)
+UNKNOWN-ACCESS (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '0'))) PRIVATE (()
+() () ()) () 0 0)
+)
+
+('esmf_basetime' 0 2)

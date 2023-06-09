@@ -1,0 +1,6 @@
+#!/bin/csh
+f90 -c -freeform ../layer_1/kinds.F
+f90 -c -freeform  generate_grid.F
+f90 -o generator *.o
+rm -f -r *.o *.mod
+./generator

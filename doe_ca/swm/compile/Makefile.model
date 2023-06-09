@@ -1,0 +1,231 @@
+#-----------------------------------------------------------------------------
+# Makefile for model-dependent information:  original shallow-water model
+# This file is intended to be read by GNUmakefile (along with Makefile.host)
+# See the comments in GNUmakefile for more information.
+#
+# This makefile must define all model-dependent information, principally:
+#
+#	A. model-dependent CPP flags
+#	B. name of executable code and default target
+#	C. list of all source files
+#	D. list of all nontrivial dependencies (e.g., on modules)
+#	E. test file directory and output (optional)
+#	
+# Explanation of each is in the comments below.
+#
+# Author:  Scott R. Fulton
+#          Updated to use utilities library (libutil.a) by Don Dazlich
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# PART A:  model-dependent CPP flags
+#-----------------------------------------------------------------------------
+RESOLUTION	= resval
+DRES		= -Dresolution$(RESOLUTION)
+DNUMSBDMNS	= -Dnumsbdmns00010
+DNPE		= -DNPE_COMP=1
+DMPI		= -Dmpi=val
+DPARALLEL_IO    = -Dparallel_io=0
+DVISCOSITY	= -Dviscosity=1
+DTHIN_FLUID 	= -Dthin_fluid=0
+CPP_OPTS	= $(DRES) $(DMPI) $(DVISCOSITY) $(DNUMSBDMNS) $(DNPE) $(DPARALLEL_IO) $(DTHIN_FLUID)
+
+#-----------------------------------------------------------------------------
+# PART B:  name of executable code and default target
+#-----------------------------------------------------------------------------
+# NAME = name of the executable code, BINDIR = directory in which to put it
+#
+# Leave the other lines alone!  They define the default target "all"
+# (the name is traditional) which gets processed when you run "make".
+# This must go here (before any dependency lines, which are also targets).
+# Using a phony target here allows us to put the actual rule for building
+# the executable code $(MAIN) in the main makefile (GNUmakefile).
+#-----------------------------------------------------------------------------
+NAME = swm
+BINDIR	= ../run.$(RESOLUTION)
+
+MAIN = $(BINDIR)/$(NAME)
+.PHONY: all
+all : $(MAIN)
+
+#-----------------------------------------------------------------------------
+# PART C:  list of all source files
+#-----------------------------------------------------------------------------
+# The bottom line in this section is to have two variables which list all
+# source files:
+#	SRC_FREE	all .F files using free  source form
+#	SRC_FIXED	all .F files using fixed source form
+# These can be explicit lists (i.e., hard-coded path to each file), but a 
+# far better approach is to define the two lists of files (without paths)
+# and then specify the directories in which to search for them in VPATH. 
+# Either list may be empty.
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Set the paths to the various source directories
+#-----------------------------------------------------------------------------
+DOE_CA		= ../../
+MODUTIL		= $(DOE_CA)/utilities/compile
+SW		= $(DOE_CA)/swm/source
+L1		= $(DOE_CA)/utilities/layer_1
+L2		= $(DOE_CA)/utilities/layer_2
+L3		= $(DOE_CA)/utilities/layer_3
+L4		= $(DOE_CA)/utilities/layer_4
+ESMFMOD = $(DOE_CA)/esmf/mod/$(ESMF_ARCH)
+USRLIBPATH      = $(DOE_CA)/lib
+
+#-----------------------------------------------------------------------------
+# Set the path to search for source files.  This eliminates the need to 
+# hard-code the path to each source file, and allows us to keep multiple 
+# copies in different directories for testing and running variants.  
+# To use the copy you want, just put the directories in the proper order.
+#-----------------------------------------------------------------------------
+VPATH = $(SW):$(L1):$(L2):$(L3):$(L4):$(ESMFMOD):$(MODUTIL)
+
+#-----------------------------------------------------------------------------
+# List the source files (must define SRC_FREE and SRC_FIXED)
+# The splitting here of source files into layers and SW-specific code
+# is NOT needed, but it may help keep track of which files are where.
+#-----------------------------------------------------------------------------
+
+# -lutil must be last since it is used by routines in the other libs
+USRLIBS = thelibs
+
+SRC_FREE_SW = \
+	driver.F \
+	step.F \
+	swm_dissipation_operator.F \
+	initialize.F \
+	model_control.F \
+	prognostics.F \
+	time_manager_module.F \
+	budgets.F \
+	swm_parameters.F \
+        swm_qp_module.F \
+        swm_restart.F \
+	dx_module.F 
+
+SRC_FREE_L4 = \
+	operators_hl_xxx.F 
+
+SRC_FREE_L3 = \
+	elliptic_solver_xxx.F \
+	multigrid_solver_xxx.F \
+	spectral_transforms_xxx.F 
+
+SRC_FREE_L2 = \
+        remap_xxx.F
+
+SRC_FREE_L1 = \
+	params_parallel_xxx.F \
+	params_grid_horizontal_xxx.F \
+	grid_mask_variables_xxx.F \
+	grid_metrics_variables_xxx.F 
+
+SRC_FREE = $(SRC_FREE_SW) \
+	   $(SRC_FREE_L4) $(SRC_FREE_L3) $(SRC_FREE_L2) $(SRC_FREE_L1)
+
+SRC_FIXED_SW =  
+
+SRC_FIXED_L3 =  
+
+SRC_FIXED_L2 = 
+
+SRC_FIXED = $(SRC_FIXED_SW) \
+	    $(SRC_FIXED_L4) $(SRC_FIXED_L3) $(SRC_FIXED_L2) $(SRC_FIXED_L1)
+
+#-----------------------------------------------------------------------------
+# PART D:  list of all nontrivial dependencies
+#-----------------------------------------------------------------------------
+# This list is critical--it tells make what depends on what.  The things to 
+# the left of the colon (targets) depend on the things to the right of the 
+# colon (prerequisites).  You can put multiple targets on the left if they 
+# all depend on the same list of prerequisites.
+#
+# Make already knows that an object (.o) file depends on the corresponding 
+# source (.F) file.  What is needed here is any other dependency, such as 
+# dependencies on modules (or include files).  For this, note that it is not
+# the source file (.F) which depends on the module (the source doesn't change
+# if you change the module), but the object code.  Also, what it depends on 
+# is the compiled module (which in turn depends on its own source code).
+# Thus we have .o files on the left (targets) and right (prerequisites).
+#
+# It might be the case (technically) that the object code for a program unit
+# depends not on the object code for a module but rather on some other file
+# (e.g., a .mod file) which is produced as a byproduct of compiling the
+# module.  If this is the case, then this makefile may fail in the unlikely
+# situation that the .mod file is missing or changed but the .o file is not.
+# This could be overcome by introducing the suffix .mod and corresponding 
+# rules, but I'm reluctant to try it:
+# 1. It's highly unlikely to ever be needed,
+# 2. Some systems may use something other than .mod, and
+# 3. I can't find ANY documentation for what the true dependency is.
+#
+# The utility getdep may be used to generate these dependency lists.
+#-----------------------------------------------------------------------------
+
+# Note:  dependencies below were generated automatically by getdep
+# Note:  dependencies on .h files commented out (I don't know where they are)
+# Note:  dependency of timer.o on xlfutility.o (ibm only) commented out
+
+#-------SWM-SPECIFIC:
+budgets.o: kinds.o params_parallel_xxx.o params_physical.o swm_parameters.o prognostics.o grid_mask_variables_xxx.o grid_metrics_variables_xxx.o global_reductions.o
+
+driver.o: kinds.o params_parallel_xxx.o params_physical.o timer.o swm_parameters.o prognostics.o wrap_data.o initialize.o model_control.o time_manager_module.o step.o dx_module.o budgets.o swm_qp_module.o swm_restart.o swm_dissipation_operator.o
+
+dx_module.o: kinds.o params_parallel_xxx.o params_grid_horizontal_xxx.o component_intra.o swm_parameters.o grid_mask_variables_xxx.o gather_scatter.o geodesic_grid_utilities.o grid_metrics_variables_xxx.o
+
+initialize.o: kinds.o abort.o component_intra.o params_physical.o params_grid_horizontal_xxx.o params_MPI.o swm_parameters.o assign_owner.o wrap_data.o grid_metrics_variables_xxx.o grid_metrics.o grid_mask_variables_xxx.o grid_mask.o prognostics.o operators.o operators_hl_xxx.o elliptic_solver_xxx.o multigrid_solver_xxx.o time_manager_module.o model_control.o dx_module.o budgets.o spectral_transforms_xxx.o swm_qp_module.o swm_restart.o io_utilities.o remap_xxx.o swm_dissipation_operator.o
+
+model_control.o: kinds.o params_physical.o time_manager_module.o swm_parameters.o
+
+prognostics.o: kinds.o params_grid_horizontal_xxx.o swm_parameters.o
+
+step.o: kinds.o params_physical.o timer.o params_parallel_xxx.o swm_parameters.o params_grid_horizontal_xxx.o model_control.o global_reductions.o grid_metrics_variables_xxx.o operators_hl_xxx.o elliptic_solver_xxx.o wrap_data.o prognostics.o spectral_transforms_xxx.o remap_xxx.o
+
+swm_dissipation_operator.o: kinds.o params_physical.o params_grid_horizontal_xxx.o params_MPI.o geodesic_grid_utilities.o wrap_data.o grid_metrics_variables_xxx.o
+
+swm_parameters.o: kinds.o params_physical.o
+
+swm_qp_module.o: types.o component_intra.o grid_mask_variables_xxx.o geodesic_grid_utilities.o netcdf_geodesic.o qp_utilities.o prognostics.o
+
+swm_restart.o: kinds.o params_grid_horizontal_xxx.o prognostics.o swm_parameters.o io_utilities.o output_utilities.o wrap_data.o grid_mask_variables_xxx.o operators_hl_xxx.o time_manager_module.o
+
+time_manager_module.o: kinds.o params_parallel_xxx.o params_physical.o swm_parameters.o
+
+#-------LAYER 4:
+
+operators_hl_xxx.o: kinds.o params_grid_horizontal_xxx.o swm_parameters.o grid_metrics_variables_xxx.o operators.o wrap_data.o grid_mask_variables_xxx.o elliptic_solver_xxx.o
+
+#-------LAYER 3:
+
+
+elliptic_solver_xxx.o: kinds.o abort.o params_physical.o params_parallel_xxx.o params_grid_horizontal_xxx.o wrap_data.o operators.o global_reductions.o multigrid_solver_xxx.o timer.o
+
+multigrid_solver_xxx.o: kinds.o abort.o params_physical.o params_grid_horizontal_xxx.o component_intra.o params_parallel_xxx.o assign_owner.o gather_scatter.o wrap_data.o grid_metrics_generator.o timer.o # mpif.h
+
+spectral_transforms_xxx.o: kinds.o params_grid_horizontal_xxx.o grid_metrics_variables_xxx.o
+
+
+#-------LAYER 2:
+
+remap_xxx.o: kinds.o params_physical.o params_grid_horizontal_xxx.o params_parallel_xxx.o grid_mask_variables_xxx.o grid_metrics_variables_xxx.o timer.o geodesic_grid_utilities.o operators.o wrap_data.o grid_metrics_generator.o grid_mask.o global_reductions.o
+
+#-------LAYER 1:
+
+params_parallel_xxx.o: kinds.o
+
+params_grid_horizontal_xxx.o: kinds.o abort.o params_parallel_xxx.o
+
+grid_mask_variables_xxx.o: kinds.o params_grid_horizontal_xxx.o
+
+grid_metrics_variables_xxx.o: kinds.o params_physical.o params_grid_horizontal_xxx.o
+
+#-----------------------------------------------------------------------------
+# PART E:  test file directory and output (optional)
+#-----------------------------------------------------------------------------
+# CHECK_DIR is the directory in which to run the standard test ("make check")
+# CHECK_OUTPUT is the name of the corresponding output file
+#-----------------------------------------------------------------------------
+CHECK_DIR = ../run.$(RESOLUTION)
+CHECK_OUTPUT = $(CHECK_DIR)/log_check

@@ -1,0 +1,26 @@
+
+object "positions list" class array type float rank 1 shape 3 items 10242
+ascii data file grid_centers_0010242
+
+object "edge list" class array type int rank 0 items 61440
+ascii data file corner_connectivity_0010242
+attribute "ref" string "positions"
+
+object "loops list" class array type int rank 0 items 20480
+ascii data file corner_loop_list_0010242
+attribute "ref" string "edges"
+
+object "face list" class array type int rank 0 items 20480
+ascii data file corner_face_list_0010242
+attribute "ref" string "loops"
+
+object 0  class array type int rank 0 items 20480
+data file corner_face_list_0010242
+attribute "dep" string "faces"
+
+object "index" class field
+component "positions"     "positions list"
+component "edges"         "edge list"
+component "loops"         "loops list"
+component "faces"         "face list"
+component "data"           0

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Multi Program-Components Handshaking (MPH) Utility Version 2</TITLE>
+<META NAME="description" CONTENT="Multi Program-Components Handshaking (MPH) Utility Version 2">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html1" HREF="node1.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif_gr.gif"> <IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif_gr.gif"> <A NAME="tex2html3" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html2" HREF="node1.html">Contents</A>
+<BR> <P>
+<H1 ALIGN=CENTER>Multi Program-Components Handshaking (MPH) Utility Version 2</H1>
+<P ALIGN=CENTER><STRONG>Y<font size=-1><small>UN</small></font> H<font size=-1><small>E</small></font> <font size=-1><small>AND</small></font> C<font size=-1><small>HRIS</small></font> D<font size=-1><small>ING</small></font><BR> <EM>NERSC Division, Lawrence Berkeley National Laboratory</EM></STRONG></P><P>
+<P ALIGN=CENTER><STRONG>November 27, 2001</STRONG></P><P>
+<P>
+<BR> <HR>
+<UL> 
+<LI> <A NAME="tex2html4" HREF="node1.html#SECTION00010000000000000000">Contents</A>
+<LI> <A NAME="tex2html5" HREF="node2.html#SECTION00020000000000000000">Introduction</A>
+<LI> <A NAME="tex2html6" HREF="node3.html#SECTION00030000000000000000">How to Use</A>
+<LI> <A NAME="tex2html7" HREF="node4.html#SECTION00040000000000000000">How to Compile and Run</A>
+<LI> <A NAME="tex2html8" HREF="node5.html#SECTION00050000000000000000">Acknowledgement</A>
+<LI> <A NAME="tex2html9" HREF="node6.html#SECTION00060000000000000000">Routine/Function Prologues</A>
+<UL> 
+<LI> <A NAME="tex2html10" HREF="node7.html#SECTION00061000000000000000">Module MPH_module - Multi Program-Components Handshaking  (Source File: mph.F)</A>
+<UL> 
+<LI> <A NAME="tex2html11" HREF="node8.html#SECTION00061100000000000000">MPH_components - main MPH setup function</A>
+<LI> <A NAME="tex2html12" HREF="node9.html#SECTION00061200000000000000">MPH_init - initialize MPI and read the processors map info</A>
+<LI> <A NAME="tex2html13" HREF="node10.html#SECTION00061300000000000000">MPH_local - local handshaking</A>
+<LI> <A NAME="tex2html14" HREF="node11.html#SECTION00061400000000000000">MPH_global - global handshaking</A>
+<LI> <A NAME="tex2html15" HREF="node12.html#SECTION00061500000000000000">PE_in_component - check if a processor is in a component</A>
+<LI> <A NAME="tex2html16" HREF="node13.html#SECTION00061600000000000000">PE_in_num_comps - return the number of components a processor</A>
+<LI> <A NAME="tex2html17" HREF="node14.html#SECTION00061700000000000000">MPH_global_id - find global processor id</A>
+<LI> <A NAME="tex2html18" HREF="node15.html#SECTION00061800000000000000">MPH_comm_join - join two components</A>
+<LI> <A NAME="tex2html19" HREF="node16.html#SECTION00061900000000000000">MPH_redirect_output - redirect output from each component</A>
+<LI> <A NAME="tex2html20" HREF="node17.html#SECTION000611000000000000000">MPH_read_list - read and process info from &quot;processors_map.in&quot;</A>
+<LI> <A NAME="tex2html21" HREF="node18.html#SECTION000611100000000000000">MPH_find_name - find name in a namelist</A>
+<LI> <A NAME="tex2html22" HREF="node19.html#SECTION000611200000000000000">MPH_help - display help info</A>
+<LI> <A NAME="tex2html23" HREF="node20.html#SECTION000611300000000000000">MPH_debug - define debug level</A>
+<LI> <A NAME="tex2html24" HREF="node21.html#SECTION000611400000000000000">MPH_timer - collect timing info in different channels.</A>
+<LI> <A NAME="tex2html25" HREF="node22.html#SECTION000611500000000000000">MPH_total_components - find number of total components</A>
+<LI> <A NAME="tex2html26" HREF="node23.html#SECTION000611600000000000000">MPH_comp_name - find component name given component id</A>
+<LI> <A NAME="tex2html27" HREF="node24.html#SECTION000611700000000000000">MPH_comp_id - find component id given component name</A>
+<LI> <A NAME="tex2html28" HREF="node25.html#SECTION000611800000000000000">MPH_local_world - find local communicator given component name</A>
+<LI> <A NAME="tex2html29" HREF="node26.html#SECTION000611900000000000000">MPH_exe_id - find executable id given component name</A>
+<LI> <A NAME="tex2html30" HREF="node27.html#SECTION000612000000000000000">MPH_total_num_exe - find total number of executables</A>
+<LI> <A NAME="tex2html31" HREF="node28.html#SECTION000612100000000000000">MPH_num_comps - find number of components in an executable</A>
+<LI> <A NAME="tex2html32" HREF="node29.html#SECTION000612200000000000000">MPH_local_proc_id - find local processor id in a component</A>
+<LI> <A NAME="tex2html33" HREF="node30.html#SECTION000612300000000000000">MPH_local_totProcs - find total number of processors </A>
+<LI> <A NAME="tex2html34" HREF="node31.html#SECTION000612400000000000000">MPH_global_proc_id - find global processor id</A>
+<LI> <A NAME="tex2html35" HREF="node32.html#SECTION000612500000000000000">MPH_global_proc_id - find total number of processors</A>
+<LI> <A NAME="tex2html36" HREF="node33.html#SECTION000612600000000000000">MPH_local_world - find local communicator of an executable</A>
+<LI> <A NAME="tex2html37" HREF="node34.html#SECTION000612700000000000000">MPH_exe_low_proc_limit - find lower proc limit of an executable</A>
+<LI> <A NAME="tex2html38" HREF="node35.html#SECTION000612800000000000000">MPH_exe_up_proc_limit - find upper proc limit of an executable</A>
+</UL> 
+</UL> 
+<LI> <A NAME="tex2html39" HREF="node36.html#SECTION00070000000000000000">  About this document ... </A>
+</UL>
+<BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

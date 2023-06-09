@@ -1,0 +1,14 @@
+issue the command "csh run_script" to compile and execute the grid
+generation program. users will likely have to alter the compile
+options for local platforms.
+
+edit generate_grid.F to produce grid at different resolution.
+
+the grids generated are those obtained by recursive bisection of the
+icosahedron. the initial resursion is bisection (even grids) or
+trisection (odd grids).
+
+these grids are not been "optimized" in any manner.
+
+in the sub-directory called "tweaked" there are 3 grids that have
+been optimized using the procedure outlined in Heikes and Randall (1995b).

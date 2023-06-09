@@ -1,0 +1,8 @@
+#!/bin/csh
+f90 -c -freeform -O3 ../../layer_1/kinds.F
+f90 -c -freeform -O3 ../../layer_1/physical_parameters.F
+f90 -c -freeform -O3 ../../layer_2/geodesic_grid_utilities.F 
+f90 -c -freeform -O3 measure_grid.F
+f90 -o measure -O3 *.o
+rm -f -r *.o *.mod
+./measure < input > output

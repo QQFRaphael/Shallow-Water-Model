@@ -1,0 +1,14 @@
+ 0  in sub cpl===  2  in global
+ my comp_id in sub cpl= 3
+  sum of local ranks in cpl is  1
+ I am cpl 0 (g=4), recv from land 2 (g=3)
+ I am cpl 0, expect l2c(1)=100
+ cpl 0 gets l2c(1)= 100
+  
+ 0  in sub cpl===  2  in global
+ my comp_id in sub cpl= 3
+  sum of local ranks in cpl is  1
+ I am cpl 0 (g=4), recv from land 2 (g=3)
+ I am cpl 0, expect l2c(1)=100
+ cpl 0 gets l2c(1)= 100
+ 

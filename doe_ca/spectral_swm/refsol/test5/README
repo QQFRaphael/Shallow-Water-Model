@@ -1,0 +1,8 @@
+Reference solutions produced by the NCAR spectral transform shallow water model (stswm).
+These are for test case 5.
+
+REF0114.cdf - T213 truncated to T106 (original solution file provided by NCAR)
+REF213-213.cdf - T213 without any truncation, timestep=30s (original dt=360s)
+--> all layer thickness files have been derived from this solution EXCEPT for the tweaked files,
+    which were taken from the T213 w/dt=360s netcdf file (no longer available on cvs)
+

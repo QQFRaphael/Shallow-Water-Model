@@ -1,0 +1,28 @@
+
+object "positions list" class array type float rank 1 shape 3 items 2562
+ascii data file cellcenters.data
+
+object 0  class array type float rank 1 shape 3 items 2562
+ascii data file ./output/stressx.00000001
+attribute "dep" string "positions"
+
+object 1  class array type float rank 1 shape 3 items 2562
+ascii data file ./output/stressy.00000001
+attribute "dep" string "positions"
+
+object 2  class array type float rank 1 shape 3 items 2562
+ascii data file ./output/stressz.00000001
+attribute "dep" string "positions"
+
+object "stressx" class field
+component "positions"     "positions list"
+component "data"           0
+
+object "stressy" class field
+component "positions"     "positions list"
+component "data"           1
+
+object "stressz" class field
+component "positions"     "positions list"
+component "data"           2
+

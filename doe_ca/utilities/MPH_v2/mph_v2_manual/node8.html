@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-e (April 9, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>MPH_components - main MPH setup function</TITLE>
+<META NAME="description" CONTENT="MPH_components - main MPH setup function">
+<META NAME="keywords" CONTENT="mph">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="mph.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html214" HREF="node9.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www.lbl.gov/latex2html/figs/next_motif.gif"></A> <A NAME="tex2html212" HREF="node7.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www.lbl.gov/latex2html/figs/up_motif.gif"></A> <A NAME="tex2html206" HREF="node7.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www.lbl.gov/latex2html/figs/previous_motif.gif"></A> <A NAME="tex2html216" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www.lbl.gov/latex2html/figs/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html215" HREF="node9.html">MPH_init - initialize MPI </A>
+<B>Up:</B> <A NAME="tex2html213" HREF="node7.html">Module MPH_module - Multi </A>
+<B> Previous:</B> <A NAME="tex2html207" HREF="node7.html">Module MPH_module - Multi </A>
+<BR> <P>
+<H3><A NAME="SECTION00061100000000000000">MPH_components - main MPH setup function</A></H3>
+<P>
+      This is the main function for each of the executable to call to 
+      setup the distributed multi-component environment.  For example,
+      if ocean and atmosphere sits in one executable, the source code
+      will contain:
+      <PRE>      mpi_exec_world =                       &amp;
+            MPH_components(name1='ocean', name2='atmosphere',...)</PRE>
+      This function returns the MPI communicator of local executable world.
+<P>
+<P><I>REVISION HISTORY:</I>
+<PRE>       2001-Dec-03 -- reduce from 10 arguments to 5
+       2001-Nov-15 -- add PROTEX convention
+       2001-May-20 -- first prototype</PRE><I>INTERFACE:</I>
+<PRE>       integer function MPH_components(name1, name2, name3, name4, name5)</PRE><EM>USES:</EM>
+<PRE>       implicit none</PRE><EM>INPUT PARAMETERS:</EM>
+<PRE>       These are component names
+       character(len=*),intent(in) :: name1
+       character(len=*),intent(in),optional :: name2, name3, name4, name5</PRE><EM>OUTPUT PARAMETERS:</EM>
+<PRE>       ! This function returns the MPI communicator of this executable 
+       ! world: exe_world (exe_id)</PRE><I>SEE ALSO:</I>
+<PRE>       MPH_init, MPH_local, MPH_global, MPH_debug</PRE><I>LOCAL VARIABLES:</I>
+<PRE>       integer :: k</PRE>
+<P>
+\
+<P>
+  <BR> <HR>
+<P><ADDRESS>
+<I>Yun (Helen) He <BR>
+Tue Jan  8 16:28:41 PST 2002</I>
+</ADDRESS>
+</BODY>
+</HTML>

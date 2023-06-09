@@ -1,0 +1,11 @@
+#!/bin/csh
+f77 -c -64 -r8 -O2 ../source/*.f -I/usr/local/include
+f77 -c -64 -O2 ../source/prnt.f -I/usr/local/include
+f77 -c -64 -O2 ../source/inptp.f -I/usr/local/include
+f77 -c -64 -r8 -O2 ../lib/adquad.f
+f77 -c -64 -r8 -O2 ../lib/fft99f.f
+f77 -c -64 -r8 -O2 ../lib/ncarg.f
+rm ../lib/params.i
+ln -s ../source/params.i ../lib/params.i
+f77 -c -64 -r8 -O2 ../lib/suntime.f 
+f77 -64 -O2 -o ../run/stswm *.o /usr/local/lib64/libnetcdf.a 

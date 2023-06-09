@@ -1,0 +1,7 @@
+365   ! start day
+0     ! start TOD
+396   ! exec day
+0     ! exec TOD
+0     ! increment Day
+3600  ! increment TOD
+1978  ! base year
